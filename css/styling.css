@@ -1,3 +1,6 @@
+html{
+    background-color: aliceblue;
+}
 #logo_img{
     width: 2.5em;
     height:2.5em;
@@ -8,22 +11,28 @@ h1,h2,p,body,footer,a,figcaption{
 
 #site_logo{
     display: flex;
+    margin-left: 1em;
+    
 }
 
 
 .greentext{
     color: green;
+    
 }
 
 
 /* All of the following formating is for items in the header*/
 header{
-    margin-left:2.4em;
-    margin-right:2.4em;
+    margin-left:2em;
+    margin-right:2em;
     margin-bottom: 0em; 
     display: flex; /* Make header a flex container */
     justify-content: space-between; /* Align children at the start and end */
     align-items: center;
+    border-bottom: 1px solid black;
+    /* margin-left: 2em;
+    margin-right:2em; */
 }
 .menu_bar{
     float:right;
@@ -35,6 +44,8 @@ header{
     text-decoration: none;
     font-size: 2em;
     margin-right:1em;
+    font-weight: bold;
+    text-shadow: 0em 0.3em 0.7em #979997;
 }
 #home_link:hover{
     text-shadow: 0em 0.3em 0.7em #525452;
@@ -44,9 +55,12 @@ header{
     text-decoration: none;
     font-size: 1em;
     margin-right:1em;
+    font-weight: bold;
 }
 #price_link:hover{
     text-shadow: 0em 0.3em 0.7em #525452;
+    text-indent: 1em;
+    
 }
 
 #login_link{
@@ -54,6 +68,7 @@ header{
     text-decoration: none;
     font-size: 1em;
     margin-right:1em;
+    font-weight: bold;
 }
 #login_link:hover{
     text-shadow: 0em 0.3em 0.7em #525452;
@@ -61,26 +76,51 @@ header{
 /* ^^Items in the header ^^*/
 
 /*The following formating is for items in the body*/
-#main{
-    border-top: 1px solid black;
-    margin-left: 2em;
-    margin-right:2em;
-
+#banner{
+    
+    height:fit-content;
 }
 
-#treeimg{
-    margin-right: auto;
-    margin-left: auto; 
+#bannerimg{
+    width:100%;
+    border-radius: 2em;
 }
 
 figure{
     position: relative;
 }
 
-figcaption{
-    position:absolute;
-    top: 2em;
-    left:2em;
-    font-size: 2em;
-    font-weight: bold;
+
+#description-text{
+    float:left;
+    margin-left:4.5em;
+    width:30em;
+
+}
+#image_bubbles{
+    display: flex;
+    float:right;
+    height: 10em;
+    margin-right: 4.5em;
+}
+
+.logobubble{
+    border-radius:50%;
+    height: 20em;
+    margin-right:1em;
+}
+
+#main{
+    overflow:auto;
+    margin-bottom: 0em;
+    height:60em;
+}
+
+#search-bar{
+    height:4em;
+    width:40em;
+    border-radius: 2em;
+    border: solid 0.25em green;
+    border-color: green;
+    text-size-adjust: 3em;
 }
