@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/styling.css">
+    <title>Login</title>
+</head>
+<header>
+    <div id="site_logo">
+        <p>
+            <img id="logo_img" src="img/grocery_logo.png" alt="logo">
+            <h2>Grocery</h2><h1 class="greentext">Sense</h1>
+        </p>
+    </div>
+    <div class="menu_bar">
+        <p>
+            <a type="button" id="home_link" href="homepage.html">HOME</a>
+            <a type="button" id="price_link" href="priceTrends.html">PRICE TRENDS</a>
+            <a type="button"id="login_link" href="login.html">LOGIN</a>
+        </p>
+    </div>
+</header>
+<body>
+    <div id="main">
+        <div id="login-form">
+            <h3>Login</h3>
+            <form id="loginForm" action="process_login.php" method="post" onsubmit="return validateForm()">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username.trim() === "") {
+                alert("Please enter both username and password.");
+                return false; // Prevent form submission
+            }
+            if (password.trim() === "") {
+                alert("Please enter your password.");
+                return false; // Prevent form submission
+            }
+
+            if (password.trim() === "") {
+                alert("Please enter your password.");
+                return false; // Prevent form submission
+            }
+
+            // Regular expression for password validation
+            var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+
+            if (!passwordRegex.test(password)) {
+                alert("Password must contain at least one digit, one uppercase letter, one lowercase letter, one special character, and be at least 8 characters long.");
+                return false; // Prevent form submission
+            }
+
+            // You can add more complex validation logic here if needed
+
+            return true; // Allow form submission
+        }
+    </script>
+    <div id="loginBubbles">
+        <img class="logobubble" src="img/saveon-logo.png" alt="saveon-logo">
+        <img class="logobubble" src="img/walmart-logo.jpg" alt="walmart-logo">
+        <img class="logobubble" src="img/loblaws-logo.jpg" alt="lowblaws-logo">
+    </div>
+</body>
+<footer>
+    <p></p>
+</footer>
+</html>

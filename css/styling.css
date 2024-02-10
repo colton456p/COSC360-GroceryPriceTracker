@@ -34,10 +34,36 @@ header{
     /* margin-left: 2em;
     margin-right:2em; */
 }
-.menu_bar{
-    float:right;
-    position:relative;
-    margin-right:1em;
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+
+#search-bar {
+    height: 4em;
+    width: 20em; /* Adjust width as needed */
+    border-radius: 2em;
+    border: solid 0.25em green;
+    border-color: green;
+    text-size-adjust: 3em;
+    margin-right: 120em; /* Adjust margin as needed */
+}
+
+
+
+.menu_bar {
+    display: flex;
+}
+
+.menu_bar a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: green;
+    font-weight: bold;
 }
 #home_link{
     color:green;
@@ -116,11 +142,46 @@ figure{
     height:60em;
 }
 
-#search-bar{
-    height:4em;
-    width:40em;
-    border-radius: 2em;
-    border: solid 0.25em green;
-    border-color: green;
-    text-size-adjust: 3em;
+#login-form {
+    max-width: 400px;
+    margin: 100px auto 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#loginBubbles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6em;
 }
