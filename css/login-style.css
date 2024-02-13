@@ -1,0 +1,122 @@
+html{background-color: aliceblue;}
+.greentext{color: green;}
+
+h1,h2,p,body,footer,a,figcaption,::-webkit-file-upload-button{font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
+/*Website Logo placement and design*/
+    #logo_img{
+        width: 2.5em;
+        height:2.5em;
+    }
+    #site_logo{
+        display: flex;
+        margin-left: 1em;
+    }
+/*-----------------------------------*/
+
+
+/* Header Formating*/
+    header{
+        margin-left:2em;
+        margin-right:2em;
+        margin-bottom: 0em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid black;
+        min-width: 1200px;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+
+    #search-bar {
+        height: 4em;
+        width: 20em;
+        border-radius: 2em;
+        border: solid 0.25em green;
+        border-color: green;
+        text-size-adjust: 3em;
+        margin-right: 120em;
+    }
+
+
+    /*Navigation tabs (Home, Price trends, Login)*/
+    #menu_bar {display: flex;}
+    #menu_bar a{
+        color:green;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #home_link{
+        font-size: 1em;
+        margin-right:1em;
+    }
+    #home_link:hover{text-shadow: 0em 0.3em 0.7em #525452;}
+    #price_link{
+        font-size: 1em;
+        margin-right:1em;
+    }
+    #price_link:hover{text-shadow: 0em 0.3em 0.7em #525452;}
+
+    #login_link{
+        font-size: 2em;
+        margin-right:1em;
+        text-shadow: 0em 0.3em 0.7em #979997;
+    }
+    #login_link:hover{text-shadow: 0em 0.3em 0.7em #525452;}
+/*---------------------------------------------------------------------------*/
+
+/*Body Formating*/
+    #main{
+        overflow:auto;
+        margin-bottom: 0em;
+        height:60em;
+    }
+
+    #login-div {
+        max-width: 400px;
+        margin: 100px auto 0;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 1em;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #login-div h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    label {
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: green;
+        color: #fff;
+        padding: 12px;
+        border: none;
+        border-radius: 1em;
+        font-weight: bold;
+        width: 7em;
+    }
+
+    button:hover {
+        font-size: large;
+    }
+/*------------------------------------------------------*/
