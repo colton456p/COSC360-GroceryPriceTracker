@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <link rel="stylesheet" href="css/homepage-style.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
         <title>Homepage</title>
     </head>
     <header>
@@ -11,10 +16,13 @@
                 <h2 >Grocery</h2><h1 class="greentext">Sense</h1>
             </p>
         </div>
-        <!-- <div id="header-search-div">
-            <input type="search" name="search-bar" placeholder="Search for items...">
-        </div> -->
-    
+        <div id="header-search-div">
+            <form id="search-form" action="">
+                <input type="search" id="search-bar" name="search-bar" placeholder="Search for items...">
+                <input type="submit" value="Search" id="search-button">
+            </form>
+        </div>
+        
         <div id="menu_bar">
             <p>
                 <a type="button" id="home-nav-link" href="homepage.html">HOME</a>
