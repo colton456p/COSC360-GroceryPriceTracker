@@ -23,7 +23,7 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid black;
-        min-width: 1200px;
+        min-width: 1300px;
     }
 
     /*Search Bar Formating*/
@@ -124,6 +124,6 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         overflow:auto;
         margin-bottom: 0em;
         height:60em;
-        min-width: 1200px;
+        min-width: 1300px;
     }
 /*-------------------------------------------------------------------------------*/
