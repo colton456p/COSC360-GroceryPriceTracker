@@ -1,0 +1,158 @@
+html{background-color: aliceblue;}
+h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
+.greentext{color: green;}
+
+/*Website Logo placement and design*/
+    #logo_img{
+        width: 2.5em;
+        height:2.5em;
+    }
+    #site_logo{
+        display: flex;
+        margin-left: 1em; 
+    }
+/*-----------------------------------*/
+
+
+/* Header Formating*/
+    header{
+        margin-left:2em;
+        margin-right:2em;
+        margin-bottom: 0em; 
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid black;
+        min-width: 1200px;
+    }
+
+    /*Search Bar Formating*/
+    #header-search-div{
+        margin-left: 18em;
+        position: absolute;
+        height: 3.5em;
+        width: 2em;
+        margin-top:1em;
+    }
+
+    #search-bar{
+        border-top: 0.1em solid green;
+        border-left: 0.1em solid green;
+        border-bottom: 0.1em solid green;
+        border-right: none;
+        width: 20em;
+        height: 3.5em;
+        font-weight: 900;
+        user-select:contain;
+    }
+    #search-form{
+        display:flex;
+        height: 3.5em;
+        width: 25em;
+    }
+    #search-button{
+        color:white;
+        background-color: green;
+        border: none;
+        padding-left: 0em;
+        margin-left: 0px;
+        height: 3.5em;
+        font-weight: bold;
+        width:5.5em;
+    }
+    #search-button:hover{
+        box-shadow: green 0em 0.0em 0.7em;
+    }
+    
+    
+    /*Navigation tabs (Home, Price trends, Login)*/
+    #menu_bar {display: inline-block;}
+    #menu_bar a{
+        color:green;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #dashboard-nav-link{
+        font-size: 2em;
+        margin-right:1em;
+        text-shadow: 0em 0.3em 0.7em #979997;
+    }
+    #dashboard-nav-link:hover{text-shadow: 0em 0.3em 0.7em #525452;}
+    #trend-nav-link{
+        font-size: 1em;
+        margin-right:1em;
+    }
+    #trend-nav-link:hover{text-shadow: 0em 0.3em 0.7em #525452;}
+    #account-nav-link{
+        font-size: 1em;
+        margin-right:1em;
+    }
+    #account-nav-link:hover{text-shadow: 0em 0.3em 0.7em #525452;}
+/*---------------------------------------------------------------------------*/
+
+/*Body*/
+    #favourite-page-title{
+        text-align: center;
+    }
+    .item{
+        margin-left:2em;
+        margin-right:2em;
+        margin-top:2em;
+        background-color: white;
+        width: 15em;
+        height: 20em;
+        border-radius: 2em;
+        box-shadow: 0em 0.3em 0.7em #979997;
+    }
+
+    .item-image{
+        margin-top:1em;
+        width: 10em;
+        height: 10em;
+        border-radius: 2em;
+    }
+
+    #item-center-image{
+    text-align: center;
+    }
+
+    .item-name{
+        margin-left:1em;
+    }
+    .item-description{
+        margin-left: 2em;
+        height:2em;
+        width:12em;
+        
+    }
+    .item-price{
+        border-top: 1pt solid black;
+        margin-left:1em;
+        margin-right:1em;
+        color:green;
+
+    }
+    #item-shelf1{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin-top: 2em;
+    }
+    #item-shelf2{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin-top: 2em;
+    }
+
+    #item-group{
+        margin-left:auto;
+        margin-right:auto;
+        width:fit-content;
+    }
+
+    #main{
+        margin-right:2em;
+        min-width: 1300px;
+    }
+/*---------------------------------------------------------------------------*/
