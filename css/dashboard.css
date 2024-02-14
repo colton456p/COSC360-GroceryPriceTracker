@@ -93,6 +93,7 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 /*Body*/
     #favourite-page-title{
         text-align: center;
+        min-width: 1300px;
     }
     .item{
         margin-left:2em;
