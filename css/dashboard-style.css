@@ -74,26 +74,26 @@ h1,h2,p,body,footer,a,figcaption,::-webkit-file-upload-button{font-family:'Gill 
 #dash {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Aligns items at the start of the container */
+    align-items: flex-start; 
     padding: 20px;
 }
 
 #favorites {
-    text-align: center; /* Center the title text */
+    text-align: center; 
 }
 
 .card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    width: 240px; /* Adjust based on preference */
+    width: 240px; 
     margin: 10px;
     border-radius: 10px;
     overflow: hidden;
-    display: inline-block; /* This ensures that cards are treated as inline elements */
+    display: inline-block; 
 }
 
 .card img {
-    width: 100%; /* Make image fill the card */
+    width: 100%; 
     height: auto;
 }
 
