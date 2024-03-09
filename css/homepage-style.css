@@ -7,15 +7,27 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         width: 2.5em;
         height:2.5em;
     }
+    #grocerySenceText{
+
+        display: flex;
+        height:auto;
+        width:auto;
+        justify-content: center;
+        align-items: center;
+    }
     #site_logo{
         display: flex;
+        width:auto;
+        height:auto;
         margin-left: 1em; 
+        margin-top: 0em;
     }
 /*-----------------------------------*/
 
 
 /* Header Formating*/
     header{
+
         margin-left:2em;
         margin-right:2em;
         margin-bottom: 0em; 
@@ -28,37 +40,43 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 
     /*Search Bar Formating*/
     #header-search-div{
-        margin-left: 18em;
-        position: absolute;
-        height: 3.5em;
-        width: 2em;
-        margin-top:1em;
-    }
+        height: 3em;
+        position: relative;
+        width: 34em;
+        float:left;
+        margin-left: 1em;
+        margin-right:1em;
 
-    #search-bar{
-        border-top: 0.1em solid green;
-        border-left: 0.1em solid green;
-        border-bottom: 0.1em solid green;
-        border-right: none;
-        width: 20em;
-        height: 3.5em;
-        font-weight: 900;
-        user-select:contain;
     }
     #search-form{
-        display:flex;
-        height: 3.5em;
-        width: 25em;
+        height:100%;
+        width: auto;
+        display: flex;
+        
+    }
+    #search-bar{
+        border: 0.1em solid green;;
+        font-weight: 900;
+        height: 100%;
+        width: 75%;
+        font-size: large;
+        font-weight: normal;
+        padding-left: 0.8em;
+    }
+    #search-bar:focus{
+        outline: none;
+    }
+    #search-bar::placeholder{
+        font-size: medium;
     }
     #search-button{
         color:white;
         background-color: green;
         border: none;
-        padding-left: 0em;
-        margin-left: 0px;
-        height: 3.5em;
+        height: 100%;
         font-weight: bold;
-        width:5.5em;
+        width:25%;
+        font-size: large;
     }
     #search-button:hover{
         box-shadow: green 0em 0.0em 0.7em;
@@ -66,57 +84,73 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     
     
     /*Navigation tabs (Home, Price trends, Login)*/
-    #menu_bar {display: inline-block;}
+    #menu_bar {
+        float:right;
+        display: flex;
+        margin-right: 1em;
+        margin-top:1em;
+        width:fit-content;
+        height:fit-content;
+    }
     #menu_bar a{
-        color:green;
         text-decoration: none;
         font-weight: bold;
     }
     #home-nav-link{
-        font-size: 2em;
-        margin-right:1em;
-        text-shadow: 0em 0.3em 0.7em #979997;
+        font-size: 1.4em;
+        color:green;
+        text-shadow: 0em 0.3em 0.7em #525452;
+        padding-bottom:3em;
     }
-    #home-nav-link:hover{text-shadow: 0em 0.3em 0.7em #525452;}
+    #home-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
     #pricetrend-nav-link{
-        font-size: 1em;
-        margin-right:1em;
+        color:green;
+        font-size: 1.4em;
     }
-    #pricetrend-nav-link:hover{text-shadow: 0em 0.3em 0.7em #525452;}
+    #pricetrend-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
     #login-nav-link{
-        font-size: 1em;
-        margin-right:1em;
+        color:green;
+        font-size: 1.4em;
     }
-    #login-nav-link:hover{text-shadow: 0em 0.3em 0.7em #525452;}
+    #login-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
+    .nav-element{
+        border-right: #979997 0.1em solid;
+        height: fit-content;
+        width: fit-content;
+        display:inline-block;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
 /*---------------------------------------------------------------------------*/
 
 /*Body Formating*/
     /*Banner image container*/
-    #banner{height:fit-content;}
+    #banner{
+        height:fit-content;
+    }
 
     #bannerimg{
         width:100%;
         border-radius: 2em;
     }
 
-    #description-text{
-        float:left;
-        margin-left:4.5em;
-        width:30em;
 
-    }
 
     /*container with grocery store logo images*/
     #image_bubbles{
-        display: flex;
+        border-left:rgba(0, 0, 0, 0.044) 0.1em solid;
+        display: inline-block;
+        width:40em;
         float:right;
-        height: 10em;
-        margin-right: 4.5em;
+        padding-left: 1em;
+        height: 25em;
+        margin-right: 2em;
+        margin-left:2em;
     }
 
     .logobubble{
         border-radius:50%;
-        height: 10em;
+        height: 12em;
         margin-right:1em;
     }
 
@@ -127,3 +161,30 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         min-width: 1300px;
     }
 /*-------------------------------------------------------------------------------*/
+
+/*Footer Formating*/
+footer{
+    min-width: 1300px;
+}
+
+#side-text{
+    
+    float: left;
+    position: absolute;
+    display: subgrid;
+    text-align: justify;
+    margin-left:2em;
+    min-width:36em;
+    margin-right:45em;
+    color: green;
+    word-spacing: 0.5em;
+
+}
+#description-text{
+    border-top: rgba(0, 0, 0, 0.265) 0.1em solid;
+    display: inline-block;
+    margin-left:2em;
+    margin-right:2em;
+    
+    float: none;
+}
