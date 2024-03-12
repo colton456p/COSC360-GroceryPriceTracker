@@ -5,6 +5,7 @@
     <title>Login</title>
     <script>
         function validateInput(){
+            document.getElementById("failedLogin").hidden = true;
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
             if (email.trim() =="" || !email.includes("@") || !email.includes(".")){
@@ -49,14 +50,14 @@
     <div id="menu_bar">
         <p>
             <div class="nav-element">
-                <a type="button" id="home-nav-link" href="homepage.html">HOME</a>
+                <a type="button" id="home-nav-link" href="homepage.php">HOME</a>
             </div>
 
             <div class="nav-element">
-                <a type="button" id="pricetrend-nav-link" href="priceTrends.html">TRENDS</a>
+                <a type="button" id="pricetrend-nav-link" href="priceTrends.php">TRENDS</a>
             </div>
             <div class="nav-element">
-                <a type="button"id="login-nav-link" href="login.html">LOGIN</a>
+                <a type="button"id="login-nav-link" href="login.php">LOGIN</a>
             </div>
         </p>
     </div>
@@ -64,11 +65,17 @@
 <body>
     <div id="main">
         <div id="signup-section">
-            <h2>Don't have an account yet? <a type="button" id="signup-link" href="signup.html">SIGN UP NOW!</a></h2>
+            <h2>Don't have an account yet? <a type="button" id="signup-link" href="signup.php">SIGN UP NOW!</a></h2>
         </div>
         <div id="login-div">
             <h2>LOGIN</h2>
-            <p id="failedLogin" class="warning" style="text-decoration:none" hidden>Incorrect email or password</p>
+            <?php 
+                if (isset($_GET['login']) && $_GET['login'] === "failed") {
+                    echo '<p id="failedLogin" class="warning">Incorrect email or password</p>';
+                }else{
+                    echo "<p id=\"failedLogin\" class=\"warning\" style=\"text-decoration:none\" hidden>Incorrect email or password</p>";
+                }
+            ?>
             <form id="loginForm" method="post" action="PHP/server-side-validation.php" onsubmit="return validateInput()" >
                 <div class="login-message">
                     <label for="email">Email:</label>
