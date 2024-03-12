@@ -45,35 +45,52 @@
                     <img id="bannerimg" src="img/sitebanner2.png" alt="Money_Tree"> 
                 </figure>
             </div>
-            <div id="side-text">
-                <h1>
-                    Save yourself the time of checking for the cheapest grocery 
-                    prices and let grocery sense do it for you. Our price tracker 
-                    searches across a wide range of stores to give real time price trends. 
-                    Make an account to save, items/stores, view comments, and to speed up 
-                    the process of price checking.
-                <h1>
+            <div id="side-div">
+                <a href="priceTrends.php" style="text-decoration:none;">
+                    <div class="side-text" >
+                        
+                        <h1>
+                            View which store has the CHEAPEST grocery prices
+                        <h1>
+                    </div>
+                </a>
+
+                <a href="login.php" style="text-decoration:none;">
+                    <div class="side-text" href="login.php">
+                        <h1>
+                            Login and save the stores or items you track most
+                        <h1>
+                    </div>
+                </a>
+                <a href="priceTrends.php" style="text-decoration:none;">
+                    <div class="side-text">
+                        <h1>
+                            View comments, price trends, and real time prices
+                        <h1>
+                    </div>
+                </a>
             </div>
-            
+
             <div id="image_bubbles">
-                <img class="logobubble" src="img/saveon-logo.png" alt="saveon-logo">
-                <img class="logobubble" src="img/walmart-logo.jpg" alt="walmart-logo">
-                <img class="logobubble" src="img/loblaws-logo.jpg" alt="lowblaws-logo">
-                <img class="logobubble" src="img/saveon-logo.png" alt="saveon-logo">
-                <img class="logobubble" src="img/walmart-logo.jpg" alt="walmart-logo">
-                <img class="logobubble" src="img/loblaws-logo.jpg" alt="lowblaws-logo">
+                <img class="logobubble" src="img/saveon-logo.png" alt="SaveOn Logo">
+                <img class="logobubble" src="img/walmart-logo.jpg" alt="Walmart Logo">
+                <img class="logobubble" src="img/loblaws-logo.jpg" alt="Lowblaws Logo">
+                <img class="logobubble" src="img/safewaylogo.png" alt="Safeway Logo">
+                <img class="logobubble" src="img/maxi-logo.png" alt="Maxi Logo">
+                <img class="logobubble" src="img/pclogo.png" alt="Presidents Choice Logo">
             </div>
         </div>
+        
     </body>
     <footer>
         <div id="description-text">
-            <h3>About Us</h3>
+            <h3 id="footer_title">About Us</h3>
             <p>
-                This site was created for the course COSC 360 (Introduction to We. 
-                Development). It uses APIs from several populare Canadian groceries 
-                stores to help easily find the cheapest grocery prices. We belive
-                this website will help save time and money especially for students when everything
-                is so expensive nowadays.
+                This site was created for the course COSC 360 (Introduction to Web. 
+                Development). It uses APIs from several popular Canadian grocery 
+                stores to help you easily find the cheapest grocery prices. With everything
+                being so expensive nowadays we believe this website will help save 
+                time and money especially for students.
             </p>
             <p>All credits go to:<i></i> Colton Palfrey, Karam Hejaz, and Tyler Cummings</i></p>
         </div>
