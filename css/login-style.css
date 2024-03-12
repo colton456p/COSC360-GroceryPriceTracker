@@ -157,10 +157,6 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         text-align: center;
     }
 
-    label {
-        display: inline-block;
-        margin-bottom: 8px;
-    }
 
     input[type="text"],
     input[type="password"] {
@@ -173,6 +169,10 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     }
     #loginForm{display: block;}
     #button-center{text-align: center;}
+
+    label{
+        margin-right:0.5em;
+    }
         
     button {
         background-color: green;
@@ -187,5 +187,13 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 
     button:hover {
         box-shadow: green 0em 0.0em 0.7em;
+    }
+    .warning{
+        color: red;
+        text-decoration: underline;
+    }
+    .login-message{
+    display: flex;
+    align-items: center;
     }
 /*------------------------------------------------------*/
