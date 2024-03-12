@@ -138,12 +138,12 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 
     /*container with grocery store logo images*/
     #image_bubbles{
-        border-left:rgba(0, 0, 0, 0.044) 0.1em solid;
-        display: inline-block;
-        width:40em;
-        float:right;
-        padding-left: 1em;
-        height: 25em;
+        display: flex;
+        align-items: center;
+        overflow: none;
+        justify-content: center;
+        height: 13em;
+        margin-top: 2em;
         margin-right: 2em;
         margin-left:2em;
     }
@@ -152,12 +152,12 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         border-radius:50%;
         height: 12em;
         margin-right:1em;
+        
     }
 
     #main{
-        overflow:auto;
         margin-bottom: 0em;
-        height:60em;
+        height:63em;
         min-width: 1300px;
     }
 /*-------------------------------------------------------------------------------*/
@@ -167,24 +167,38 @@ footer{
     min-width: 1300px;
 }
 
-#side-text{
-    
-    float: left;
-    position: absolute;
-    display: subgrid;
-    text-align: justify;
-    margin-left:2em;
-    min-width:36em;
-    margin-right:45em;
-    color: green;
-    word-spacing: 0.5em;
-
+#side-div{
+    display:flex;
 }
+
+.side-text{
+    display: flex;
+    align-items: center;
+
+    text-align: center;
+    border-radius: 2em;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left:2em;
+    margin-right: 2em;
+    height:12em;
+    min-width:15em;
+    color: green;
+    
+}
+.side-text{
+    transition: transform 0.5s ease-in-out;
+}
+.side-text:hover{
+    color:rgba(0, 128, 0, 0.766);
+    transform: scale(1.05);
+}
+
 #description-text{
     border-top: rgba(0, 0, 0, 0.265) 0.1em solid;
     display: inline-block;
     margin-left:2em;
     margin-right:2em;
-    
-    float: none;
 }
+
