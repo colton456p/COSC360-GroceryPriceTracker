@@ -3,6 +3,33 @@
 <head>
     <link rel="stylesheet" href="css/login-style.css">
     <title>Login</title>
+    <script>
+        function validateInput(){
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            if (email.trim() =="" || !email.includes("@") || !email.includes(".")){
+                document.getElementById("email-warning").hidden = false;
+                if (password.trim() == ""){
+                    document.getElementById("password-warning").hidden = false;
+                }
+                else{
+                    document.getElementById("password-warning").hidden = true;
+                }
+                return false;
+            }else{
+                document.getElementById("email-warning").hidden = true;
+            }
+            if (password.trim() == ""){
+                document.getElementById("password-warning").hidden = false;
+                return false;
+            }
+            else{
+                document.getElementById("password-warning").hidden = true;
+            }
+            
+            return true;    
+        }
+    </script>
 </head>
 <header>
     <div id="site_logo">
@@ -41,12 +68,19 @@
         </div>
         <div id="login-div">
             <h2>LOGIN</h2>
-            <form id="loginForm" method="post">
-                <label for="email">Email:</label>
-                <input type="text" id="username" name="username" placeholder="Ex: John_doe@email.com" required>
-
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter password..." required>
+            <p id="failedLogin" class="warning" style="text-decoration:none" hidden>Incorrect email or password</p>
+            <form id="loginForm" method="post" action="PHP/server-side-validation.php" onsubmit="return validateInput()" >
+                <div class="login-message">
+                    <label for="email">Email:</label>
+                    <p id="email-warning" class="warning" hidden>Invalid email address!</p>
+                </div>
+                <input type="text" id="email" name="email" placeholder="Ex: John_doe@email.com">
+                
+                <div class="login-message">
+                    <label for="password">Password: </label>
+                    <p id="password-warning" class="warning" hidden>Please enter a password!</p>
+                </div>
+                <input type="password" id="password" name="password" placeholder="Enter password...">
                 <div id="button-center">
                     <button type="submit">Login</button>
                 </div>
