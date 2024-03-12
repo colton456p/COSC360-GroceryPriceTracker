@@ -20,13 +20,13 @@
         <div id="menu_bar">
             <p>
                 <div class="nav-element">
-                    <a type="button" id="dashboard-nav-link" href="dashboard.html">DASHBOARD</a>
+                    <a type="button" id="dashboard-nav-link" href="dashboard.php">DASHBOARD</a>
                 </div>
                 <div class="nav-element">
-                    <a type="button" id="trend-nav-link" href="trends.html">TRENDS</a>
+                    <a type="button" id="trend-nav-link" href="trends.php">TRENDS</a>
                 </div>
                 <div class="nav-element">
-                    <a type="button"id="account-nav-link" href="account.html">ACCOUNT</a>
+                    <a type="button"id="account-nav-link" href="account.php">ACCOUNT</a>
                 </div>
             </p>
         </div>

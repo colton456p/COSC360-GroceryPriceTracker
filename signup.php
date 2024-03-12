@@ -70,14 +70,14 @@
         <div id="menu_bar">
             <p>
                 <div class="nav-element">
-                    <a type="button" id="home-nav-link" href="homepage.html">HOME</a>
+                    <a type="button" id="home-nav-link" href="homepage.php">HOME</a>
                 </div>
     
                 <div class="nav-element">
-                    <a type="button" id="pricetrend-nav-link" href="priceTrends.html">TRENDS</a>
+                    <a type="button" id="pricetrend-nav-link" href="priceTrends.php">TRENDS</a>
                 </div>
                 <div class="nav-element">
-                    <a type="button"id="login-nav-link" href="login.html">LOGIN</a>
+                    <a type="button"id="login-nav-link" href="login.php">LOGIN</a>
                 </div>
             </p>
         </div>
@@ -86,7 +86,7 @@
     <body>
         <div id="signup-div">
             <h2>SIGN UP</h2>
-            <form onsubmit="return validateInput()" action="PHP/signup.php" method="POST">
+            <form onsubmit="return validateInput()" action="PHP/signup-backend.php" method="POST">
                 <div class="signup-text">
                     <label for="first-name">First Name</label>
                     <p class="warning" id="firstname-warning" hidden>**Do not leave blank**</p>
