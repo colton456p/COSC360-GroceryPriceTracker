@@ -77,12 +77,12 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         text-decoration: none;
         font-weight: bold;
     }
-    #dashboard-nav-link{
+    #home-nav-link{
         font-size: 1.4em;
         color:green;
         
     }
-    #dashboard-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
+    #home-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
     #trend-nav-link{
         font-size: 1.4em;
         color:green;
