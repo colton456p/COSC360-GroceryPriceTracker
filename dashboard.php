@@ -69,7 +69,7 @@
                     </div>
                     <div class="item">
                         <div id ="item-center-image">
-                            <img id="img1" class="item-image" src="img/potatoChips.png">
+                            <img id="img1" class="item-image" src="img/corona.png">
                         </div>
                         <h3 class="item-name">Item name</h3>
                         <p class="item-description">This is where the description of the the product will go</p>
