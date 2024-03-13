@@ -92,7 +92,7 @@
                 being so expensive nowadays we believe this website will help save 
                 time and money especially for students.
             </p>
-            <p>All credits go to:<i></i> Colton Palfrey, Karam Hejaz, and Tyler Cummings</i></p>
+            <p>All credits go to:<i></i> Colton Palfrey, Karam Hejazin, and Tyler Cummings</i></p>
         </div>
     </footer>
 </html>
