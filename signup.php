@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="css/signup.css">
         <script>
             function validateInput(){
+                document.getElementById("failedSignup").hidden = true;
+                document.getElementById("failedEmail").hidden = true;
                 let counter = 0;
                 var fname = document.getElementById("first-name").value;
                 var lname = document.getElementById("last-name").value;
@@ -86,6 +88,19 @@
     <body>
         <div id="signup-div">
             <h2>SIGN UP</h2>
+            <?php 
+                if (isset($_GET['signup']) && $_GET['signup'] === "failed") {
+                    echo '<p id="failedSignup" class="warning">Something went wrong</p>';
+                }else{
+                    echo "<p id=\"failedSignup\" class=\"warning\" style=\"text-decoration:none\" hidden>Something went wrong</p>";
+                }
+
+                if (isset($_GET['emailFail']) && $_GET['emailFail'] === "failed") {
+                    echo '<p id="failedEmail" class="warning">An account with this email already exists</p>';
+                }else{
+                    echo "<p id=\"failedEmail\" class=\"warning\" style=\"text-decoration:none\" hidden>An account with this email already exists</p>";
+                }
+            ?>
             <form onsubmit="return validateInput()" action="PHP/signup-backend.php" method="POST">
                 <div class="signup-text">
                     <label for="first-name">First Name</label>
