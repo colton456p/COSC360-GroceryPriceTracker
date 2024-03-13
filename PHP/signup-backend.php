@@ -16,15 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         header("Location: ../signup.php?signup=failed");
         exit();
     }
-    $userId = uniqid() . mt_rand(9, 999999999);
 
-    $sql = "INSERT INTO user (userId, firstName, lastName, email, pass) VALUES ('$userId', '$firstName', '$lastName', '$email', '$password')";
+    $sql = "INSERT INTO user (firstName, lastName, email, pass) VALUES ('$firstName', '$lastName', '$email', '$password')";
     if($conn->query($sql)===FALSE){
-        $userId = uniqid() . mt_rand(9, 999999999);
-        if($conn->query($sql)===FALSE){
             header("Location: ../signup.php?emailFail=failed");
             exit();
-        }
     }
 
     $conn->close();
