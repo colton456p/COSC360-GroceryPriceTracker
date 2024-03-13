@@ -26,7 +26,7 @@
                 <a type="button" id="home-nav-link" href="dashboard.php">HOME</a>
             </div>
             <div class="nav-element">
-                <a type="button" id="trend-nav-link" href="trends.php">TRENDS</a>
+                <a type="button" id="trend-nav-link" href="priceTrends.php">TRENDS</a>
             </div>
             <div class="nav-element">
                 <a type="button"id="account-nav-link" href="account.php">ACCOUNT</a>
@@ -35,7 +35,7 @@
     </div>
 </header>
 <body>
-    <?php
+    <!-- <?php
         if (isset($_GET['userId'])) {
             $userId = $_GET['userId'];
         }
@@ -49,17 +49,22 @@
         $result = $conn->query($sql);
         $user = $result->fetch_assoc();    
         $result->close();
-    ?>
+    ?> -->
     <div id="container">
         <h2>Your Account</h2>
         <h3>User Profile</h3>
         <div class="indent">
-            <?php
+            <!-- <?php
                 echo"<p><strong>Account Number:</strong>".$userId."</p>";
                 echo"<p><strong>First Name:</strong>".$user[0]."</p>";
                 echo"<p><strong>Last Name:</strong>".$user[1]."</p>";
                 echo"<p><strong>Email:</strong>".$user[2]."</p>";
-            ?>
+            ?> -->
+
+            <p><strong>Account Number:</strong></p>";
+            <p><strong>First Name:</strong></p>";
+            <p><strong>Last Name:</strong></p>";
+            <p><strong>Email:</strong></p>"
         </div>
         <h3>Actions</h3>
         
