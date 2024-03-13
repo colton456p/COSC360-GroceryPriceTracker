@@ -2,14 +2,14 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="css/dashboard.css">
-        <?php
+        <!-- <?php
             
             if (isset($_GET['userId'])) {
                 $userId = $_GET['userId'];
             }else{
                 $userId = '';
             }
-        ?>
+        ?> -->
     </head>
     <header>
         <div id="site_logo">
@@ -27,7 +27,7 @@
         
         <div id="menu_bar">
             <p>
-                <?php
+                <!-- <?php
                     echo "<div class='nav-element'>";
                         echo "<a type=\"button\" id=\"home-nav-link\" href=\"dashboard.php?userId=".$userId."\"HOME</a>";
                         // <a type="button" id="dashboard-nav-link" href="dashboard.php">DASHBOARD</a>
@@ -38,7 +38,17 @@
                     echo"<div class='nav-element'>";
                         echo "<a type=\"button\" id=\"account-nav-link\" href=\"account.php?userId=".$userId."\"ACCOUNT</a>";
                     echo"</div>";
-                ?>
+                ?> -->
+                <div class="nav-element">
+                    <a type="button" id="dashboard-nav-link" href="dashboard.php">DASHBOARD</a>
+                </div>
+                <div class="nav-element">
+                    <a type="button" id="trend-nav-link" href="trends.php">TRENDS</a>
+                </div>
+                <div class="nav-element">
+                    <a type="button"id="account-nav-link" href="account.php">ACCOUNT</a>
+                </div>
+
             </p>
         </div>
     </header>
