@@ -43,7 +43,7 @@
                     <a type="button" id="home-nav-link" href="dashboard.php">DASHBOARD</a>
                 </div>
                 <div class="nav-element">
-                    <a type="button" id="trend-nav-link" href="trends.php">TRENDS</a>
+                    <a type="button" id="trend-nav-link" href="priceTrends.php">TRENDS</a>
                 </div>
                 <div class="nav-element">
                     <a type="button"id="account-nav-link" href="account.php">ACCOUNT</a>
