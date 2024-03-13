@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account</title>
     <link rel="stylesheet" href="css/account.css">
 </head>
@@ -26,7 +24,7 @@
                 <a type="button" id="home-nav-link" href="dashboard.php">HOME</a>
             </div>
             <div class="nav-element">
-                <a type="button" id="trend-nav-link" href="priceTrends.php">TRENDS</a>
+                <a type="button" id="trend-nav-link" href="priceTrendsLogin.php">TRENDS</a>
             </div>
             <div class="nav-element">
                 <a type="button"id="account-nav-link" href="account.php">ACCOUNT</a>
