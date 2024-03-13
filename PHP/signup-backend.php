@@ -12,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $conn = new mysqli($servername, $username, $dbPass, $database);
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-        // header("Location: ../signup.php?signup=failed");
-        // exit();
+        // die("Connection failed: " . $conn->connect_error);
+        header("Location: ../signup.php?signup=failed");
+        exit();
     }
     $userId = uniqid() . mt_rand(9, 999999999);
 
