@@ -109,14 +109,17 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         min-width: 1300px;
     }
     .item{
-        margin-left:2em;
-        margin-right:2em;
-        margin-top:2em;
+        margin:2em;
         background-color: white;
         width: 15em;
         height: 20em;
         border-radius: 2em;
         box-shadow: 0em 0.3em 0.7em #979997;
+        transition: transform 0.5s ease-in-out;
+    }
+    .item:hover{
+        transform: scale(1.1);
+        box-shadow: 0em 0.3em 1em #8b8c8b;
     }
 
     .item-image{
@@ -151,13 +154,8 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         color:green;
 
     }
-    #item-shelf1{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        margin-top: 2em;
-    }
-    #item-shelf2{
+    #item-shelf{
+        max-width: 80em;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
