@@ -24,8 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     $conn->close();
-    $temp ="Location: ../dashboard.php?userId=".$userId;
-    header($temp);
+    header("Location: ../dashboard.php");
     exit();
 }
 ?>

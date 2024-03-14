@@ -14,13 +14,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         header("Location: ../signup.php?signup=failed");
         exit();
     }
-    if($conn->query($sql)===FALSE){
+    $result = $conn->query($sql);
+
+    if ($result->num_rows < 1) {
         header("Location: ../login.php?login=failed");
         exit();
-    }
-    else{
-        $temp = "Location: ../dashboard.php?userId=".$userId;
-        header($temp);
+    }else{
+        $row = $result->fetch_assoc();
+        session_start();
+        $_SESSION["userId"] = $row["userId"];
+        header("Location: ../dashboard.php");
         exit();
     }
 }
