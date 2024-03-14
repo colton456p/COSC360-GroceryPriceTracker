@@ -55,10 +55,10 @@
         <div class="indent">
             
                 <?php
-                echo "<p><strong>Account Number:</strong>".$userId."</p>
-                <p><strong>First Name:</strong>".$user["firstName"]."</p>
-                <p><strong>Last Name:</strong>".$user["lastName"]."</p>
-                <p><strong>Email:</strong>".$user["email"]."</p>";
+                echo "<p><strong>Account Number:</strong> <span class=\"green-text\">".$userId."</span></p>
+                <p><strong>First Name:</strong> <span class=\"green-text\">".$user["firstName"]."</span></p>
+                <p><strong>Last Name:</strong> <span class=\"green-text\">".$user["lastName"]."</span></p>
+                <p><strong>Email:</strong> <span class=\"green-text\">".$user["email"]."</span></p>";
                 ?>
             
         </div>

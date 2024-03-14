@@ -27,16 +27,6 @@
         
         <div id="menu_bar">
             <p>
-                <?php
-                    if (isset($_GET['userId'])) {
-                        $userId = $_GET['userId'];
-                    }else{
-                        $userId = '';
-                    }
-                    $dashboardLink = "dashboard.php?userId=".$userId;
-                    $trendLink = "priceTrendsLogin.php?userId=".$userId;
-                    $accountLink = "account.php?userId=".$userId;
-                ?>
                 <div class="nav-element">
                     <a type="button" id="home-nav-link" href="dashboard.php">HOME</a>
                 </div>
@@ -52,78 +42,50 @@
     </header>
     <body>
         <div id="favourite-page-title">
-            <h1>YOUR FAVOURITES</h1>
+            <?php
+                session_start();    
+                $userId = $_SESSION["userId"];
+                $servername = "localhost";
+                $username = "38885190";
+                $dbPass = "38885190";
+                $database = "db_38885190";
+        
+                $conn = new mysqli($servername, $username, $dbPass, $database);
+                $sql = "SELECT firstName FROM user WHERE userId =".$userId;
+                $result = $conn->query($sql);
+                $user = $result->fetch_assoc();    
+                $result->close();
+                $name = strtoupper($user["firstName"]);
+
+                echo "<h1>".$name."'S FAVOURITES</h1>";
+            ?>
         </div>
         <div id="main">
             <div id="item-group">
-                <div id="item-shelf1">
-                    <div class="item">
-                        <div class ="item-center-image">
-                            <img id="img1" class="item-image" src="img/potatoChips.png">
-                        </div>
-                        <h3 class="item-name">Lays Chips</h3>
-                        <p class="item-description">This is where the description of the product will go</p>
-                        <h5 class="item-price">Cheapest at:</h5>
-                    </div>
-                    <div class="item">
-                        <div class ="item-center-image">
-                            <img id="img1" class="item-image" src="img/corona.png">
-                        </div>
-                        <h3 class="item-name">Corona Extra</h3>
-                        <p class="item-description">This is where the description of the product will go</p>
-                        <h5 class="item-price">Cheapest at:</h5>
-                    </div>
-                    <div class="item">
-                        <div class ="item-center-image">
-                            <img id="img1" class="item-image" src="img/gala-apples.png">
-                        </div>
-                        <h3 class="item-name">Gala Apples</h3>
-                        <p class="item-description">This is where the description of the product will go</p>
-                        <h5 class="item-price">Cheapest at:</h5>
-                    </div>
-                    <div class="item">
-                        <div class ="item-center-image">
-                            <img id="img1" class="item-image" src="img/gatorade.png">
-                        </div>
-                        <h3 class="item-name">Gatorade 355mL</h3>
-                        <p class="item-description">This is where the description of the product will go</p>
-                        <h5 class="item-price">Cheapest at:</h5>
-                    </div>
-                </div>
+                <div id="item-shelf">
+                    <?php
+                        $twoDArray = array(
+                            array("Lays Chips", "img/potatoChips.png"),
+                            array("Corona Extra", "img/corona.png",),
+                            array("Gala Apples", "img/gala-apples.png"),
+                            array("Gatorade 355mL", "img/gatorade.png"),
+                            array("White Rice", "img/rice.png"),
+                            array("Mi Goreng Noodles", "img/mi-goreng.png"),
+                            array("Tostitos Salsa", "img/salsa.png"),
+                            array("Eggs", "img/eggs.png")
+                        );
 
-                <div id="item-shelf2">
-                    <div class="item">
-                        <div class ="item-center-image">
-                            <img id="img1" class="item-image" src="img/rice.png">
-                        </div>
-                        <h3 class="item-name">White Rice</h3>
-                        <p class="item-description">This is where the description of the product will go</p>
-                        <h5 class="item-price">Cheapest at:</h5>
-                    </div>
-                    <div class="item">
-                        <div class ="item-center-image">
-                            <img id="img1" class="item-image" src="img/mi-goreng.png">
-                        </div>
-                        <h3 class="item-name">Mi Goreng Noodles</h3>
-                        <p class="item-description">This is where the description of the product will go</p>
-                        <h5 class="item-price">Cheapest at:</h5>
-                    </div>
-                    <div class="item">
-                        <div class ="item-center-image">
-                            <img id="img1" class="item-image" src="img/salsa.png">
-                        </div>
-                        <h3 class="item-name">Tostitos Salsa</h3>
-                        <p class="item-description">This is where the description of the product will go</p>
-                        <h5 class="item-price">Cheapest at:</h5>
-                    </div>
-                    <div class="item">
-                        <div class ="item-center-image">
-                            <img id="img1" class="item-image" src="img/eggs.png">
-                        </div>
-                        <h3 class="item-name">Item name</h3>
-                        <p class="item-description">This is where the description of the product will go</p>
-                        <h5 class="item-price">Cheapest at:</h5>
-                    </div>
+                        for ($i = 0; $i < count($twoDArray); $i++) {
+                            echo "<div class=\"item\">
+                                    <div class =\"item-center-image\">
+                                        <img id=\"img1\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
+                                    </div>
+                                    <h3 class=\"item-name\">".$twoDArray[$i][0]."</h3>
+                                    <p class=\"item-description\">This is where the description of the product will go</p>
+                                    <h5 class=\"item-price\">Cheapest at:</h5>
+                                </div>";
+                        }
+                    ?>
                 </div>
             </div>
         </div>
