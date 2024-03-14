@@ -44,7 +44,7 @@
                     <a type="button" id="trend-nav-link" href="priceTrendsLogin.php">TRENDS</a>
                 </div>
                 <div class="nav-element">
-                    <a type="button"id="account-nav-link" href="<?php $accountLink;?>">ACCOUNT</a>
+                    <a type="button"id="account-nav-link" href="account.php">ACCOUNT</a>
                 </div>
 
             </p>
