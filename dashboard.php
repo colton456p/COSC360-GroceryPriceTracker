@@ -2,14 +2,12 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="css/dashboard.css">
-        <!-- <?php
-            
-            if (isset($_GET['userId'])) {
-                $userId = $_GET['userId'];
-            }else{
-                $userId = '';
+        <script>
+            function popUpItem(){
+                
             }
-        ?> -->
+                
+        </script>
     </head>
     <header>
         <div id="site_logo">
@@ -76,7 +74,7 @@
                         );
 
                         for ($i = 0; $i < count($twoDArray); $i++) {
-                            echo "<div class=\"item\">
+                            echo "<div class=\"item\" onclick=\"popUpItem()\">
                                     <div class =\"item-center-image\">
                                         <img id=\"img1\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
                                     </div>
@@ -86,6 +84,28 @@
                                 </div>";
                         }
                     ?>
+                    <div id="popUpDiv" style="display:none;">
+                    <div id="popUptopBar">
+                        <div id="back-arrow">
+                            <i  class="bi bi-arrow-left-circle-fill"> Back</i>
+                        </div>
+                    </div>
+                    
+                    <div id="popUpTitle">
+                        <h1>Item name</h1>
+                    </div>
+                    <div id="popUpImageDiv">
+                        <img id="popUpImage" src="img/potatoChips.png">
+                    </div>
+                    <div id="popUpDescription">
+                        <h2>production Description</h2>
+                        <p>This is where the description of the product will go. So many
+                            things to say about this product and how it is the best thing
+                            since sliced bread. 
+                        </p>
+                    </div>
+                        
+                </div>
                 </div>
             </div>
         </div>
