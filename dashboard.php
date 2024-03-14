@@ -27,17 +27,6 @@
         
         <div id="menu_bar">
             <p>
-                <!-- <?php
-                    echo "<div class='nav-element'>";
-                        echo "<a type=\"button\" id=\"home-nav-link\" href=\"dashboard.php?userId=".$userId."\"HOME</a>";
-                    echo"</div>";
-                    echo"<div class='nav-element'>";
-                        echo"<a type='button' id='trend-nav-link' href='trends.php?userId=$userId'>TRENDS</a>";
-                    echo"</div>";
-                    echo"<div class='nav-element'>";
-                        echo "<a type=\"button\" id=\"account-nav-link\" href=\"account.php?userId=".$userId."\"ACCOUNT</a>";
-                    echo"</div>";
-                ?> -->
                 <?php
                     if (isset($_GET['userId'])) {
                         $userId = $_GET['userId'];
@@ -49,19 +38,13 @@
                     $accountLink = "account.php?userId=".$userId;
                 ?>
                 <div class="nav-element">
-                    <?php
-                        echo "<a type=\"button\" id=\"home-nav-link\" href=\"".$dashboardLink."\"HOME</a>";
-                    ?>
-                    <!-- <a type="button" id="home-nav-link" href="dashboard.php">HOME</a> -->
+                    <a type="button" id="home-nav-link" href="dashboard.php">HOME</a>
                 </div>
                 <div class="nav-element">
                     <a type="button" id="trend-nav-link" href="priceTrendsLogin.php">TRENDS</a>
                 </div>
                 <div class="nav-element">
-                    <?php
-                        echo "<a type=\"button\" id=\"account-nav-link\" href=\"".$accountLink."\"ACCOUNT</a>";
-                    ?>
-                    <!-- <a type="button"id="account-nav-link" href="account.php">ACCOUNT</a> -->
+                    <a type="button"id="account-nav-link" href="<?php $accountLink;?>">ACCOUNT</a>
                 </div>
 
             </p>
