@@ -34,11 +34,9 @@
 </header>
 <body>
     
-        <!-- 
-        php code:    
-        if (isset($_GET['userId'])) {
-            $userId = $_GET['userId'];
-        }
+        <?php
+        session_start();    
+        $userId = $_SESSION["userId"];
         $servername = "localhost";
         $username = "38885190";
         $dbPass = "38885190";
@@ -48,25 +46,21 @@
         $sql = "SELECT firstName, lastName, email FROM user WHERE userId =".$userId;
         $result = $conn->query($sql);
         $user = $result->fetch_assoc();    
-        $result->close(); -->
+        $result->close();
+        ?>
     
     <div id="container">
         <h2>Your Account</h2>
         <h3>User Profile</h3>
         <div class="indent">
             
-                <!-- 
-                PHP code:    
-                echo"<p><strong>Account Number:</strong>".$userId."</p>";
-                echo"<p><strong>First Name:</strong>".$user[0]."</p>";
-                echo"<p><strong>Last Name:</strong>".$user[1]."</p>";
-                echo"<p><strong>Email:</strong>".$user[2]."</p>"; -->
+                <?php
+                echo "<p><strong>Account Number:</strong>".$userId."</p>
+                <p><strong>First Name:</strong>".$user["firstName"]."</p>
+                <p><strong>Last Name:</strong>".$user["lastName"]."</p>
+                <p><strong>Email:</strong>".$user["email"]."</p>";
+                ?>
             
-
-            <p><strong>Account Number:</strong></p>
-            <p><strong>First Name:</strong></p>
-            <p><strong>Last Name:</strong></p>
-            <p><strong>Email:</strong></p>
         </div>
         <h3>Actions</h3>
         
