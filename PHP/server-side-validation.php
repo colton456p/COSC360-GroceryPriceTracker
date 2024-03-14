@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         exit();
     }
     else{
-        header("Location: ../dashboard.php?userId=".$userId);
+        header("Location: ../dashboard.php?userId=$userId");
         exit();
     }
 }

@@ -63,10 +63,10 @@
                 echo"<p><strong>Email:</strong>".$user[2]."</p>"; -->
             
 
-            <p><strong>Account Number:</strong></p>";
-            <p><strong>First Name:</strong></p>";
-            <p><strong>Last Name:</strong></p>";
-            <p><strong>Email:</strong></p>"
+            <p><strong>Account Number:</strong></p>
+            <p><strong>First Name:</strong></p>
+            <p><strong>Last Name:</strong></p>
+            <p><strong>Email:</strong></p>
         </div>
         <h3>Actions</h3>
         
