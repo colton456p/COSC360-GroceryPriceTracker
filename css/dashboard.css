@@ -121,13 +121,18 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 
     .item-image{
         margin-top:1em;
-        width: 10em;
+        width: auto;
         height: 10em;
         border-radius: 2em;
+        
     }
 
-    #item-center-image{
-    text-align: center;
+    .item-center-image{
+        text-align: center;
+        margin-right: auto;
+        margin-left:auto;
+        width: 10em;
+        height: 10em;
     }
 
     .item-name{
