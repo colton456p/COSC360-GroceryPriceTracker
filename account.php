@@ -33,7 +33,9 @@
     </div>
 </header>
 <body>
-    <!-- <?php
+    
+        <!-- 
+        php code:    
         if (isset($_GET['userId'])) {
             $userId = $_GET['userId'];
         }
@@ -46,18 +48,20 @@
         $sql = "SELECT firstName, lastName, email FROM user WHERE userId =".$userId;
         $result = $conn->query($sql);
         $user = $result->fetch_assoc();    
-        $result->close();
-    ?> -->
+        $result->close(); -->
+    
     <div id="container">
         <h2>Your Account</h2>
         <h3>User Profile</h3>
         <div class="indent">
-            <!-- <?php
+            
+                <!-- 
+                PHP code:    
                 echo"<p><strong>Account Number:</strong>".$userId."</p>";
                 echo"<p><strong>First Name:</strong>".$user[0]."</p>";
                 echo"<p><strong>Last Name:</strong>".$user[1]."</p>";
-                echo"<p><strong>Email:</strong>".$user[2]."</p>";
-            ?> -->
+                echo"<p><strong>Email:</strong>".$user[2]."</p>"; -->
+            
 
             <p><strong>Account Number:</strong></p>";
             <p><strong>First Name:</strong></p>";

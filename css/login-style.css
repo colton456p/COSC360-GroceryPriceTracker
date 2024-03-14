@@ -55,7 +55,7 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         
     }
     #search-bar{
-        border: 0.1em solid green;;
+        border: 0.1em solid green;
         font-weight: 900;
         height: 100%;
         width: 75%;
