@@ -6,9 +6,9 @@
         <script>
             function popUpItem(){
                 document.getElementById("popUpDiv").style.display = "block";
-                var itemName = document.getElementsByClassName("item-name").textContent;
-                var itemDescription = document.getElementsByClassName("item-description").textContent;
-                var imgTag = document.getElementsById("img1").src;
+                const itemName = document.getElementsByClassName("item-name").textContent;
+                const itemDescription = document.getElementsByClassName("item-description").textContent;
+                const imgTag = document.getElementsById("img1").src;
             }
 
             function backButton(){
