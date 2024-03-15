@@ -22,7 +22,7 @@
     <div id="menu_bar">
         <p>
             <div class="nav-element">
-                <a type="button" id="home-nav-link" href="homepage.php">HOME</a>
+                <a type="button" id="home-nav-link" href="dashboard.php">HOME</a>
             </div>
             <div class="nav-element">
                 <a type="button" id="pricetrend-nav-link" href="priceTrendsLogin.php">TRENDS</a>
