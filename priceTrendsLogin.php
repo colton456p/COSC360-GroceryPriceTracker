@@ -28,7 +28,7 @@
                 <a type="button" id="pricetrend-nav-link" href="priceTrendsLogin.php">TRENDS</a>
             </div>
             <div class="nav-element">
-                <a type="button"id="login-nav-link" href="login.php">LOGIN</a>
+                <a type="button"id="login-nav-link" href="login.php">ACCOUNT</a>
             </div>
         </p>
     </div>
