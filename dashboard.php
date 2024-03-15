@@ -6,9 +6,11 @@
         <script>
             function popUpItem(){
                 document.getElementById("popUpDiv").style.display = "block";
-                const itemName = document.getElementsByClassName("item-name").textContent;
-                const itemDescription = document.getElementsByClassName("item-description").textContent;
-                const imgTag = document.getElementsById("img1").src;
+                var itemName = document.getElementsByClassName("item-name").textContent;
+                document.getElementById("h1PopUpTitle").innerHTML = '${itemName}';
+                var itemDescription = document.getElementsByClassName("item-description").textContent;
+                var imgTag = document.getElementsById("img1").src;
+                document.getElementById("popUpImage").src = '${imgTag}';
             }
 
             function backButton(){
@@ -100,10 +102,10 @@
                     </div>
                     
                     <div id="popUpTitle">
-                        <h1>{itemName}</h1>
+                        <h1 id=h1PopUpTitle></h1>
                     </div>
                     <div id="popUpImageDiv">
-                        <img id="popUpImage" src="{imgTag}">
+                        <img id="popUpImage" src="">
                     </div>
                     <div id="popUpDescription">
                         <h2>production Description</h2>
