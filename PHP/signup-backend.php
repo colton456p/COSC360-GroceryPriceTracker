@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $sql = "SELECT userId FROM user WHERE email = '$email'";
     $result = $conn->query($sql);
+    $conn->close();
 
     if ($result->num_rows < 1) {
         header("Location: ../signup.php?emailFail=failed");
