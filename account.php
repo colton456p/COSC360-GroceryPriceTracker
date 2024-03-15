@@ -3,6 +3,13 @@
 <head>
     <title>My Account</title>
     <link rel="stylesheet" href="css/account.css">
+    <script>
+        function logOut(){
+            sessionStorage.clear();
+            session_destroy();
+            window.location.href = "homepage.php";
+        }
+    </script>
 </head>
 <header>
     <div id="site_logo">
@@ -65,7 +72,7 @@
         <h3>Actions</h3>
         
         <a href="#" class="btn">Change Password</a>
-        <a href="homepage.php" style="background-color:rgb(220, 6, 6);"class="btn">Log out</a>
+        <a action="logOut()"style="background-color:rgb(220, 6, 6);"class="btn">Log out</a>
     </div>
 </body>
 </html>
