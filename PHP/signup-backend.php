@@ -23,8 +23,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             exit();
     }
 
-    $conn->close();
-    header("Location: ../dashboard.php");
-    exit();
+    $sql = "SELECT userId FROM user WHERE email = '$email'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows < 1) {
+        header("Location: ../signup.php?emailFail=failed");
+        exit();
+    }else{
+        $row = $result->fetch_assoc();
+        session_start();
+        $_SESSION["userId"] = $row["userId"];
+        header("Location: ../dashboard.php");
+        exit();
+    }
 }
 ?>
