@@ -7,7 +7,6 @@
         function logOut(){
             sessionStorage.clear();
             session_destroy();
-            window.location.href = "homepage.php";
         }
     </script>
 </head>
@@ -72,7 +71,7 @@
         <h3>Actions</h3>
         
         <a href="#" class="btn">Change Password</a>
-        <a action="logOut()"style="background-color:rgb(220, 6, 6);"class="btn">Log out</a>
+        <a href="homepage.php" action="logOut()"style="background-color:rgb(220, 6, 6);"class="btn">Log out</a>
     </div>
 </body>
 </html>
