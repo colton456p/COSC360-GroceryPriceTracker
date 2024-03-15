@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         exit();
     }
     $result = $conn->query($sql);
-
+    $conn->close();
     if ($result->num_rows < 1) {
         header("Location: ../login.php?login=failed");
         exit();

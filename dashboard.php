@@ -5,7 +5,14 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <script>
             function popUpItem(){
-                
+                document.getElementById("popUpDiv").style.display = "block";
+                var itemName = document.getElementsByClassName("item-name").textContent;
+                var itemDescription = document.getElementsByClassName("item-description").textContent;
+                var imgTag = document.getElementsById("img1").src;
+            }
+
+            function backButton(){
+                document.getElementById("popUpDiv").style.display = "none";
             }
                 
         </script>
@@ -87,16 +94,16 @@
                     ?>
                     <div id="popUpDiv" style="display:none;">
                     <div id="popUptopBar">
-                        <div id="back-arrow">
+                        <div id="back-arrow" onclick="return backButton()">
                             <i  class="bi bi-arrow-left-circle-fill"> Back</i>
                         </div>
                     </div>
                     
                     <div id="popUpTitle">
-                        <h1>Item name</h1>
+                        <h1>{itemName}</h1>
                     </div>
                     <div id="popUpImageDiv">
-                        <img id="popUpImage" src="img/potatoChips.png">
+                        <img id="popUpImage" src="{imgTag}">
                     </div>
                     <div id="popUpDescription">
                         <h2>production Description</h2>
