@@ -7,10 +7,10 @@
             function popUpItem(){
                 document.getElementById("popUpDiv").style.display = "block";
                 var itemName = document.getElementsByClassName("item-name").textContent;
-                document.getElementById("h1PopUpTitle").innerHTML = '${itemName}';
+                document.getElementById("h1PopUpTitle").innerHTML = itemName;
                 var itemDescription = document.getElementsByClassName("item-description").textContent;
                 var imgTag = document.getElementsById("img1").src;
-                document.getElementById("popUpImage").src = '${imgTag}';
+                document.getElementById("popUpImage").src = imgTag;
             }
 
             function backButton(){
