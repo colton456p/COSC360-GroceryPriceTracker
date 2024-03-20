@@ -76,7 +76,7 @@
                 </div>
     
                 <div class="nav-element">
-                    <a type="button" id="pricetrend-nav-link" href="priceTrends.php">TRENDS</a>
+                    <a type="button" id="product-nav-link" href="priceTrends.php">PRODUCTS</a>
                 </div>
                 <div class="nav-element">
                     <a type="button"id="login-nav-link" href="login.php">LOGIN</a>

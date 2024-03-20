@@ -27,10 +27,10 @@
     <div id="menu_bar">
         <p>
             <div class="nav-element">
-                <a type="button" id="home-nav-link" href="dashboard.php">HOME</a>
+                <a type="button" id="home-nav-link" href="dashboard.php">FAVOURITES</a>
             </div>
             <div class="nav-element">
-                <a type="button" id="trend-nav-link" href="priceTrendsLogin.php">TRENDS</a>
+                <a type="button" id="product-nav-link" href="productLogin.php">PRODUCTS</a>
             </div>
             <div class="nav-element">
                 <a type="button"id="account-nav-link" href="account.php">ACCOUNT</a>

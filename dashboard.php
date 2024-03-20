@@ -36,10 +36,10 @@
         <div id="menu_bar">
             <p>
                 <div class="nav-element">
-                    <a type="button" id="home-nav-link" href="dashboard.php">HOME</a>
+                    <a type="button" id="home-nav-link" href="dashboard.php">FAVOURITES</a>
                 </div>
                 <div class="nav-element">
-                    <a type="button" id="trend-nav-link" href="priceTrendsLogin.php">TRENDS</a>
+                    <a type="button" id="product-nav-link" href="productLogin.php">PRODUCTS</a>
                 </div>
                 <div class="nav-element">
                     <a type="button"id="account-nav-link" href="account.php">ACCOUNT</a>
@@ -86,9 +86,9 @@
                         for ($i = 0; $i < count($twoDArray); $i++) {
                             echo "<div class=\"item\" onclick=\"popUpItem()\">
                                     <div class =\"item-center-image\">
-                                        <img id=\"img1\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
+                                        <img id=\"img".$i."\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
                                     </div>
-                                    <h3 class=\"item-name\">".$twoDArray[$i][0]."</h3>
+                                    <h3 id=\"item".$i."\"class=\"item-name\">".$twoDArray[$i][0]."</h3>
                                     <p class=\"item-description\">This is where the description of the product will go</p>
                                     <h5 class=\"item-price\">Cheapest at:</h5>
                                 </div>";

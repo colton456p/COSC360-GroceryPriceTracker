@@ -30,7 +30,7 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     #header-search-div{
         height: 3em;
         position: relative;
-        width: 34em;
+        width: 30em;
         float:left;
         margin-left: 1em;
         margin-right:1em;
@@ -83,11 +83,11 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
         
     }
     #home-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
-    #trend-nav-link{
+    #product-nav-link{
         font-size: 1.4em;
         color:green;
     }
-    #trend-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
+    #product-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
     #account-nav-link{
         font-size: 1.4em;
         color:green;
