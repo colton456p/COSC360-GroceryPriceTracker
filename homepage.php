@@ -29,7 +29,7 @@
                     <a type="button" id="home-nav-link" href="homepage.php">HOME</a>
                 </div>
                 <div class="nav-element">
-                    <a type="button" id="pricetrend-nav-link" href="priceTrends.php">TRENDS</a>
+                    <a type="button" id="product-nav-link" href="product.php">PRODUCTS</a>
                 </div>
                 <div class="nav-element">
                     <a type="button"id="login-nav-link" href="login.php">LOGIN</a>
@@ -46,7 +46,7 @@
                 </figure>
             </div>
             <div id="side-div">
-                <a href="priceTrends.php" style="text-decoration:none;">
+                <a href="product.php" style="text-decoration:none;">
                     <div class="side-text" >
                         
                         <h1>
@@ -62,7 +62,7 @@
                         <h1>
                     </div>
                 </a>
-                <a href="priceTrends.php" style="text-decoration:none;">
+                <a href="product.php" style="text-decoration:none;">
                     <div class="side-text">
                         <h1>
                             View comments, price trends, and real time prices

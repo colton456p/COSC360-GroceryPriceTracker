@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/price-trends-style.css">
+    <link rel="stylesheet" href="css/product-style.css">
     <title>Price Trends</title>
 </head>
 <header>
@@ -25,7 +25,7 @@
                 <a type="button" id="home-nav-link" href="homepage.php">HOME</a>
             </div>
             <div class="nav-element">
-                <a type="button" id="pricetrend-nav-link" href="priceTrends.php">TRENDS</a>
+                <a type="button" id="product-nav-link" href="product.php">PRODUCTS</a>
             </div>
             <div class="nav-element">
                 <a type="button"id="login-nav-link" href="login.php">LOGIN</a>
