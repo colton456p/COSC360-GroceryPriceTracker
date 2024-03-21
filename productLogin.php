@@ -1,8 +1,9 @@
+<!-- I know the name is a bit confusing but this is the product page that is displayed for when a user is logged in -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/product-style.css">
-    <title>Price Trends</title>
+    <title>All products (logged in user)</title>
 </head>
 <header>
     <div id="site_logo">

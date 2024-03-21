@@ -15,10 +15,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         exit();
     }
     $result = $conn->query($sql);
-    $conn->close();
+    
     if ($result->num_rows < 1) {
-        header("Location: ../login.php?login=failed");
-        exit();
+        $sql = "SELECT adminId FROM adminTable WHERE email = '$email' AND pass = '$password'";
+        $result = $conn->query($sql);
+        $conn->close();
+        if ($result->num_rows < 1) {
+            header("Location: ../login.php?login=failed");
+            exit();
+        }else{
+            $row = $result->fetch_assoc();
+            session_start();
+            $_SESSION["adminId"] = $row["adminId"];
+            header("Location: ../admin.php");
+            exit();
+        }
+        
     }else{
         $row = $result->fetch_assoc();
         session_start();
