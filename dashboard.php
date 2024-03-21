@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Favourites</title>
         <link rel="stylesheet" href="css/dashboard.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <script>
             function popUpItem(){
-                document.getElementById("popUpDiv").style.display = "block";
-                var itemName = document.getElementsByClassName("item-name").textContent;
-                document.getElementById("h1PopUpTitle").innerHTML = itemName;
-                var itemDescription = document.getElementsByClassName("item-description").textContent;
-                var imgTag = document.getElementsById("img1").src;
-                document.getElementById("popUpImage").src = imgTag;
-            }
-
-            function backButton(){
-                document.getElementById("popUpDiv").style.display = "none";
+                
             }
                 
         </script>
@@ -84,7 +76,7 @@
                         );
 
                         for ($i = 0; $i < count($twoDArray); $i++) {
-                            echo "<div class=\"item\" onclick=\"popUpItem()\">
+                            echo "<div class=\"item\" href=\"productTrend.php\"onclick=\"popUpItem()\">
                                     <div class =\"item-center-image\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
                                     </div>
@@ -94,28 +86,6 @@
                                 </div>";
                         }
                     ?>
-                    <div id="popUpDiv" style="display:none;">
-                    <div id="popUptopBar">
-                        <div id="back-arrow" onclick="return backButton()">
-                            <i  class="bi bi-arrow-left-circle-fill"> Back</i>
-                        </div>
-                    </div>
-                    
-                    <div id="popUpTitle">
-                        <h1 id=h1PopUpTitle></h1>
-                    </div>
-                    <div id="popUpImageDiv">
-                        <img id="popUpImage" src="">
-                    </div>
-                    <div id="popUpDescription">
-                        <h2>production Description</h2>
-                        <p>This is where the description of the product will go. So many
-                            things to say about this product and how it is the best thing
-                            since sliced bread. 
-                        </p>
-                    </div>
-                        
-                </div>
                 </div>
             </div>
         </div>
