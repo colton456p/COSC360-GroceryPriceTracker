@@ -45,10 +45,14 @@
             <i  class="bi bi-arrow-left-circle-fill"> Back</i>
         </div>
     </div>
-    <h1 id="productName">PRODUCT NAME</h1>
+    <?php
+    echo "<h1 id=\"productName\">".$_POST['itemName']."?></h1>";
+    ?>
     <div id="centerContent">
         <div id="left">
-            <img id="productImage" src="img/corona.png" alt="product image">
+            <?php
+            echo "<img id=\"productImage\" src=\"".$_POST['imageSrc']."\" alt=\"product image\">";
+            ?>
         </div>
         <div id="right">
             <div id="image_bubbles">
