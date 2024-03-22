@@ -46,7 +46,7 @@
         </div>
     </div>
     <?php
-    echo "<h1 id=\"productName\">".$_POST['itemName']."?></h1>";
+    echo "<h1 id=\"productName\">".$_POST['itemName']."</h1>";
     ?>
     <div id="centerContent">
         <div id="left">
