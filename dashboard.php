@@ -103,7 +103,7 @@
                         for ($i = 0; $i < count($twoDArray); $i++) {
                             echo "<div class=\"item\" onClick=\"popUpItem('".$twoDArray[$i][1]."', '".$twoDArray[$i][0]."')\">
                                     <div id=\"favourite-icon\">
-                                        <iclass=\"bi-heart-fill\" onClick=\"unFavourite()\"></i>
+                                        <i class=\"bi-heart-fill\" onClick=\"unFavourite()\"></i>
                                     </div>
                                     <div class =\"item-center-image\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">

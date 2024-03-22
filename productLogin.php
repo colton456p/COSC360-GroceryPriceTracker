@@ -54,7 +54,7 @@
                         for ($i = 0; $i < count($twoDArray); $i++) {
                             echo "<div class=\"item\" href=\"productTrend.php\"onclick=\"popUpItem()\">
                                     <div id=\"favourite-icon\">
-                                        <i class=\"bi-heart-fill\"></i>
+                                        <i class=\"bi-heart\"></i>
                                     </div>
                                     <div class =\"item-center-image\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
