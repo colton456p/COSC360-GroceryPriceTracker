@@ -121,11 +121,15 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 /*---------------------------------------------------------------------------*/
 
 /*Body Formating*/
+#favourite-page-title{
+    text-align: center;
+    min-width: 1300px;
+}
 .item{
     margin:2em;
     background-color: white;
     width: 15em;
-    height: 20em;
+    height: 18em;
     border-radius: 2em;
     box-shadow: 0em 0.3em 0.7em #979997;
     transition: transform 0.5s ease-in-out;
@@ -136,7 +140,7 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 }
 
 .item-image{
-    margin-top:1em;
+    margin-top:2em;
     width: auto;
     height: 10em;
     border-radius: 2em;
@@ -150,17 +154,28 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     width: 10em;
     height: 10em;
 }
+#favourite-icon{
+    font-size: larger;
+    margin-top:1em;
+    margin-right:1em;
+    display:flex;
+    justify-content: flex-end;
+    float:right;
+}
+
+#favourite-icon i{
+    color: red;
+}
+#favourite-icon i:hover{
+    color: grey;
+}
 
 .item-name{
     margin-left:1em;
-}
-.item-description{
-    margin-left: 2em;
-    height:2em;
-    width:12em;
-    
+    margin-top:3em;
 }
 .item-price{
+    margin-top:2em;
     border-top: 1pt solid black;
     margin-left:1em;
     margin-right:1em;
@@ -185,70 +200,5 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     margin-right:2em;
     min-width: 1300px;
 }
-#popUpDiv{
-    position: fixed;
-    top: 12em;
-    left:23em;
-    display:flex;
-    background-color: white;
-    width: 60em;
-    height: 40em;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 2em;
-    box-shadow: 0em 0.3em 0.7em #979997;
-    z-index: 1000;
-}
-#popUptopBar{
-    border-bottom: black 0.1em solid;
-    height:2em;
-    width:57em;
-    padding-left:1.5em;
-    padding-top: 1em;
-}
-#popUpTitle{
-    position: absolute;
-    text-decoration: underline;
-    height: fit-content;
-    width:30em;
-    margin-top:3em;
-    text-align: center;
-    display:flex;
-    justify-content: center;
-}
-#popUpImage{
-    position: absolute;
-    width: 20em;
-    height: 20em;
-    border-radius: 2em;
-}
-#popUpImageDiv{
-    position: absolute;
-    padding:1em;
-    margin-top:3em;
-    margin-left:34em;
-    width: 20em;
-    height: 20em;
-    float:left;
-}
-#back-arrow{
-    transition: transform 0.5s ease-in-out;
-    width:fit-content;
-}
 
-#back-arrow:hover{
-    transform: scale(1.1);
-    text-shadow: 0em 0.3em 0.7em #979997
-}
-#popUpDescription{
-    position: absolute;
-    margin-top:25em;
-    margin-left:34em;
-    width: 22em;
-    height: 20em;
-}
-#popUpDescription p{
-    padding-left: 2em;
-    padding-right: 2em;
-}
 /*--------------------------------------------------------*/

@@ -5,7 +5,32 @@
         <link rel="stylesheet" href="css/dashboard.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <script>
-            function popUpItem(){
+            function popUpItem(imageSrc, itemName){
+                var form = document.createElement('form');
+                form.setAttribute('method', 'POST');
+                form.setAttribute('action', 'productTrend.php');
+
+                var imageInput = document.createElement('input');
+                imageInput.setAttribute('type', 'hidden');
+                imageInput.setAttribute('name', 'imageSrc');
+                imageInput.setAttribute('value', imageSrc);
+
+                var itemInput = document.createElement('input');
+                itemInput.setAttribute('type', 'hidden');
+                itemInput.setAttribute('name', 'itemName');
+                itemInput.setAttribute('value', itemName);
+
+                form.appendChild(imageInput);
+                form.appendChild(itemInput);
+
+                document.body.appendChild(form);
+
+                form.submit();
+                
+            }
+
+
+            function unFavourite(){
                 
             }
                 
@@ -76,12 +101,14 @@
                         );
 
                         for ($i = 0; $i < count($twoDArray); $i++) {
-                            echo "<div class=\"item\" href=\"productTrend.php\"onclick=\"popUpItem()\">
+                            echo "<div class=\"item\" onClick=\"popUpItem('".$twoDArray[$i][1]."', '".$twoDArray[$i][0]."')\">
+                                    <div id=\"favourite-icon\">
+                                        <iclass=\"bi-heart-fill\" onClick=\"unFavourite()\"></i>
+                                    </div>
                                     <div class =\"item-center-image\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
                                     </div>
                                     <h3 id=\"item".$i."\"class=\"item-name\">".$twoDArray[$i][0]."</h3>
-                                    <p class=\"item-description\">This is where the description of the product will go</p>
                                     <h5 class=\"item-price\">Cheapest at:</h5>
                                 </div>";
                         }

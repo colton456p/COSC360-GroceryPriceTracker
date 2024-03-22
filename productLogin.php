@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/product-style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>All products (logged in user)</title>
 </head>
 <header>
@@ -51,12 +52,14 @@
                         );
 
                         for ($i = 0; $i < count($twoDArray); $i++) {
-                            echo "<div class=\"item\" onclick=\"popUpItem()\">
+                            echo "<div class=\"item\" href=\"productTrend.php\"onclick=\"popUpItem()\">
+                                    <div id=\"favourite-icon\">
+                                        <i class=\"bi-heart-fill\"></i>
+                                    </div>
                                     <div class =\"item-center-image\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
                                     </div>
                                     <h3 id=\"item".$i."\"class=\"item-name\">".$twoDArray[$i][0]."</h3>
-                                    <p class=\"item-description\">This is where the description of the product will go</p>
                                     <h5 class=\"item-price\">Cheapest at:</h5>
                                 </div>";
                         }

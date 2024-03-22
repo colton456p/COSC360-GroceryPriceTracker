@@ -85,6 +85,24 @@
     <div id="comments">
         
         <div id="productComments">
+            <?php
+            session_start();    
+            $userId = $_SESSION["userId"];
+            $servername = "localhost";
+            $username = "38885190";
+            $dbPass = "38885190";
+            $database = "db_38885190";
+    
+            $conn = new mysqli($servername, $username, $dbPass, $database);
+            $sql = "SELECT (commentText, commentDate) FROM user WHERE itemId=".$itemId;
+            $result = $conn->query($sql);
+            $comment = $result->fetch_assoc(); 
+            $result->close();
+
+            $sql ="SELECT userId FROM user WHERE ";
+            $commentText = $comment["commentText"];
+            $date = $comment["commentDate"];
+            ?>
             <div class="singleComment">
                 <div class="leftComment">
                     
@@ -148,7 +166,7 @@
         </div>
         <div id="addComment">
             <h2>Add a Comment</h2>
-            <form id="commentForm" action="">
+            <form id="commentForm" method="post" action="PHP/addComment.php">
                 <input type="text" id="commentInput" name="commentInput" placeholder="Add a comment...">
                 <input type="submit" value="Post Comment" id="commentButton">
             </form>

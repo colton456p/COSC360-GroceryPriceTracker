@@ -104,73 +104,84 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 /*---------------------------------------------------------------------------*/
 
 /*Body*/
-    #favourite-page-title{
-        text-align: center;
-        min-width: 1300px;
-    }
-    .item{
-        margin:2em;
-        background-color: white;
-        width: 15em;
-        height: 20em;
-        border-radius: 2em;
-        box-shadow: 0em 0.3em 0.7em #979997;
-        transition: transform 0.5s ease-in-out;
-    }
-    .item:hover{
-        transform: scale(1.1);
-        box-shadow: 0em 0.3em 1em #8b8c8b;
-    }
+#favourite-page-title{
+    text-align: center;
+    min-width: 1300px;
+}
+.item{
+    margin:2em;
+    background-color: white;
+    width: 15em;
+    height: 18em;
+    border-radius: 2em;
+    box-shadow: 0em 0.3em 0.7em #979997;
+    transition: transform 0.5s ease-in-out;
+}
+.item:hover{
+    transform: scale(1.1);
+    box-shadow: 0em 0.3em 1em #8b8c8b;
+}
 
-    .item-image{
-        margin-top:1em;
-        width: auto;
-        height: 10em;
-        border-radius: 2em;
-        
-    }
+.item-image{
+    margin-top:2em;
+    width: auto;
+    height: 10em;
+    border-radius: 2em;
+    
+}
 
-    .item-center-image{
-        text-align: center;
-        margin-right: auto;
-        margin-left:auto;
-        width: 10em;
-        height: 10em;
-    }
+.item-center-image{
+    text-align: center;
+    margin-right: auto;
+    margin-left:auto;
+    width: 10em;
+    height: 10em;
+}
+#favourite-icon{
+    font-size: larger;
+    margin-top:1em;
+    margin-right:1em;
+    display:flex;
+    justify-content: flex-end;
+    float:right;
+}
 
-    .item-name{
-        margin-left:1em;
-    }
-    .item-description{
-        margin-left: 2em;
-        height:2em;
-        width:12em;
-        
-    }
-    .item-price{
-        border-top: 1pt solid black;
-        margin-left:1em;
-        margin-right:1em;
-        color:green;
+#favourite-icon i{
+    color: red;
+}
+#favourite-icon i:hover{
+    color: grey;
+}
 
-    }
-    #item-shelf{
-        max-width: 80em;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        margin-top: 2em;
-    }
+.item-name{
+    margin-left:1em;
+    margin-top:3em;
+}
+.item-price{
+    margin-top:2em;
+    border-top: 1pt solid black;
+    margin-left:1em;
+    margin-right:1em;
+    color:green;
 
-    #item-group{
-        margin-left:auto;
-        margin-right:auto;
-        width:fit-content;
-    }
+}
+#item-shelf{
+    max-width: 80em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 2em;
+}
 
-    #main{
-        margin-right:2em;
-        min-width: 1300px;
-    }
+#item-group{
+    margin-left:auto;
+    margin-right:auto;
+    width:fit-content;
+}
+
+#main{
+    margin-right:2em;
+    min-width: 1300px;
+}
     
 /*---------------------------------------------------------------------------*/
