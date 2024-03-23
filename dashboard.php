@@ -123,60 +123,29 @@
                             die("Connection failed: " . $conn->connect_error);
                         }
                         
-                        $sql = "SELECT itemId FROM favourite WHERE userId='$userId'";
-                        $result = $conn->query($sql);
-                        
-                        $itemIds = array();
-                        if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
-                                $itemIds[] = $row["itemId"];
-                            }
+                        $sql ="SELECT F.itemId, G.groceryItemName, G.groceryItemImage FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId ='$userId'";
+
+                        $results = $conn->query($sql);
+
+                        $i = 0;
+                        while ($row = $results->fetch_assoc()){
+                            $i+=0;
+                            $itemId = $row["itemId"];
+                            $groceryItemName = $row["groceryItemName"];
+                            $groceryItemImage = $row["groceryItemImage"];
+                            echo "<div class=\"item\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                    <div id=\"favourite-icon\">
+                                        <i class=\"bi-heart-fill\" onClick=\"unFavourite('".$itemId."')\"></i>
+                                    </div>
+                                    <div class =\"item-center-image\">
+                                        <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
+                                    </div>
+                                    <h3 id=\"item".$i."\"class=\"item-name\">".$groceryItemName."</h3>
+                                    <h5 class=\"item-price\">Cheapest at:</h5>
+                                </div>";
                         }
-                        
-                        $sql ="SELECT itemId, groceryItemName, groceryItemImage FROM groceryItems WHERE itemId = ?";
-
-                        $productDetails = array();
-
-                        $stmt = $conn->prepare($sql);
-                        $stmt->bind_param("i", $itemId); // I used the letter 'i' since that mean the datatype will be a integer
-
-                        foreach ($itemIds as $itemId) {
-                            $stmt->execute();
-                            $stmt->bind_result($itemId, $groceryItemName, $groceryItemImage);
-
-                            $i = 0;
-                            while ($stmt->fetch()) {
-                                $i+=0;
-                                // $productDetails[] = array('itemId' => $itemId, 'groceryItemName' => $groceryItemName, 'groceryItemImage' => $groceryItemImage);
-                                echo "<div class=\"item\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
-                                        <div id=\"favourite-icon\">
-                                            <i class=\"bi-heart-fill\" onClick=\"unFavourite('".$itemId."')\"></i>
-                                        </div>
-                                        <div class =\"item-center-image\">
-                                            <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
-                                        </div>
-                                        <h3 id=\"item".$i."\"class=\"item-name\">".$groceryItemName."</h3>
-                                        <h5 class=\"item-price\">Cheapest at:</h5>
-                                    </div>";
-                            }
-                        }
-
-                        $stmt->close();
                         $conn->close();
 
-
-                        // for ($i = 0; $i < count($productDetails); $i++) {
-                        //     echo "<div class=\"item\" onClick=\"popUpItem('".$productDetails[$i][0]."', '".$productDetails[$i][1]."', '".$productDetails[$i][2]."')\">
-                        //             <div id=\"favourite-icon\">
-                        //                 <i class=\"bi-heart-fill\" onClick=\"unFavourite('".$productDetails[$i][0]."')\"></i>
-                        //             </div>
-                        //             <div class =\"item-center-image\">
-                        //                 <img id=\"img".$i."\" class=\"item-image\" src=\"".$productDetails[$i][1]."\">
-                        //             </div>
-                        //             <h3 id=\"item".$i."\"class=\"item-name\">".$productDetails[$i][0]."</h3>
-                        //             <h5 class=\"item-price\">Cheapest at:</h5>
-                        //         </div>";
-                        // }
                         // $twoDArray = array(
                         //     array("Lays Chips", "img/potatoChips.png"),
                         //     array("Corona Extra", "img/corona.png",),
