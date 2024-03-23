@@ -4,7 +4,8 @@
         <title>Favourites</title>
         <link rel="stylesheet" href="css/dashboard.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
             function popUpItem(itemId, itemName, imageSrc){
                 var form = document.createElement('form');
                 form.setAttribute('method', 'POST');
@@ -129,7 +130,7 @@
                             $groceryItemImage = $row["groceryItemImage"];
                             $cheapestStore = "Walmart";
                             echo "<div class=\"item\">
-                                    <div class=\"favourite-icon\" onClick=\"unFavourite('".$itemId."')\">
+                                    <div class=\"favourite-icon\" onClick=\"return unFavourite('".$itemId."')\">
                                         <i class=\"bi-heart-fill\"></i>
                                     </div>
                                     <div class =\"item-center-image\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
