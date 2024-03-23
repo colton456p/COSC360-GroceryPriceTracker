@@ -5,10 +5,15 @@
         <link rel="stylesheet" href="css/dashboard.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <script>
-            function popUpItem(imageSrc, itemName){
+            function popUpItem(itemId, itemName, imageSrc){
                 var form = document.createElement('form');
                 form.setAttribute('method', 'POST');
                 form.setAttribute('action', 'productTrend.php');
+
+                var imageInput = document.createElement('input');
+                imageInput.setAttribute('type', 'hidden');
+                imageInput.setAttribute('name', 'itemId');
+                imageInput.setAttribute('value', itemId);
 
                 var imageInput = document.createElement('input');
                 imageInput.setAttribute('type', 'hidden');
@@ -30,11 +35,29 @@
             }
 
 
-            function unFavourite(){
-                
+            function unFavourite(itemId){
+                function removeFromFavorites(itemId) {
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('POST', 'remove_from_favorites.php', true);
+
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            alert(xhr.responseText);
+                            location.reload();
+                        } else {
+                            console.error('Error:', xhr.statusText);
+                        }
+                    };
+
+                    xhr.send('itemId=' + itemId);
+                }
             }
                 
         </script>
+        
     </head>
     <header>
         <div id="site_logo">
@@ -89,29 +112,83 @@
             <div id="item-group">
                 <div id="item-shelf">
                     <?php
-                        $twoDArray = array(
-                            array("Lays Chips", "img/potatoChips.png"),
-                            array("Corona Extra", "img/corona.png",),
-                            array("Gala Apples", "img/gala-apples.png"),
-                            array("Gatorade 355mL", "img/gatorade.png"),
-                            array("White Rice", "img/rice.png"),
-                            array("Mi Goreng Noodles", "img/mi-goreng.png"),
-                            array("Tostitos Salsa", "img/salsa.png"),
-                            array("Eggs", "img/eggs.png")
-                        );
+                        $servername = "localhost";
+                        $username = "38885190";
+                        $dbPass = "38885190";
+                        $database = "db_38885190";
+                        
+                        $conn = new mysqli($servername, $username, $dbPass, $database);
+                        
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+                        
+                        $sql = "SELECT itemId FROM favourite WHERE userId='$userId'";
+                        $result = $conn->query($sql);
+                        
+                        $itemIds = array();
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                $itemIds[] = $row["itemId"];
+                            }
+                        }
+                        
+                        $sql ="SELECT itemId, groceryItemName, groceryItemImage FROM groceryItems WHERE itemId = ?";
 
-                        for ($i = 0; $i < count($twoDArray); $i++) {
-                            echo "<div class=\"item\" onClick=\"popUpItem('".$twoDArray[$i][1]."', '".$twoDArray[$i][0]."')\">
+                        $productDetails = array();
+
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("i", $itemId); // I used the letter 'i' since that mean the datatype will be a integer
+
+                        foreach ($itemIds as $itemId) {
+                            $stmt->execute();
+                            $stmt->bind_result($itemId, $groceryItemName, $groceryItemImage);
+
+                            
+                            while ($stmt->fetch()) {
+                                $productDetails[] = array('itemId' => $itemId, 'groceryItemName' => $groceryItemName, 'groceryItemImage' => $groceryItemImage);
+                            }
+                        }
+
+                        $stmt->close();
+                        $conn->close();
+
+
+                        for ($i = 0; $i < count($productDetails); $i++) {
+                            echo "<div class=\"item\" onClick=\"popUpItem('".$productDetails[$i][0]."', '".$productDetails[$i][1]."', '".$productDetails[$i][2]."')\">
                                     <div id=\"favourite-icon\">
-                                        <i class=\"bi-heart-fill\" onClick=\"unFavourite()\"></i>
+                                        <i class=\"bi-heart-fill\" onClick=\"unFavourite('".$productDetails[$i][0]."')\"></i>
                                     </div>
                                     <div class =\"item-center-image\">
-                                        <img id=\"img".$i."\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
+                                        <img id=\"img".$i."\" class=\"item-image\" src=\"".$productDetails[$i][1]."\">
                                     </div>
-                                    <h3 id=\"item".$i."\"class=\"item-name\">".$twoDArray[$i][0]."</h3>
+                                    <h3 id=\"item".$i."\"class=\"item-name\">".$productDetails[$i][0]."</h3>
                                     <h5 class=\"item-price\">Cheapest at:</h5>
                                 </div>";
                         }
+                        // $twoDArray = array(
+                        //     array("Lays Chips", "img/potatoChips.png"),
+                        //     array("Corona Extra", "img/corona.png",),
+                        //     array("Gala Apples", "img/gala-apples.png"),
+                        //     array("Gatorade 355mL", "img/gatorade.png"),
+                        //     array("White Rice", "img/rice.png"),
+                        //     array("Mi Goreng Noodles", "img/mi-goreng.png"),
+                        //     array("Tostitos Salsa", "img/salsa.png"),
+                        //     array("Eggs", "img/eggs.png")
+                        // );
+
+                        // for ($i = 0; $i < count($twoDArray); $i++) {
+                        //     echo "<div class=\"item\" onClick=\"popUpItem('".$twoDArray[$i][1]."', '".$twoDArray[$i][0]."')\">
+                        //             <div id=\"favourite-icon\">
+                        //                 <i class=\"bi-heart-fill\" onClick=\"unFavourite()\"></i>
+                        //             </div>
+                        //             <div class =\"item-center-image\">
+                        //                 <img id=\"img".$i."\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
+                        //             </div>
+                        //             <h3 id=\"item".$i."\"class=\"item-name\">".$twoDArray[$i][0]."</h3>
+                        //             <h5 class=\"item-price\">Cheapest at:</h5>
+                        //         </div>";
+                        // }
                     ?>
                 </div>
             </div>
