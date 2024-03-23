@@ -10,7 +10,8 @@
         die("Connection failed: " . $conn->connect_error);
     }
     $itemId = $_POST['itemId'];
-    $sql = "DELETE FROM favourite WHERE itemId = $itemId";
+    $userId = $_SESSION["userId"];
+    $sql = "DELETE FROM favourite WHERE itemId = $itemId AND userId = $userId";
 
     $conn->query($sql);
 
