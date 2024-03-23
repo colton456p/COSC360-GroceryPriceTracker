@@ -51,6 +51,22 @@
                     }
                 });
             }
+
+            function favourite(productId, storeId) {
+                $.ajax({
+                    url: 'PHP/add_favourites.php',
+                    method: 'POST',
+                    data: {productId: productId, storeId: storeId},
+                    success: function(response) {
+                        console.log('PHP script executed successfully');
+                        console.log('Response:', response);
+                        window.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error executing PHP script:', error);
+                    }
+                });
+            }
                 
         </script>
         
@@ -125,7 +141,7 @@
 
                         $i = 0;
                         while ($row = $results->fetch_assoc()){
-                            $i+=0;
+                            $i+=1;
                             $itemId = $row["itemId"];
                             $groceryItemName = $row["groceryItemName"];
                             $groceryItemImage = $row["groceryItemImage"];
@@ -143,6 +159,32 @@
                                     </div>
                                 </div>";
                         }
+                        echo "<h2>TRENDING ITEMS</h2>";
+                        $sql ="SELECT F.itemId, F.productId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId <> '$userId'";
+                        $results = $conn->query($sql);
+                        $i = 0;
+                        while($row = $results->fetch_assoc()){
+                            $i+=1;
+                            $productId = $row["productId"];
+                            $itemId = $row["itemId"];
+                            $groceryItemName = $row["groceryItemName"];
+                            $groceryItemImage = $row["groceryItemImage"];
+                            $storeId = $row["storeId"];
+                            $cheapestStore = "Walmart";
+                            echo "<div class=\"item\">
+                                    <div class=\"favourite-icon\" onClick=\"return favourite('".$productId."')\">
+                                        <i class=\"bi-heart-fill\"></i>
+                                    </div>
+                                    <div class =\"item-center-image\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                        <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
+                                    </div>
+                                    <div class=\"title-click\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                        <h3 id=\"item".$i."\"class=\"item-name\"> ".$groceryItemName."</h3>
+                                        <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at:</b>".$cheapestStore."</h5>
+                                    </div>
+                                </div>";
+                        }
+
                         $conn->close();
                     ?>
                 </div>
