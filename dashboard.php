@@ -39,7 +39,7 @@
                     var itemId = $(this).data('itemId');
                     
                     $.ajax({
-                        url: 'remove_from_favourites.php',
+                        url: 'PHP/remove_from_favourites.php',
                         method: 'POST',
                         data: {itemId: itemId},
                         success: function(response) {
