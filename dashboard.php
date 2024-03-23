@@ -159,6 +159,7 @@
                                     </div>
                                 </div>";
                         }
+                        $results->close();
                         $conn->close();
                     ?>
                 </div>
