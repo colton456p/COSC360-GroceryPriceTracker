@@ -87,7 +87,7 @@
     </div>
 </header>
 <body>
-<div id="main">
+        <div id="main">
             <div id="item-group">
                 <div id="item-shelf">
                     <?php
