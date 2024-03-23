@@ -11,7 +11,7 @@
     }
     $itemId = $_POST['itemId'];
     $userId = $_SESSION["userId"];
-    $sql = "DELETE FROM favourite WHERE itemId = $itemId AND userId = $userId";
+    $sql = "DELETE FROM favourite WHERE itemId = '$itemId' AND userId = '$userId'";
 
     $conn->query($sql);
 
