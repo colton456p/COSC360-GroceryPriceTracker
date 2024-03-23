@@ -6,15 +6,15 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            function popUpItem(itemId, itemName, imageSrc){
+            function popUpItem(productId, itemName, imageSrc){
                 var form = document.createElement('form');
                 form.setAttribute('method', 'POST');
                 form.setAttribute('action', 'productTrend.php');
 
                 var imageInput = document.createElement('input');
                 imageInput.setAttribute('type', 'hidden');
-                imageInput.setAttribute('name', 'itemId');
-                imageInput.setAttribute('value', itemId);
+                imageInput.setAttribute('name', 'productId');
+                imageInput.setAttribute('value', productId);
 
                 var imageInput = document.createElement('input');
                 imageInput.setAttribute('type', 'hidden');
@@ -35,12 +35,12 @@
                 
             }
 
-            function unFavourite(itemId) {
-                console.log('Removing item from favourites:', itemId);
+            function unFavourite(productId) {
+                console.log('Removing item from favourites:', productId);
                 $.ajax({
                     url: 'PHP/remove_from_favourites.php',
                     method: 'POST',
-                    data: {itemId: itemId},
+                    data: {productId: productId},
                     success: function(response) {
                         console.log('PHP script executed successfully');
                         console.log('Response:', response);
@@ -56,7 +56,7 @@
                 $.ajax({
                     url: 'PHP/add_favourites.php',
                     method: 'POST',
-                    data: {itemId: itemId, storeId: storeId},
+                    data: {productId: productId, storeId: storeId},
                     success: function(response) {
                         console.log('PHP script executed successfully');
                         console.log('Response:', response);
@@ -166,25 +166,26 @@
                         <h2>TRENDING ITEMS</h2>
                     </div>
                     <?php
-                        $sql ="SELECT F.itemId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId <> '$userId'";
+                        $sql ="SELECT F.itemId, F.productId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId <> '$userId'";
 
                         $results = $conn->query($sql);
                         $i = 0;
                         while($row = $results->fetch_assoc()){
                             $i+=0;
+                            $productId = $row["productId"];
                             $itemId = $row["itemId"];
                             $groceryItemName = $row["groceryItemName"];
                             $groceryItemImage = $row["groceryItemImage"];
                             $storeId = $row["storeId"];
                             $cheapestStore = "Walmart";
                             echo "<div class=\"item\">
-                                    <div class=\"favourite-icon-unfill\" onClick=\"return favourite('".$itemId."','".$storeId."')\">
+                                    <div class=\"favourite-icon-unfill\" onClick=\"return favourite('".$productId."','".$storeId."')\">
                                         <i class=\"bi-heart\"></i>
                                     </div>
-                                    <div class =\"item-center-image\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                    <div class =\"item-center-image\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
                                     </div>
-                                    <div class=\"title-click\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                    <div class=\"title-click\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
                                         <h3 id=\"item".$i."\"class=\"item-name\"> ".$groceryItemName."</h3>
                                         <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at: </b>".$cheapestStore."</h5>
                                     </div>

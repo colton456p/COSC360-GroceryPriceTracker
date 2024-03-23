@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         header("Location: ../productTrend.php");
         exit();
     }
-    $sql ="INSERT INTO comment (userId, commentText) VALUES ('$userId', '$commentInput')";
+    $sql ="INSERT INTO comment (productId, commentText) VALUES ('$productId', '$commentInput')";
     if($conn->query($sql)===FALSE){
         header("Location: ../signup.php?emailFail=failed");
         exit();

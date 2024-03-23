@@ -10,9 +10,9 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $itemId = $_POST['itemId'];
+    $productId = $_POST['productId'];
     $userId = $_SESSION["userId"];
-    $sql = "DELETE FROM favourite WHERE itemId = '$itemId' AND userId = '$userId'";
+    $sql = "DELETE FROM favourite WHERE productId = '$productId' AND userId = '$userId'";
 
     $conn->query($sql);
 
