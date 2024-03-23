@@ -152,6 +152,9 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 #favourite-icon i:hover{
     color: grey;
 }
+#favourite-icon i:checked{
+    color: grey;
+}
 
 .item-name{
     margin-left:1em;
