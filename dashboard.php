@@ -141,11 +141,10 @@
                                     <div class =\"item-center-image\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
                                     </div>
-                                    <div class=\"title-click\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">'".$groceryItemName."'>
-                                        <h3 id=\"item".$i."\"class=\"item-name\" </h3>
+                                    <div class=\"title-click\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                        <h3 id=\"item".$i."\"class=\"item-name\">".$groceryItemName."</h3>
                                         <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at:</b>".$cheapestStore."</h5>
                                     </div>
-            
                                 </div>";
                         }
                         $conn->close();
