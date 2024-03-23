@@ -160,7 +160,7 @@
                                 </div>";
                         }
                         echo "<h2>TRENDING ITEMS</h2>";
-                        $sql ="SELECT F.itemId, F.productId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId <> '$userId'";
+                        $sql ="SELECT F.itemId, F.productId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId";
                         $results = $conn->query($sql);
                         $i = 0;
                         while($row = $results->fetch_assoc()){
