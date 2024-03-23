@@ -157,14 +157,14 @@
                                         <h3 id=\"item".$i."\"class=\"item-name\"> ".$groceryItemName."</h3>
                                         <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at: </b>".$cheapestStore."</h5>
                                     </div>
-                                </div>
-                        }";
+                                </div>";
+                        }
                     ?>
                 </div>
                 <div id="item-shelf-trends">
                     <div id="trending-title">
                         <h2>TRENDING ITEMS</h2>
-                    </div>;
+                    </div>
                     <?php
                         $sql ="SELECT F.itemId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId <> '$userId'";
 
