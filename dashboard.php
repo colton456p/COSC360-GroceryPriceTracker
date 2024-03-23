@@ -6,15 +6,15 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            function popUpItem(productId, itemName, imageSrc){
+            function popUpItem(itemId, itemName, imageSrc){
                 var form = document.createElement('form');
                 form.setAttribute('method', 'POST');
                 form.setAttribute('action', 'productTrend.php');
 
                 var imageInput = document.createElement('input');
                 imageInput.setAttribute('type', 'hidden');
-                imageInput.setAttribute('name', 'productId');
-                imageInput.setAttribute('value', productId);
+                imageInput.setAttribute('name', 'itemId');
+                imageInput.setAttribute('value', itemId);
 
                 var imageInput = document.createElement('input');
                 imageInput.setAttribute('type', 'hidden');
@@ -35,28 +35,12 @@
                 
             }
 
-            function unFavourite(productId) {
-                console.log('Removing item from favourites:', productId);
+            function unFavourite(itemId) {
+                console.log('Removing item from favourites:', itemId);
                 $.ajax({
                     url: 'PHP/remove_from_favourites.php',
                     method: 'POST',
-                    data: {productId: productId},
-                    success: function(response) {
-                        console.log('PHP script executed successfully');
-                        console.log('Response:', response);
-                        window.location.reload();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error executing PHP script:', error);
-                    }
-                });
-            }
-
-            function favourite(productId, storeId) {
-                $.ajax({
-                    url: 'PHP/add_favourites.php',
-                    method: 'POST',
-                    data: {productId: productId, storeId: storeId},
+                    data: {itemId: itemId},
                     success: function(response) {
                         console.log('PHP script executed successfully');
                         console.log('Response:', response);
@@ -155,7 +139,7 @@
                                     </div>
                                     <div class=\"title-click\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
                                         <h3 id=\"item".$i."\"class=\"item-name\"> ".$groceryItemName."</h3>
-                                        <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at: </b>".$cheapestStore."</h5>
+                                        <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at:</b>".$cheapestStore."</h5>
                                     </div>
                                 </div>";
                         }
