@@ -133,16 +133,16 @@
                             $itemId = $row["itemId"];
                             $groceryItemName = $row["groceryItemName"];
                             $groceryItemImage = $row["groceryItemImage"];
-                            $cheapestStore = "walmart";
+                            $cheapestStore = "Walmart";
                             echo "<div class=\"item\">
-                                    <div id=\"favourite-icon\">
-                                        <i class=\"bi-heart-fill\" onClick=\"unFavourite('".$itemId."')\"></i>
+                                    <div id=\"favourite-icon\" onClick=\"unFavourite('".$itemId."')\">
+                                        <i class=\"bi-heart-fill\"></i>
                                     </div>
                                     <div class =\"item-center-image\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
                                     </div>
                                     <div class=\"title-click\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
-                                        <h3 id=\"item".$i."\"class=\"item-name\">".$groceryItemName."</h3>
+                                        <h3 id=\"item".$i."\"class=\"item-name\"> ".$groceryItemName."</h3>
                                         <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at:</b>".$cheapestStore."</h5>
                                     </div>
                                 </div>";
