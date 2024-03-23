@@ -36,24 +36,22 @@
 
 
             function unFavourite(itemId){
-                function removeFromFavorites(itemId) {
-                    var xhr = new XMLHttpRequest();
+                var xhr = new XMLHttpRequest();
 
-                    xhr.open('POST', 'remove_from_favorites.php', true);
+                xhr.open('POST', 'remove_from_favorites.php', true);
 
-                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-                    xhr.onload = function() {
-                        if (xhr.status === 200) {
-                            alert(xhr.responseText);
-                            location.reload();
-                        } else {
-                            console.error('Error:', xhr.statusText);
-                        }
-                    };
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        alert(xhr.responseText);
+                        location.reload();
+                    } else {
+                        console.error('Error:', xhr.statusText);
+                    }
+                };
 
-                    xhr.send('itemId=' + itemId);
-                }
+                xhr.send('itemId=' + itemId);
             }
                 
         </script>
