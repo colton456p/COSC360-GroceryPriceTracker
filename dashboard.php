@@ -44,6 +44,7 @@
                     success: function(response) {
                         console.log('PHP script executed successfully');
                         console.log('Response:', response);
+                        window.location.reload();
                     },
                     error: function(xhr, status, error) {
                         console.error('Error executing PHP script:', error);
