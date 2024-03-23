@@ -123,7 +123,7 @@
                             die("Connection failed: " . $conn->connect_error);
                         }
                         
-                        $sql ="SELECT F.itemId, G.groceryItemName, G.groceryItemImage FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId ='$userId'";
+                        $sql ="SELECT F.itemId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId ='$userId'";
 
                         $results = $conn->query($sql);
 
@@ -133,42 +133,22 @@
                             $itemId = $row["itemId"];
                             $groceryItemName = $row["groceryItemName"];
                             $groceryItemImage = $row["groceryItemImage"];
-                            echo "<div class=\"item\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                            $cheapestStore = "walmart";
+                            echo "<div class=\"item\">
                                     <div id=\"favourite-icon\">
                                         <i class=\"bi-heart-fill\" onClick=\"unFavourite('".$itemId."')\"></i>
                                     </div>
-                                    <div class =\"item-center-image\">
+                                    <div class =\"item-center-image\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
                                     </div>
-                                    <h3 id=\"item".$i."\"class=\"item-name\">".$groceryItemName."</h3>
-                                    <h5 class=\"item-price\">Cheapest at:</h5>
+                                    <div class=\"title-click\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">'".$groceryItemName."'>
+                                        <h3 id=\"item".$i."\"class=\"item-name\" </h3>
+                                        <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at:</b>".$cheapestStore."</h5>
+                                    </div>
+            
                                 </div>";
                         }
                         $conn->close();
-
-                        // $twoDArray = array(
-                        //     array("Lays Chips", "img/potatoChips.png"),
-                        //     array("Corona Extra", "img/corona.png",),
-                        //     array("Gala Apples", "img/gala-apples.png"),
-                        //     array("Gatorade 355mL", "img/gatorade.png"),
-                        //     array("White Rice", "img/rice.png"),
-                        //     array("Mi Goreng Noodles", "img/mi-goreng.png"),
-                        //     array("Tostitos Salsa", "img/salsa.png"),
-                        //     array("Eggs", "img/eggs.png")
-                        // );
-
-                        // for ($i = 0; $i < count($twoDArray); $i++) {
-                        //     echo "<div class=\"item\" onClick=\"popUpItem('".$twoDArray[$i][1]."', '".$twoDArray[$i][0]."')\">
-                        //             <div id=\"favourite-icon\">
-                        //                 <i class=\"bi-heart-fill\" onClick=\"unFavourite()\"></i>
-                        //             </div>
-                        //             <div class =\"item-center-image\">
-                        //                 <img id=\"img".$i."\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
-                        //             </div>
-                        //             <h3 id=\"item".$i."\"class=\"item-name\">".$twoDArray[$i][0]."</h3>
-                        //             <h5 class=\"item-price\">Cheapest at:</h5>
-                        //         </div>";
-                        // }
                     ?>
                 </div>
             </div>
