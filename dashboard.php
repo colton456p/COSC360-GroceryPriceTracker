@@ -146,7 +146,17 @@
 
                             
                             while ($stmt->fetch()) {
-                                $productDetails[] = array('itemId' => $itemId, 'groceryItemName' => $groceryItemName, 'groceryItemImage' => $groceryItemImage);
+                                // $productDetails[] = array('itemId' => $itemId, 'groceryItemName' => $groceryItemName, 'groceryItemImage' => $groceryItemImage);
+                                echo "<div class=\"item\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                        <div id=\"favourite-icon\">
+                                            <i class=\"bi-heart-fill\" onClick=\"unFavourite('".$itemId."')\"></i>
+                                        </div>
+                                        <div class =\"item-center-image\">
+                                            <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
+                                        </div>
+                                        <h3 id=\"item".$i."\"class=\"item-name\">".$groceryItemName."</h3>
+                                        <h5 class=\"item-price\">Cheapest at:</h5>
+                                    </div>";
                             }
                         }
 
@@ -154,18 +164,18 @@
                         $conn->close();
 
 
-                        for ($i = 0; $i < count($productDetails); $i++) {
-                            echo "<div class=\"item\" onClick=\"popUpItem('".$productDetails[$i][0]."', '".$productDetails[$i][1]."', '".$productDetails[$i][2]."')\">
-                                    <div id=\"favourite-icon\">
-                                        <i class=\"bi-heart-fill\" onClick=\"unFavourite('".$productDetails[$i][0]."')\"></i>
-                                    </div>
-                                    <div class =\"item-center-image\">
-                                        <img id=\"img".$i."\" class=\"item-image\" src=\"".$productDetails[$i][1]."\">
-                                    </div>
-                                    <h3 id=\"item".$i."\"class=\"item-name\">".$productDetails[$i][0]."</h3>
-                                    <h5 class=\"item-price\">Cheapest at:</h5>
-                                </div>";
-                        }
+                        // for ($i = 0; $i < count($productDetails); $i++) {
+                        //     echo "<div class=\"item\" onClick=\"popUpItem('".$productDetails[$i][0]."', '".$productDetails[$i][1]."', '".$productDetails[$i][2]."')\">
+                        //             <div id=\"favourite-icon\">
+                        //                 <i class=\"bi-heart-fill\" onClick=\"unFavourite('".$productDetails[$i][0]."')\"></i>
+                        //             </div>
+                        //             <div class =\"item-center-image\">
+                        //                 <img id=\"img".$i."\" class=\"item-image\" src=\"".$productDetails[$i][1]."\">
+                        //             </div>
+                        //             <h3 id=\"item".$i."\"class=\"item-name\">".$productDetails[$i][0]."</h3>
+                        //             <h5 class=\"item-price\">Cheapest at:</h5>
+                        //         </div>";
+                        // }
                         // $twoDArray = array(
                         //     array("Lays Chips", "img/potatoChips.png"),
                         //     array("Corona Extra", "img/corona.png",),
