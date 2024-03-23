@@ -144,8 +144,9 @@
                             $stmt->execute();
                             $stmt->bind_result($itemId, $groceryItemName, $groceryItemImage);
 
-                            
+                            $i = 0;
                             while ($stmt->fetch()) {
+                                $i+=0;
                                 // $productDetails[] = array('itemId' => $itemId, 'groceryItemName' => $groceryItemName, 'groceryItemImage' => $groceryItemImage);
                                 echo "<div class=\"item\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
                                         <div id=\"favourite-icon\">
