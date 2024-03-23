@@ -5,6 +5,57 @@
     <link rel="stylesheet" href="css/product-style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>All products (logged in user)</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            function popUpItem(productId, itemName, imageSrc){
+                var form = document.createElement('form');
+                form.setAttribute('method', 'POST');
+                form.setAttribute('action', 'productTrend.php');
+
+                var imageInput = document.createElement('input');
+                imageInput.setAttribute('type', 'hidden');
+                imageInput.setAttribute('name', 'productId');
+                imageInput.setAttribute('value', productId);
+
+                var imageInput = document.createElement('input');
+                imageInput.setAttribute('type', 'hidden');
+                imageInput.setAttribute('name', 'imageSrc');
+                imageInput.setAttribute('value', imageSrc);
+
+                var itemInput = document.createElement('input');
+                itemInput.setAttribute('type', 'hidden');
+                itemInput.setAttribute('name', 'itemName');
+                itemInput.setAttribute('value', itemName);
+
+                form.appendChild(imageInput);
+                form.appendChild(itemInput);
+
+                document.body.appendChild(form);
+
+                form.submit();
+                
+            }
+
+
+            function favourite(itemId, storeId) {
+                $.ajax({
+                    url: 'PHP/add_favourites.php',
+                    method: 'POST',
+                    data: {productId: productId, storeId: storeId},
+                    success: function(response) {
+                        console.log('PHP script executed successfully');
+                        console.log('Response:', response);
+                        window.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error executing PHP script:', error);
+                    }
+                });
+            }
+                
+        </script>
+
 </head>
 <header>
     <div id="site_logo">
@@ -40,29 +91,30 @@
             <div id="item-group">
                 <div id="item-shelf">
                     <?php
-                        $twoDArray = array(
-                            array("Lays Chips", "img/potatoChips.png"),
-                            array("Corona Extra", "img/corona.png",),
-                            array("Gala Apples", "img/gala-apples.png"),
-                            array("Gatorade 355mL", "img/gatorade.png"),
-                            array("White Rice", "img/rice.png"),
-                            array("Mi Goreng Noodles", "img/mi-goreng.png"),
-                            array("Tostitos Salsa", "img/salsa.png"),
-                            array("Eggs", "img/eggs.png")
-                        );
+                        $sql ="SELECT DISTINCT productId, groceryItemName, groceryItemImage FROM groceryItems";
 
-                        for ($i = 0; $i < count($twoDArray); $i++) {
-                            echo "<div class=\"item\" href=\"productTrend.php\"onclick=\"popUpItem()\">
-                                    <div id=\"favourite-icon\">
+                        $results = $conn->query($sql);
+                        $i = 0;
+                        while($row = $results->fetch_assoc()){
+                            $i+=0;
+                            $productId = $row["productId"];
+                            $groceryItemName = $row["groceryItemName"];
+                            $groceryItemImage = $row["groceryItemImage"];
+                            $cheapestStore = "Walmart";
+                            echo "<div class=\"item\">
+                                    <div class=\"favourite-icon-unfill\" onClick=\"return favourite('".$productId."','".$storeId."')\">
                                         <i class=\"bi-heart\"></i>
                                     </div>
-                                    <div class =\"item-center-image\">
-                                        <img id=\"img".$i."\" class=\"item-image\" src=\"".$twoDArray[$i][1]."\">
+                                    <div class =\"item-center-image\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                        <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
                                     </div>
-                                    <h3 id=\"item".$i."\"class=\"item-name\">".$twoDArray[$i][0]."</h3>
-                                    <h5 class=\"item-price\">Cheapest at:</h5>
+                                    <div class=\"title-click\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                        <h3 id=\"item".$i."\"class=\"item-name\"> ".$groceryItemName."</h3>
+                                        <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at: </b>".$cheapestStore."</h5>
+                                    </div>
                                 </div>";
                         }
+                        $conn->close();
                     ?>
                 </div>
             </div>

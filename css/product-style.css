@@ -154,37 +154,65 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     width: 10em;
     height: 10em;
 }
-#favourite-icon{
+.favourite-icon{
     font-size: larger;
-    margin-top:1em;
-    margin-right:1em;
+    margin-top:0.7em;
+    margin-right:0.7em;
     display:flex;
     justify-content: flex-end;
     float:right;
 }
 
-#favourite-icon i{
+.favourite-icon i{
     color: red;
+}
+.favourite-icon i:hover{
+    color: grey;
+}
+.favourite-icon i:focus{
+    color: grey;
 }
 
 .item-name{
     margin-left:1em;
-    margin-top:3em;
+    margin-top:2em;
+    overflow: hidden;
+    width:11em;
+    height:2.4em;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.item-name:hover{
+    text-decoration: underline;
+}
+.title-click{
+    width:100%;
+    margin-top:2em;
+    height:5.9em;
+    border-radius: 2em;
 }
 .item-price{
-    margin-top:2em;
+    margin-top:1em;
     border-top: 1pt solid black;
     margin-left:1em;
     margin-right:1em;
-    color:green;
 
 }
 #item-shelf{
+    border-bottom: black 1pt solid;
     max-width: 80em;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-top: 2em;
+    margin-left:auto;
+    margin-right:auto;
+    justify-content: left;
+    padding-left:3em;
 }
 
 #item-group{
@@ -197,5 +225,29 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     margin-right:2em;
     min-width: 1300px;
 }
+#trending-title{
+    text-align: center;
+    min-width: 1300px;
+    width:100%;
+}
 
-/*--------------------------------------------------------*/
+.favourite-icon-unfill i{
+    color: black;
+}
+.favourite-icon-unfill i::after{
+    fill: red;
+}
+.favourite-icon-unfill i:hover{
+    color: red;
+}
+#item-shelf-trends{
+    max-width: 80em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 2em;
+    margin-left:auto;
+    margin-right:auto;
+    justify-content: left;
+    padding-left:3em;
+}

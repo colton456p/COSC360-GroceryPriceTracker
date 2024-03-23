@@ -11,9 +11,9 @@
     }
     $itemId = $_POST['itemId'];
     $storeId = $_POST['storeId'];
-    $userId = $_SESSION["userId"];
+    $productId = $_SESSION["productId"];
 
-    $sql = "INSERT INTO favourite (userId, storeId, itemId) VALUES ('$userId', '$storeId', '$itemId')";
+    $sql = "INSERT INTO favourite (productId, storeId, itemId) VALUES ('$productId', '$storeId', '$itemId')";
     $conn->query($sql);
 
     $conn->close();
