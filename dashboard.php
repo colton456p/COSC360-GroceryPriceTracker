@@ -35,9 +35,9 @@
             }
 
             $(document).ready(function() {
-                $('.favourite-icon').click(function() {
+                $('.favourite-icon').onClick(function() {
                     var itemId = $(this).data('itemId');
-                    
+                    console.log('Removing item from favourites:', itemId);
                     $.ajax({
                         url: 'PHP/remove_from_favourites.php',
                         method: 'POST',
