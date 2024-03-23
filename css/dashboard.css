@@ -146,13 +146,13 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     float:right;
 }
 
-#favourite-icon i{
+.favourite-icon i{
     color: red;
 }
-#favourite-icon i:hover{
+.favourite-icon i:hover{
     color: grey;
 }
-#favourite-icon i:checked{
+.favourite-icon i:focus{
     color: grey;
 }
 
