@@ -137,7 +137,7 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     width: 10em;
     height: 10em;
 }
-#favourite-icon{
+.favourite-icon{
     font-size: larger;
     margin-top:0.7em;
     margin-right:0.7em;
