@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $conn = new mysqli($servername, $username, $dbPass, $database);
     
     if ($conn->connect_error) {
-        // die("Connection failed: " . $conn->connect_error);
         header("Location: ../productTrend.php");
         exit();
     }

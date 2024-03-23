@@ -34,25 +34,24 @@
                 
             }
 
-
-            function unFavourite(itemId){
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('POST', 'remove_from_favorites.php', true);
-
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        alert(xhr.responseText);
-                        location.reload();
-                    } else {
-                        console.error('Error:', xhr.statusText);
-                    }
-                };
-
-                xhr.send('itemId=' + itemId);
-            }
+            $(document).ready(function() {
+                $('.favourite-icon').click(function() {
+                    var itemId = $(this).data('itemId');
+                    
+                    $.ajax({
+                        url: 'remove_from_favourites.php',
+                        method: 'POST',
+                        data: {itemId: itemId},
+                        success: function(response) {
+                            console.log('PHP script executed successfully');
+                            console.log('Response:', response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error executing PHP script:', error);
+                        }
+                    });
+                });
+            });
                 
         </script>
         
@@ -133,7 +132,7 @@
                             $groceryItemImage = $row["groceryItemImage"];
                             $cheapestStore = "Walmart";
                             echo "<div class=\"item\">
-                                    <div id=\"favourite-icon\" onClick=\"unFavourite('".$itemId."')\">
+                                    <div class=\"favourite-icon\" data-itemId=\"".$itemId."\">
                                         <i class=\"bi-heart-fill\"></i>
                                     </div>
                                     <div class =\"item-center-image\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
