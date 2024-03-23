@@ -16,5 +16,5 @@
     $conn->query($sql);
 
     $conn->close();
-    header("Location: ../dashboard.php");
+    echo json_encode(['success' => true]);
 ?>
