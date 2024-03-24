@@ -229,7 +229,7 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-top: 30em;
+    margin-top: 2em;
     margin-left:auto;
     margin-right:auto;
     justify-content: left;

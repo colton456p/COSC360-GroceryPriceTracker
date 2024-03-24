@@ -36,8 +36,10 @@
                 form.submit();
                 
             }
+                
+        </script>
 
-
+        <script>
             function favourite(itemId, storeId) {
                 $.ajax({
                     url: 'PHP/add_favourites.php',
@@ -53,7 +55,6 @@
                     }
                 });
             }
-                
         </script>
 
 </head>
