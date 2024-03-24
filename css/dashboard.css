@@ -145,6 +145,14 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
     justify-content: flex-end;
     float:right;
 }
+.favourite-icon-unfill{
+    font-size: larger;
+    margin-top:0.7em;
+    margin-right:0.7em;
+    display:flex;
+    justify-content: flex-end;
+    float:right;
+}
 
 .favourite-icon i{
     color: red;
@@ -217,14 +225,10 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 .favourite-icon-unfill i{
     color: black;
 }
-.favourite-icon-unfill i::after{
-    fill: red;
-}
 .favourite-icon-unfill i:hover{
     color: red;
 }
 #item-shelf-trends{
-    border: red 1pt solid;
     max-width: 80em;
     display: flex;
     flex-wrap: wrap;

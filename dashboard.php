@@ -126,7 +126,7 @@
                         $results = $conn->query($sql);
                         $i = 0;
                         while($row = $results->fetch_assoc()){
-                            $i+=0;
+                            $i+=1;
                             $productId = $row["productId"];
                             $itemId = $row["itemId"];
                             $groceryItemName = $row["groceryItemName"];
@@ -166,7 +166,8 @@
 
                         $sql ="SELECT F.itemId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId";
                         $results = $conn->query($sql);
-                        while ($row = $results2->fetch_assoc()){
+                        while ($row = $results->fetch_assoc()){
+                            $i +=1;
                             $itemId = $row["itemId"];
                             $groceryItemName = $row["groceryItemName"];
                             $groceryItemImage = $row["groceryItemImage"];
@@ -174,8 +175,8 @@
                             $cheapestStore = "Walmart";
 
                             echo "<div class=\"item\">
-                                    <div class=\"favourite-icon\" onClick=\"return fav('".$itemId."')\">
-                                        <i class=\"bi-heart-fill\"></i>
+                                    <div class=\"favourite-icon-unfill\" onClick=\"return fav('".$itemId."')\">
+                                        <i class=\"bi-heart\"></i>
                                     </div>
                                     <div class =\"item-center-image\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
