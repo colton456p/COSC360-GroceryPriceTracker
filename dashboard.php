@@ -53,6 +53,7 @@
             }
 
             function fav(productId, storeId) {
+                console.log('Fav was run:', itemId);
                 $.ajax({
                     url: 'PHP/add_favourites.php',
                     method: 'POST',
