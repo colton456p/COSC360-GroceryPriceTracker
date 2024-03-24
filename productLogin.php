@@ -6,17 +6,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>All products (logged in user)</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            function popUpItem(productId, itemName, imageSrc){
+            function popUpItem(itemId, itemName, imageSrc){
                 var form = document.createElement('form');
                 form.setAttribute('method', 'POST');
                 form.setAttribute('action', 'productTrend.php');
 
                 var imageInput = document.createElement('input');
-                imageInput.setAttribute('type', 'hidden');
-                imageInput.setAttribute('name', 'productId');
-                imageInput.setAttribute('value', productId);
+                itemInput.setAttribute('type', 'hidden');
+                itemInput.setAttribute('name', 'itemId');
+                itemInput.setAttribute('value', itemId);
 
                 var imageInput = document.createElement('input');
                 imageInput.setAttribute('type', 'hidden');
@@ -24,12 +23,13 @@
                 imageInput.setAttribute('value', imageSrc);
 
                 var itemInput = document.createElement('input');
-                itemInput.setAttribute('type', 'hidden');
-                itemInput.setAttribute('name', 'itemName');
-                itemInput.setAttribute('value', itemName);
+                inputName.setAttribute('type', 'hidden');
+                inputName.setAttribute('name', 'itemName');
+                inputName.setAttribute('value', itemName);
 
                 form.appendChild(imageInput);
                 form.appendChild(itemInput);
+                form.appendChild(inputName);
 
                 document.body.appendChild(form);
 
@@ -70,38 +70,52 @@
     </div>
 </header>
 <body>
-        <div id="main">
-            <div id="item-group">
-                <div id="item-shelf">
-                    <?php
-                        $sql ="SELECT DISTINCT productId, groceryItemName, groceryItemImage FROM groceryItems";
+    <div id="main">
+        <div id="item-group">
 
-                        $results = $conn->query($sql);
-                        $i = 0;
-                        while($row = $results->fetch_assoc()){
-                            $i+=1;
-                            $productId = $row["productId"];
-                            $groceryItemName = $row["groceryItemName"];
-                            $groceryItemImage = $row["groceryItemImage"];
-                            $cheapestStore = "Walmart";
-                            echo "<div class=\"item\">
-                                    <div class=\"favourite-icon-unfill\" onClick=\"return favourite('".$productId."','".$storeId."')\">
-                                        <i class=\"bi-heart\"></i>
-                                    </div>
-                                    <div class =\"item-center-image\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
-                                        <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
-                                    </div>
-                                    <div class=\"title-click\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
-                                        <h3 id=\"item".$i."\"class=\"item-name\"> ".$groceryItemName."</h3>
-                                        <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at: </b>".$cheapestStore."</h5>
-                                    </div>
-                                </div>";
-                        }
-                        $conn->close();
-                    ?>
-                </div>
+            <div id="item-shelf">
+                <?php
+                    $servername = "localhost";
+                    $username = "38885190";
+                    $dbPass = "38885190";
+                    $database = "db_38885190";
+                    
+                    $conn = new mysqli($servername, $username, $dbPass, $database);
+                    
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    
+                    $sql ="SELECT DISTINCT productId, groceryItemName, groceryItemImage FROM groceryItems";
+
+
+                    $results = $conn->query($sql);
+
+                    $i = 0;
+                    while ($row = $results->fetch_assoc()){
+                        $i+=1;
+                        $productId = $row["productId"];
+                        $groceryItemName = $row["groceryItemName"];
+                        $groceryItemImage = $row["groceryItemImage"];
+                        $cheapestStore = "Walmart";
+                        echo "<div class=\"item\">
+                                <div class=\"favourite-icon-unfill\">
+                                    <i class=\"bi-heart\"></i>
+                                </div>
+                                <div class =\"item-center-image\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                    <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
+                                </div>
+                                <div class=\"title-click\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                    <h3 id=\"item".$i."\"class=\"item-name\"> ".$groceryItemName."</h3>
+                                    <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at: </b>".$cheapestStore."</h5>
+                                </div>
+                            </div>";
+                    }
+                    $conn->close();
+                ?>
             </div>
         </div>
+    </div>
 </body>
 <footer>
     <p></p>
