@@ -128,7 +128,7 @@
 
                         $i = 0;
                         while ($row = $results->fetch_assoc()){
-                            $i+=0;
+                            $i+=1;
                             $itemId = $row["itemId"];
                             $groceryItemName = $row["groceryItemName"];
                             $groceryItemImage = $row["groceryItemImage"];
