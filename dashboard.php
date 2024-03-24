@@ -177,13 +177,13 @@
                             die("Connection failed: " . $conn->connect_error);
                         }
 
-                        $sql ="SELECT F.itemId, F.productId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId";
-                        $results2 = $conn->query($sql);
-                        while ($row2 = $results2->fetch_assoc()){
-                            $itemId = $row2["itemId"];
-                            $productId = $row2["productId"];
-                            $groceryItemName = $row2["groceryItemName"];
-                            $groceryItemImage = $row2["groceryItemImage"];
+                        $sql ="SELECT F.itemId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId";
+                        $results = $conn->query($sql);
+                        while ($row = $results2->fetch_assoc()){
+                            $itemId = $row["itemId"];
+                            $groceryItemName = $row["groceryItemName"];
+                            $groceryItemImage = $row["groceryItemImage"];
+                            $storeId = $row["storeId"];
                             $cheapestStore = "Walmart";
 
                             echo "<div class=\"item\">
