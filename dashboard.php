@@ -55,6 +55,23 @@
             
                 
         </script>
+        <script>
+            function favourite(productId, storeId) {
+                $.ajax({
+                    url: 'PHP/add_favourites.php',
+                    method: 'POST',
+                    data: {productId: productId, storeId: storeId},
+                    success: function(response) {
+                        console.log('PHP script executed successfully');
+                        console.log('Response:', response);
+                        window.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error executing PHP script:', error);
+                    }
+                });
+            }
+        </script>
         
     </head>
     <header>
@@ -176,7 +193,7 @@
                             $storeId = $row["storeId"];
                             $cheapestStore = "Walmart";
                             echo "<div class=\"item\">
-                                    <div class=\"favourite-icon-unfill\" onClick=\"return favourite('".$productId."','".$storeId."')\">
+                                    <div class=\"favourite-icon-unfill\" onClick=\"favourite('".$productId."','".$storeId."')\">
                                         <i class=\"bi-heart\"></i>
                                     </div>
                                     <div class =\"item-center-image\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
