@@ -150,6 +150,27 @@
                     <div id="trending-title">
                         <h2>TRENDING ITEMS</h2>
                     </div>
+                    <?php
+                        $servername = "localhost";
+                        $username = "38885190";
+                        $dbPass = "38885190";
+                        $database = "db_38885190";
+                        
+                        $conn = new mysqli($servername, $username, $dbPass, $database);
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
+                        $sql ="SELECT F.itemId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId ='$userId'";
+                        $results = $conn->query($sql);
+                        while ($row = $results->fetch_assoc()){
+                            $itemId = $row["itemId"];
+                            $groceryItemName = $row["groceryItemName"];
+                            $groceryItemImage = $row["groceryItemImage"];
+                            $cheapestStore = "Walmart";
+                        }
+
+                    ?>
                 </div>
             </div>
         </div>
