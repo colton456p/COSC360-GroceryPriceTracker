@@ -79,7 +79,7 @@
                         $results = $conn->query($sql);
                         $i = 0;
                         while($row = $results->fetch_assoc()){
-                            $i+=0;
+                            $i+=1;
                             $productId = $row["productId"];
                             $groceryItemName = $row["groceryItemName"];
                             $groceryItemImage = $row["groceryItemImage"];
