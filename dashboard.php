@@ -121,27 +121,28 @@
                             die("Connection failed: " . $conn->connect_error);
                         }
                         
-                        $sql ="SELECT F.itemId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId ='$userId'";
+                        $sql ="SELECT F.itemId, F.productId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId <> '$userId'";
 
                         $results = $conn->query($sql);
-
                         $i = 0;
-                        while ($row = $results->fetch_assoc()){
-                            $i+=1;
+                        while($row = $results->fetch_assoc()){
+                            $i+=0;
+                            $productId = $row["productId"];
                             $itemId = $row["itemId"];
                             $groceryItemName = $row["groceryItemName"];
                             $groceryItemImage = $row["groceryItemImage"];
+                            $storeId = $row["storeId"];
                             $cheapestStore = "Walmart";
                             echo "<div class=\"item\">
-                                    <div class=\"favourite-icon\" onClick=\"return unFavourite('".$itemId."')\">
-                                        <i class=\"bi-heart-fill\"></i>
+                                    <div class=\"favourite-icon-unfill\" onClick=\"return favourite('".$productId."','".$storeId."')\">
+                                        <i class=\"bi-heart\"></i>
                                     </div>
-                                    <div class =\"item-center-image\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                    <div class =\"item-center-image\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
                                         <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
                                     </div>
-                                    <div class=\"title-click\" onClick=\"popUpItem('".$itemId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                    <div class=\"title-click\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
                                         <h3 id=\"item".$i."\"class=\"item-name\"> ".$groceryItemName."</h3>
-                                        <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at:</b>".$cheapestStore."</h5>
+                                        <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at: </b>".$cheapestStore."</h5>
                                     </div>
                                 </div>";
                         }
