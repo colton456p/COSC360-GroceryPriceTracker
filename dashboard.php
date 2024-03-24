@@ -35,36 +35,36 @@
                 
             }
 
-            function fav(itemId, productId, storeId) {
-                var form = document.createElement('form');
-                form.setAttribute('method', 'post');
-                form.setAttribute('action', 'PHP/add_favourites.php');
+            // function fav(itemId, productId, storeId) {
+            //     var form = document.createElement('form');
+            //     form.setAttribute('method', 'post');
+            //     form.setAttribute('action', 'PHP/add_favourites.php');
 
-                var itemIdInput = document.createElement('input');
-                itemIdInput.setAttribute('type', 'hidden');
-                itemIdInput.setAttribute('name', 'itemId');
-                itemIdInput.setAttribute('value', itemId);
+            //     var itemIdInput = document.createElement('input');
+            //     itemIdInput.setAttribute('type', 'hidden');
+            //     itemIdInput.setAttribute('name', 'itemId');
+            //     itemIdInput.setAttribute('value', itemId);
 
-                var productIdInput = document.createElement('input');
-                productIdInput.setAttribute('type', 'hidden');
-                productIdInput.setAttribute('name', 'productId');
-                productIdInput.setAttribute('value', productId);
+            //     var productIdInput = document.createElement('input');
+            //     productIdInput.setAttribute('type', 'hidden');
+            //     productIdInput.setAttribute('name', 'productId');
+            //     productIdInput.setAttribute('value', productId);
 
-                var storeIdInput = document.createElement('input');
-                storeIdInput.setAttribute('type', 'hidden');
-                storeIdInput.setAttribute('name', 'storeId');
-                storeIdInput.setAttribute('value', storeId);
+            //     var storeIdInput = document.createElement('input');
+            //     storeIdInput.setAttribute('type', 'hidden');
+            //     storeIdInput.setAttribute('name', 'storeId');
+            //     storeIdInput.setAttribute('value', storeId);
 
-                form.appendChild(itemIdInput);
-                form.appendChild(productIdInput);
-                form.appendChild(storeIdInput);
+            //     form.appendChild(itemIdInput);
+            //     form.appendChild(productIdInput);
+            //     form.appendChild(storeIdInput);
                 
 
-                document.body.appendChild(form);
+            //     document.body.appendChild(form);
 
-                form.submit();
-                window.location.reload();
-            }
+            //     form.submit();
+            //     window.location.reload();
+            // }
 
             function unFavourite(itemId) {
                 console.log('Removing item from favourites:', itemId);
