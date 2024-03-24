@@ -35,6 +35,37 @@
                 
             }
 
+            function fav(itemId, productId, storeId) {
+                var form = document.createElement('form');
+                form.setAttribute('method', 'post');
+                form.setAttribute('action', 'PHP/add_favourites.php');
+
+                var itemIdInput = document.createElement('input');
+                itemIdInput.setAttribute('type', 'hidden');
+                itemIdInput.setAttribute('name', 'itemId');
+                itemIdInput.setAttribute('value', itemId);
+
+                var productIdInput = document.createElement('input');
+                productIdInput.setAttribute('type', 'hidden');
+                productIdInput.setAttribute('name', 'productId');
+                productIdInput.setAttribute('value', productId);
+
+                var storeIdInput = document.createElement('input');
+                storeIdInput.setAttribute('type', 'hidden');
+                storeIdInput.setAttribute('name', 'storeId');
+                storeIdInput.setAttribute('value', storeId);
+
+                form.appendChild(itemIdInput);
+                form.appendChild(productIdInput);
+                form.appendChild(storeIdInput);
+                
+
+                document.body.appendChild(form);
+
+                form.submit();
+                window.location.reload();
+            }
+
             function unFavourite(itemId) {
                 console.log('Removing item from favourites:', itemId);
                 $.ajax({
@@ -52,36 +83,7 @@
                 });
             }
 
-            function favourite(itemId, productId, storeId) {
-            var form = document.createElement('form');
-            form.setAttribute('method', 'post');
-            form.setAttribute('action', 'PHP/add_favourites.php');
-
-            var itemIdInput = document.createElement('input');
-            itemIdInput.setAttribute('type', 'hidden');
-            itemIdInput.setAttribute('name', 'itemId');
-            itemIdInput.setAttribute('value', itemId);
-
-            var productIdInput = document.createElement('input');
-            productIdInput.setAttribute('type', 'hidden');
-            productIdInput.setAttribute('name', 'productId');
-            productIdInput.setAttribute('value', productId);
-
-            var storeIdInput = document.createElement('input');
-            storeIdInput.setAttribute('type', 'hidden');
-            storeIdInput.setAttribute('name', 'storeId');
-            storeIdInput.setAttribute('value', storeId);
-
-            form.appendChild(itemIdInput);
-            form.appendChild(productIdInput);
-            form.appendChild(storeIdInput);
             
-
-            document.body.appendChild(form);
-
-            form.submit();
-            window.location.reload();
-        }
                 
         </script>
         
@@ -206,7 +208,7 @@
                             $storeId = $row["storeId"];
                             $cheapestStore = "Walmart";
                             echo "<div class=\"item\">
-                                    <div class=\"favourite-icon-unfill\" onClick=\"return favourite('".$itemId."','".$productId."','".$storeId."')\">
+                                    <div class=\"favourite-icon-unfill\" onClick=\"return fav('".$itemId."','".$productId."','".$storeId."')\">
                                         <i class=\"bi-heart\"></i>
                                     </div>
                                     <div class =\"item-center-image\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
