@@ -39,24 +39,6 @@
                 
         </script>
 
-        <script>
-            function favourite(itemId, storeId) {
-                $.ajax({
-                    url: 'PHP/add_favourites.php',
-                    method: 'POST',
-                    data: {productId: productId, storeId: storeId},
-                    success: function(response) {
-                        console.log('PHP script executed successfully');
-                        console.log('Response:', response);
-                        window.location.reload();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error executing PHP script:', error);
-                    }
-                });
-            }
-        </script>
-
 </head>
 <header>
     <div id="site_logo">
