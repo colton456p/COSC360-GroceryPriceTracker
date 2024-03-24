@@ -177,7 +177,7 @@
                             die("Connection failed: " . $conn->connect_error);
                         }
 
-                        $sql ="SELECT F.itemId, F.productId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId <> '$userId'";
+                        $sql ="SELECT F.itemId, F.productId, G.groceryItemName, G.groceryItemImage, F.storeId FROM favourite AS F JOIN groceryItems AS G ON F.itemId = G.groceryItemId WHERE F.userId &lt;&gt; '$userId'";
                         $results2 = $conn->query($sql);
                         while ($row2 = $results2->fetch_assoc()){
                             $itemId = $row22["itemId"];
