@@ -75,7 +75,7 @@
         </div>
         <h3>Actions</h3>
         
-        <a href="#" class="btn">Change Password</a>
+        <a href="changePassword.php" class="btn">Change Password</a>
         <?php
             // Check if the user is an admin
             if ($user["adminPriv"] == 1) {
