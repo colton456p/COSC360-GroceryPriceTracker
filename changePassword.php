@@ -1,8 +1,9 @@
 <?php
 session_start();
+$userId = $_SESSION["userId"];
 $servername = "localhost";
-$username = "root";
-$dbPass = "";
+$username = "38885190";
+$dbPass = "38885190";
 $database = "db_38885190";
 
 // Check if the user is logged in

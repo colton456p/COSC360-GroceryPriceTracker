@@ -63,7 +63,7 @@
                 $searchKeyword = $_POST['search-bar'];
                 // Prepare and bind parameters to avoid SQL injection
                 $stmt = $conn->prepare("SELECT * FROM groceryitems WHERE productName LIKE ?");
-                $stmt->bind_param("ss", $searchKeywordParam, $selectedStoreParam);
+                $stmt->bind_param("ss", $searchKeywordParam);
 
                 // Set parameters and execute the statement
                 $searchKeywordParam = "%$searchKeyword%";
