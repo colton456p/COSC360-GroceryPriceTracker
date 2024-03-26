@@ -86,7 +86,7 @@
                         die("Connection failed: " . $conn->connect_error);
                     }
                     
-                    $sql ="SELECT DISTINCT productId, groceryItemName, groceryItemImage FROM groceryItems";
+                    $sql ="SELECT productId, MAX(groceryItemName) AS groceryItemName, MAX(groceryItemImage) AS groceryItemImage FROM groceryItems GROUP BY productId";
 
 
                     $results = $conn->query($sql);
