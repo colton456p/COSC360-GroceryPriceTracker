@@ -118,9 +118,9 @@ $imageSrc = $_GET['imageSrc'];
                 <input type="submit" value="Submit Comment" id="submitComment">
             </form>
         </div>
-
-
-
+        <div id="displayComments">
+            <?php include('PHP/displayComments.php'); ?>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
