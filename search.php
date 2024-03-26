@@ -62,7 +62,7 @@
             if (isset($_POST['search-bar'])) {
                 $searchKeyword = $_POST['search-bar'];
                 // Prepare and bind parameters to avoid SQL injection
-                $stmt = $conn->prepare("SELECT * FROM groceryitems WHERE productName LIKE ?");
+                $stmt = $conn->prepare("SELECT * FROM groceryItems WHERE groceryItemName LIKE ?");
                 $stmt->bind_param("ss", $searchKeywordParam);
 
                 // Set parameters and execute the statement
@@ -76,7 +76,7 @@
                 if ($result->num_rows > 0) {
                     // Fetch data and store in the 2D array
                     while ($row = $result->fetch_assoc()) {
-                        $twoDArray[] = [$row["productId"], $row["productName"], $row["productDescription"], $row["productPrice"], $row["productImage"], $row["priceDate"], $row["storeID"], $row["categoryId"]];
+                        $twoDArray[] = [$row["productId"], $row["groceryItemName"], $row["currentPrice"], $row["groceryItemImage"], $row["priceDate"], $row["storeID"], $row["categoryId"]];
                     }
 
                     // Sort the 2D array based on product prices
@@ -88,11 +88,10 @@
                     foreach ($twoDArray as $product) {
                         echo "<div class=\"item\" onclick=\"popUpItem()\">
                                r <div class =\"item-center-image\">
-                                    <img id=\"img1\" class=\"item-image\" src=\"".$product[4]."\">
+                                    <img id=\"img1\" class=\"item-image\" src=\"".$product[3]."\">
                                 </div>
                                 <h3 class=\"item-name\">".$product[1]."</h3>
-                                <p class=\"item-description\">".$product[2]."</p>
-                                <h5 class=\"item-price\">Price: $".$product[3]."</h5>
+                                <h5 class=\"item-price\">Price: $".$product[2]."</h5>
                             </div>";
                     }
                 } else {
