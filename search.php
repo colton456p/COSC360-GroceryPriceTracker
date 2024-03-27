@@ -70,7 +70,7 @@
 
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
-                                    $twoDArray[] = [$row["productId"], $row["groceryItemName"], $row["currentPrice"], $row["groceryItemImage"], $row["priceDate"], $row["storeID"], $row["categoryId"]];
+                                    $twoDArray[] = [$row["productId"], $row["groceryItemName"], $row["currentPrice"], $row["groceryItemImage"], $row["priceDate"], $row["storeID"], $row["groceryItemId"]];
                                 }
 
                                 usort($twoDArray, function($a, $b) {
@@ -79,14 +79,17 @@
                                 $i = 0;
                                 foreach ($twoDArray as $product) {
                                     $i += 1;
-                                    $sql = "SELECT groceryStoreName FROM groceryStore WHERE storeID = ".$product[5];
+                                    $sql = "SELECT groceryStoreName FROM groceryStore WHERE storeID = ".$product[6];
+                                    $storeResult = $conn->query($sql);
+                                    $store = $storeResult->fetch_assoc();
+                                    $storeResult->close();
                                     echo "<div class=\"item\">
                                         <div class =\"item-center-image\">
                                             <img id=\"img".$i."\" class=\"item-image\" src=\"".$product[3]."\">
                                         </div>
                                         <div class=\"title-click\">
                                             <h3 id=\"item".$i."\"class=\"item-name\"> ".$product[1]."</h3>
-                                            <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at: </b>".$product[2]."</h5>
+                                            <h5 class=\"item-price\"><b class=\"greentext\">Price at ".$store.": </b>".$product[2]."</h5>
                                         </div>
                                     </div>";
                                 }

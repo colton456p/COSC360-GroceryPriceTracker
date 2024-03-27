@@ -70,7 +70,7 @@
 
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
-                                    $twoDArray[] = [$row["productId"], $row["groceryItemName"], $row["currentPrice"], $row["groceryItemImage"], $row["priceDate"], $row["storeID"], $row["categoryId"]];
+                                    $twoDArray[] = [$row["productId"], $row["groceryItemName"], $row["currentPrice"], $row["groceryItemImage"], $row["priceDate"], $row["storeID"], $row["groceryItemId"]];
                                 }
 
                                 usort($twoDArray, function($a, $b) {
@@ -79,6 +79,10 @@
                                 $i = 0;
                                 foreach ($twoDArray as $product) {
                                     $i += 1;
+                                    $sql = "SELECT groceryStoreName FROM groceryStore WHERE storeID = ".$product[6];
+                                    $storeResult = $conn->query($sql);
+                                    $store = $storeResult->fetch_assoc();
+                                    $storeResult->close();
                                     echo "<div class=\"item\">
                                         <div class=\"favourite-icon-unfill\">
                                             <i class=\"bi-heart\"></i>
