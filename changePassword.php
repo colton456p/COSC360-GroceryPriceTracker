@@ -101,17 +101,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         echo "<p>Error: $error</p>";
     }
     ?>
-    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <label for="old_password">Old Password:</label>
-        <input type="password" id="old_password" name="old_password" required>
-        <br>
-        <label for="new_password">New Password:</label>
-        <input type="password" id="new_password" name="new_password" required>
-        <br>
-        <label for="confirm_password">Confirm New Password:</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
-        <br>
-        <input type="submit" name="submit" value="Submit">
-    </form>
+    <div id="passchange-div">
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <label for="old_password">Old Password:</label>
+            <input type="password" id="old_password" name="old_password" required>
+            <br>
+            <label for="new_password">New Password:</label>
+            <input type="password" id="new_password" name="new_password" required>
+            <br>
+            <label for="confirm_password">Confirm New Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <br>
+            <input type="submit" name="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>
