@@ -142,7 +142,7 @@ input[type="password"] {
     box-sizing: border-box;
 }
 
-change-pass-button {
+#change-pass-button {
     margin-top: 2em;
     background-color: green;
     color: #fff;
@@ -154,7 +154,7 @@ change-pass-button {
     text-align: center;
 }
 
-change-pass-button:hover {
+#change-pass-button:hover {
     box-shadow: green 0em 0.0em 0.7em;
 }
 .signup-text{
