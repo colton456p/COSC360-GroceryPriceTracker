@@ -77,9 +77,10 @@
                                     return $a[3] <=> $b[3];
                                 });
                                 $i = 0;
+                                $stmt->close();
                                 foreach ($twoDArray as $product) {
                                     $i += 1;
-                                    $sql = "SELECT groceryStoreName FROM groceryStore WHERE storeID = ".$product[6];
+                                    $sql = "SELECT groceryStoreName FROM groceryStore WHERE groceryStoreID ='.$product[6]'";
                                     $storeResult = $conn->query($sql);
                                     $store = $storeResult->fetch_assoc();
                                     $storeResult->close();
@@ -97,7 +98,7 @@
                                 echo "No products found.";
                             }
 
-                            $stmt->close();
+                            
                         }
 
                         $conn->close();

@@ -77,9 +77,10 @@
                                     return $a[3] <=> $b[3];
                                 });
                                 $i = 0;
+                                $stmt->close();
                                 foreach ($twoDArray as $product) {
                                     $i += 1;
-                                    $sql = "SELECT groceryStoreName FROM groceryStore WHERE storeID = ".$product[6];
+                                    $sql = "SELECT groceryStoreName FROM groceryStore WHERE groceryStoreID ='.$product[6]'";
                                     $storeResult = $conn->query($sql);
                                     $store = $storeResult->fetch_assoc();
                                     $storeResult->close();
@@ -92,7 +93,7 @@
                                         </div>
                                         <div class=\"title-click\">
                                             <h3 id=\"item".$i."\"class=\"item-name\"> ".$product[1]."</h3>
-                                            <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at: </b>".$product[2]."</h5>
+                                            <h5 class=\"item-price\"><b class=\"greentext\">Price at ".$store.": </b>".$product[2]."</h5>
                                         </div>
                                     </div>";
                                 }
@@ -100,7 +101,7 @@
                                 echo "No products found.";
                             }
 
-                            $stmt->close();
+                            
                         }
 
                         $conn->close();
