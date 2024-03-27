@@ -205,13 +205,11 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 }
 .item-price{
     margin-top:1em;
-    border-top: 1pt solid black;
     margin-left:1em;
     margin-right:1em;
 
 }
 #item-shelf{
-    border-bottom: black 1pt solid;
     max-width: 80em;
     display: flex;
     flex-wrap: wrap;
