@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             <label for="confirm_password">Confirm New Password:</label>
             <input type="password" id="confirm_password" name="confirm_password" required>
             <br>
-            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="submit" value="Submit" id="change-pass-button">
         </form>
     </div>
 </body>
