@@ -94,7 +94,7 @@
                                         </div>
                                         <div class=\"title-click\">
                                             <h3 id=\"item".$i."\"class=\"item-name\"> ".$product[1]."</h3>
-                                            <h5 class=\"item-price\"><b class=\"greentext\">Price at ".$store.": </b>".$product[2]."</h5>
+                                            <h5 class=\"item-price\"><b class=\"greentext\">Price at ".$store.": </b>$".$product[2]."</h5>
                                         </div>
                                     </div>";
                                 }
