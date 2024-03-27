@@ -64,8 +64,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 <html lang="en">
 <head>
     <title>Change Password</title>
-    <!-- Add your CSS stylesheets here -->
+    <link rel="stylesheet" href="css/change-pass.css">
 </head>
+<header>
+    <div id="site_logo">
+        <p>
+            <img id="logo_img" src="img/grocery_logo.png" alt="logo">
+            <h2 >Grocery</h2><h1 class="greentext">Sense</h1>
+        </p>
+    </div>
+    <div id="header-search-div">
+        <form id="search-form" action="search-login.php">
+            <input type="search" id="search-bar" name="search-bar" placeholder="Search for items...">
+            <input type="submit" value="Search" id="search-button">
+        </form>
+    </div>
+
+    <div id="menu_bar">
+        <p>
+            <div class="nav-element">
+                <a type="button" id="home-nav-link" href="dashboard.php">FAVOURITES</a>
+            </div>
+            <div class="nav-element">
+                <a type="button" id="product-nav-link" href="productLogin.php">PRODUCTS</a>
+            </div>
+            <div class="nav-element">
+                <a type="button"id="account-nav-link" href="account.php">ACCOUNT</a>
+            </div>
+        </p>
+    </div>
+</header>
 <body>
     <h1>Change Password</h1>
     <?php

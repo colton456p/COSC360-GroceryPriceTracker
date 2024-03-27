@@ -41,7 +41,7 @@
     </div>
     
     <div id="header-search-div">
-        <form id="search-form" action="">
+        <form id="search-form" action="search.php">
             <input type="search" id="search-bar" name="search-bar" placeholder="Search for items...">
             <input type="submit" value="Search" id="search-button">
         </form>

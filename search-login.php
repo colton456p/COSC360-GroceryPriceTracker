@@ -18,25 +18,25 @@
             </p>
         </div>
         <div id="header-search-div">
-            <form id="search-form" action="search.php" method="post">
+            <form id="search-form" action="search-login.php" method="post">
                 <input type="search" id="search-bar" name="search-bar" placeholder="Search for items...">
                 <input type="submit" value="Search" id="search-button">
             </form>
         </div>
         
         <div id="menu_bar">
-        <p>
-            <div class="nav-element">
-                <a type="button" id="home-nav-link" href="homepage.php">HOME</a>
-            </div>
-            <div class="nav-element">
-                <a type="button" id="product-nav-link" href="product.php">PRODUCTS</a>
-            </div>
-            <div class="nav-element">
-                <a type="button"id="login-nav-link" href="login.php">LOGIN</a>
-            </div>
-        </p>
-    </div>
+            <p>
+                <div class="nav-element">
+                    <a type="button" id="home-nav-link" href="dashboard.php">FAVOURITES</a>
+                </div>
+                <div class="nav-element">
+                    <a type="button" id="product-nav-link" href="productLogin.php">PRODUCTS</a>
+                </div>
+                <div class="nav-element">
+                    <a type="button"id="login-nav-link" href="account.php">ACCOUNT</a>
+                </div>
+            </p>
+        </div>
     </header>
     <body>
         <div id="main">
@@ -80,6 +80,9 @@
                                 foreach ($twoDArray as $product) {
                                     $i += 1;
                                     echo "<div class=\"item\">
+                                        <div class=\"favourite-icon-unfill\">
+                                            <i class=\"bi-heart\"></i>
+                                        </div>
                                         <div class =\"item-center-image\">
                                             <img id=\"img".$i."\" class=\"item-image\" src=\"".$product[3]."\">
                                         </div>
