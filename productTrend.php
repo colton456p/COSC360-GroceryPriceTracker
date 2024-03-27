@@ -30,40 +30,65 @@ $imageSrc = $_GET['imageSrc'];
             window.history.back();
         }
         $(document).ready(function() {
-        $('#commentForm').on("submit", function(event) {
-            alert(event.isDefaultPrevented()); // false
+            console.log("Document ready, loading comments...");
+            loadMoreComments(); // Load initial comments
 
-            event.preventDefault(); // Prevent normal form submission
-            alert(event.isDefaultPrevented()); // true
+            // Load comments every 30 seconds
+            setInterval(function() {
+                loadMoreComments();
+            }, 1000); // 30 seconds interval
+        });
 
-            console.log("Before AJAX call");
+        function loadMoreComments() {
+            console.log("Loading more comments...");
             $.ajax({
-                type: "POST",
-                url: "PHP/addComment.php",
-                data: $(this).serialize(),
-                // dataType: "json", // Temporarily remove this
-            }).done(function(response) {
-                if (response.success) {
-                                alert("Data Saved: " + response.message);
+                url: "PHP/displayComments.php",
+                type: "GET",
+                data: {
+                    itemId: <?php echo $_GET['itemId']; ?>
+                },
+                dataType: "html",
+                success: function(response) {
+                    console.log("Received response:", response);
+                    $('#displayComments').html(response); // Replace existing comments with new ones
+                },
+                error: function(xhr, status, error) {
+                    console.error("Failed to load comments:", error);
+                    $("#displayComments").html("<p>Error loading comments.</p>"); // Display an error message
+                }
+            });
+        }
 
-                                // Clear the textarea after successful submission
-                                $('#commentText').val('');
 
-                                // Dynamically create the comment HTML structure and prepend it to the displayComments div
-                                var newCommentHtml = "<div class='comment'>" +
-                                    "<p><strong>User: </strong>" + response.firstName + "</p>" +
-                                    "<p>" + response.commentText + "</p>" +
-                                    "</div>";
-                                $('#displayComments').prepend(newCommentHtml);
-                            } else {
-                                // Handle failure
-                                alert("Failed to submit comment: " + response.message);
-                            }
-            }).fail(function(jqXHR, textStatus, errorThrown) {
+
+        $(document).ready(function() {
+            $('#commentForm').on("submit", function(event) {
+                event.preventDefault(); // Prevent normal form submission
+                $.ajax({
+                    type: "POST",
+                    url: "PHP/addComment.php",
+                    data: $(this).serialize(),
+                    // dataType: "json", // Temporarily remove this
+                }).done(function(response) {
+                    if (response.success) {
+                        // Clear the textarea after successful submission
+                        $('#commentText').val('');
+
+                        // Dynamically create the comment HTML structure and prepend it to the displayComments div
+                        var newCommentHtml = "<div class='comment'>" +
+                            "<p><strong>User: </strong>" + response.firstName + "</p>" +
+                            "<p>" + response.commentText + "</p>" +
+                            "</div>";
+                        $('#displayComments').prepend(newCommentHtml);
+                    } else {
+                        // Handle failure
+                        alert("Failed to submit comment: " + response.message);
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown) {
                     console.log("AJAX call failed:", textStatus, errorThrown);
+                });
             });
         });
-    });
     </script>
 </head>
 <header>
