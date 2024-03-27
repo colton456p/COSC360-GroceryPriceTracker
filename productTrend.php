@@ -5,6 +5,7 @@ session_start();
 
 // Include connection.php or ensure that the PDO connection is established here
 include 'PHP/connection.php'; // Adjust the path if necessary
+include('PHP/displayComments.php');
 
 
 
@@ -18,14 +19,51 @@ $imageSrc = $_GET['imageSrc'];
 ?>
 
 <head>
-    <link rel="stylesheet" href="css/productTrend-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="css/productTrend-style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <title>Product Trend</title>
     <script>
         function backButton() {
             window.history.back();
         }
+        $(document).ready(function() {
+        $('#commentForm').on("submit", function(event) {
+            alert(event.isDefaultPrevented()); // false
+
+            event.preventDefault(); // Prevent normal form submission
+            alert(event.isDefaultPrevented()); // true
+
+            console.log("Before AJAX call");
+            $.ajax({
+                type: "POST",
+                url: "PHP/addComment.php",
+                data: $(this).serialize(),
+                // dataType: "json", // Temporarily remove this
+            }).done(function(response) {
+                if (response.success) {
+                                alert("Data Saved: " + response.message);
+
+                                // Clear the textarea after successful submission
+                                $('#commentText').val('');
+
+                                // Dynamically create the comment HTML structure and prepend it to the displayComments div
+                                var newCommentHtml = "<div class='comment'>" +
+                                    "<p><strong>User: </strong>" + response.firstName + "</p>" +
+                                    "<p>" + response.commentText + "</p>" +
+                                    "</div>";
+                                $('#displayComments').prepend(newCommentHtml);
+                            } else {
+                                // Handle failure
+                                alert("Failed to submit comment: " + response.message);
+                            }
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log("AJAX call failed:", textStatus, errorThrown);
+            });
+        });
+    });
     </script>
 </head>
 <header>
@@ -107,25 +145,20 @@ $imageSrc = $_GET['imageSrc'];
         <div id="trendGraph">
             <img src="img/fakeDemoGraph.jpg" alt="trend graph">
         </div>
-    </div>
-    <div id="commentsSection">
-        <div id="commentBox">
-            <h2>Leave a Comment</h2>
-            <form id="commentForm" action="PHP/addComment.php" method="POST">
-                <!-- Hidden input for itemId, assuming you'll dynamically set its value -->
-                <input type="hidden" name="itemId" value="<?php echo $itemId; ?>">
-                <textarea name="commentText" id="commentText" rows="4" placeholder="Write your comment here..." required></textarea>
-                <input type="submit" value="Submit Comment" id="submitComment">
-            </form>
+        <div id="commentsSection">
+            <div id="commentBox">
+                <h2>Leave a Comment</h2>
+                <form id="commentForm" action="PHP/addComment.php" method="POST">
+                    <!-- Hidden input for itemId, assuming you'll dynamically set its value -->
+                    <input type="hidden" name="itemId" value="<?php echo $itemId; ?>">
+                    <textarea name="commentText" id="commentText" rows="4" placeholder="Write your comment here..." required></textarea>
+                    <input type="submit" value="Submit Comment" id="submitComment">
+                </form>
+            </div>
+            <div id="displayComments">
+            </div>
         </div>
-        <div id="displayComments">
-            <?php include('PHP/displayComments.php'); ?>
-        </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="scripts.js"></script>
 </body>
 
 </html>
