@@ -3,108 +3,106 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 .greentext{color: green;}
 
 /*Website Logo placement and design*/
-#logo_img{
-    width: 2.5em;
-    height:2.5em;
-}
-#site_logo{
-    display: flex;
-    margin-left: 1em; 
-}
+    #logo_img{
+        width: 2.5em;
+        height:2.5em;
+    }
+    #site_logo{
+        display: flex;
+        margin-left: 1em; 
+    }
 /*-----------------------------------*/
 
-h1, h2, p, body, footer, a, figcaption {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: black; /* Changed text color to black */
-}
 
 /* Header Formating*/
-header{
-    margin-left:2em;
-    margin-right:2em;
-    margin-bottom: 0em; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid black;
-    min-width: 1200px;
-}
+    header{
+        margin-left:2em;
+        margin-right:2em;
+        margin-bottom: 0em; 
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid black;
+        min-width: 1200px;
+    }
 
-/*Search Bar Formating*/
-#header-search-div{
-    height: 3em;
-    position: relative;
-    width: 34em;
-    float:left;
-    margin-left: 1em;
-    margin-right:1em;
+    /*Search Bar Formating*/
+    #header-search-div{
+        height: 3em;
+        position: relative;
+        width: 30em;
+        float:left;
+        margin-left: 1em;
+        margin-right:1em;
 
-}
-#search-form{
-    height:100%;
-    width: auto;
-    display: flex;
+    }
+    #search-form{
+        height:100%;
+        width: auto;
+        display: flex;
+        
+    }
+    #search-bar{
+        border: 0.1em solid green;;
+        font-weight: 900;
+        height: 100%;
+        width: 75%;
+        font-size: large;
+        font-weight: normal;
+        padding-left: 0.8em;
+    }
+    #search-bar:focus{
+        outline: none;
+    }
+    #search-bar::placeholder{
+        font-size: medium;
+    }
+    #search-button{
+        color:white;
+        background-color: green;
+        border: none;
+        height: 100%;
+        font-weight: bold;
+        width:25%;
+        font-size: large;
+    }
+    #search-button:hover{
+        box-shadow: green 0em 0.0em 0.7em;
+    }
     
-}
-#search-bar{
-    border: 0.1em solid green;;
-    font-weight: 900;
-    height: 100%;
-    width: 75%;
-    font-size: large;
-    font-weight: normal;
-    padding-left: 0.8em;
-}
-#search-bar:focus{
-    outline: none;
-}
-#search-bar::placeholder{
-    font-size: medium;
-}
-#search-button{
-    color:white;
-    background-color: green;
-    border: none;
-    height: 100%;
-    font-weight: bold;
-    width:25%;
-    font-size: large;
-}
-#search-button:hover{
-    box-shadow: green 0em 0.0em 0.7em;
-}
-
-
-/*Navigation tabs (Home, Price trends, Login)*/
-#menu_bar {display: inline-block;}
-#menu_bar a{
-    text-decoration: none;
-    font-weight: bold;
-}
-#home-nav-link{
-    font-size: 1.4em;
-    color:green;
-    text-shadow: 0em 0.3em 0.7em #525452;
-}
-#home-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
-#trend-nav-link{
-    font-size: 1.4em;
-    color:green;
-}
-#trend-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
-#account-nav-link{
-    font-size: 1.4em;
-    color:green;
-}
-#account-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
-.nav-element{
-    border-right: #979997 0.1em solid;
-    height: fit-content;
-    width: fit-content;
-    display:inline-block;
-    padding-left: 1em;
-    padding-right: 1em;
-}
+    
+    /*Navigation tabs (Home, Price trends, Login)*/
+    #menu_bar {display: inline-block;}
+    #menu_bar a{
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #home-nav-link{
+        font-size: 1.4em;
+        color:green;
+        
+    }
+    #home-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
+    #product-nav-link{
+        font-size: 1.4em;
+        color:green;
+    }
+    #product-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
+    #account-nav-link{
+        font-size: 1.4em;
+        color:green;
+        text-shadow: 0em 0.3em 0.7em #525452;
+    }
+    #account-nav-link:hover{color:rgba(0, 128, 0, 0.568);}
+    .nav-element{
+        
+        border-right: #979997 0.1em solid;
+        height: fit-content;
+        width: fit-content;
+        display:inline-block;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
 /*---------------------------------------------------------------------------*/
 
 /* Table Styling */

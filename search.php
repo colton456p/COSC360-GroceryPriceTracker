@@ -79,6 +79,7 @@
                                 $i = 0;
                                 foreach ($twoDArray as $product) {
                                     $i += 1;
+                                    $sql = "SELECT groceryStoreName FROM groceryStore WHERE storeID = ".$product[5];
                                     echo "<div class=\"item\">
                                         <div class =\"item-center-image\">
                                             <img id=\"img".$i."\" class=\"item-image\" src=\"".$product[3]."\">
