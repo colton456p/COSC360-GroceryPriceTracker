@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $conn = new mysqli($servername, $username, $dbPass, $database);
     $sql = "SELECT userId, adminPriv FROM user WHERE email = '$email' AND pass = '$password'";
     if ($conn->connect_error) {
-        header("Location: ../signup.php?signup=failed");
+        header("Location: ../login.php?login=failed");
         exit();
     }
     $result = $conn->query($sql);

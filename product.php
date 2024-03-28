@@ -3,7 +3,7 @@
 session_start();
 
 if(isset($_SESSION['userId']) || isset($_SESSION['adminPriv'])){
-    header("Location: loginLogin.php");
+    header("Location: productLogin.php");
     exit;
 }
 
