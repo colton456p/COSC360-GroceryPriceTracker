@@ -55,10 +55,9 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
         if (isset($_SESSION["userId"])) {
         $userId = $_SESSION["userId"];
         $servername = "localhost";
-        $username = "root";
-        $dbPass = "";
+        $username = "38885190";
+        $dbPass = "38885190";
         $database = "db_38885190";
-
         $conn = new mysqli($servername, $username, $dbPass, $database);
         $sql = "SELECT firstName, lastName, email, adminPriv FROM user WHERE userId =".$userId;
         $result = $conn->query($sql);

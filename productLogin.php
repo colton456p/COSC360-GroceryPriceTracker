@@ -2,7 +2,7 @@
 
 <?php
 session_start();
-if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
+if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
     header("Location: login.php");
     exit;
 }
@@ -72,22 +72,9 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
 
             <div id="item-shelf">
                 <?php
-                    $servername = "localhost";
-                    $username = "38885190";
-                    $dbPass = "38885190";
-                    $database = "db_38885190";
-                    
-                    $conn = new mysqli($servername, $username, $dbPass, $database);
-                    
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
-                    
-                    $sql ="SELECT productId, MAX(groceryItemName) AS groceryItemName, MAX(groceryItemImage) AS groceryItemImage FROM groceryItems GROUP BY productId";
-
                 $servername = "localhost";
-                $username = "root";
-                $dbPass = "";
+                $username = "38885190";
+                $dbPass = "38885190";
                 $database = "db_38885190";
 
                 $conn = new mysqli($servername, $username, $dbPass, $database);
@@ -96,7 +83,7 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
                     die("Connection failed: " . $conn->connect_error);
                 }
 
-                $sql = "SELECT DISTINCT groceryItemId, groceryItemName, groceryItemImage FROM groceryItems";
+                $sql = "SELECT productId, MAX(groceryItemName) AS groceryItemName, MAX(groceryItemImage) AS groceryItemImage FROM groceryItems GROUP BY productId";
 
                 $results = $conn->query($sql);
 
@@ -121,7 +108,6 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
                                 </div>
                             </div>";
                     }
-                    
                 } else {
                     echo "No products found";
                 }

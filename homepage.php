@@ -62,7 +62,7 @@
                         <h1>
                     </div>
                 </a>
-                <a href="product.php" style="text-decoration:none;">
+                <a href="login.php" style="text-decoration:none;">
                     <div class="side-text">
                         <h1>
                             View comments, price trends, and real time prices

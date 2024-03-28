@@ -85,8 +85,8 @@ function popUpItem(groceryItemId, itemName, imageSrc) {
         session_start();
         $userId = $_SESSION["userId"];
         $servername = "localhost";
-        $username = "root";
-        $dbPass = "";
+        $username = "38885190";
+        $dbPass = "38885190";
         $database = "db_38885190";
 
         $conn = new mysqli($servername, $username, $dbPass, $database);
@@ -104,8 +104,8 @@ function popUpItem(groceryItemId, itemName, imageSrc) {
             <div id="item-shelf">
                 <?php
                 $servername = "localhost";
-                $username = "root";
-                $dbPass = "";
+                $username = "38885190";
+                $dbPass = "38885190";
                 $database = "db_38885190";
 
                 $conn = new mysqli($servername, $username, $dbPass, $database);
@@ -147,8 +147,8 @@ function popUpItem(groceryItemId, itemName, imageSrc) {
                 </div>
                 <?php
                 $servername = "localhost";
-                $username = "root";
-                $dbPass = "";
+                $username = "38885190";
+                $dbPass = "38885190";
                 $database = "db_38885190";
 
                 $conn = new mysqli($servername, $username, $dbPass, $database);
