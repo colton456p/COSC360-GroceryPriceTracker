@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $password = $_POST['password'];
 
     $servername = "localhost";
-    $username = "38885190";
-    $dbPass = "38885190";
+    $username = "root";
+    $dbPass = "";
     $database = "db_38885190";
 
     $conn = new mysqli($servername, $username, $dbPass, $database);
