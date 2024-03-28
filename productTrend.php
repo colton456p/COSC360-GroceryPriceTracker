@@ -124,7 +124,7 @@ $imageSrc = $_GET['imageSrc'];
             <i class="bi bi-arrow-left-circle-fill"> Back</i>
         </div>
     </div>
-    <input type="hidden" name="itemName" value="<?php echo isset($itemName) ? htmlspecialchars($itemName) : ''; ?>">
+    <input type="hidden" id="productName" value="<?php echo isset($itemName) ? htmlspecialchars($itemName) : ''; ?>">
     <div id="centerContent">
         <div id="left">
             <?php
