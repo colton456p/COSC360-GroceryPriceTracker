@@ -6,30 +6,27 @@ $username = "38885190";
 $dbPass = "38885190";
 $database = "db_38885190";
 
-// Check if the user is logged in
-if (!isset($_SESSION['userId'])) {
-    header("Location: login.php"); // Redirect to the login page if not logged in
+
+if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
+    header("Location: login.php");
     exit();
 }
 
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $oldPassword = $_POST['old_password'];
     $newPassword = $_POST['new_password'];
     $confirmPassword = $_POST['confirm_password'];
 
-    // Validate inputs
     $error = "";
     if (empty($oldPassword) || empty($newPassword) || empty($confirmPassword)) {
         $error = "All fields are required.";
     } else {
-        // Connect to the database
+
         $conn = new mysqli($servername, $username, $dbPass, $database);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Get the user's current password from the database
         $userId = $_SESSION['userId'];
         $sql = "SELECT pass FROM user WHERE userId = ?";
         $stmt = $conn->prepare($sql);
@@ -39,11 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $stmt->fetch();
         $stmt->close();
 
-        // Check if the old password matches the stored password
+
         if ($oldPassword != $storedPassword) {
             $error = "Incorrect old password.";
         } else {
-            // Update the user's password in the database
+
             $updateSql = "UPDATE user SET pass = ? WHERE userId = ?";
             $updateStmt = $conn->prepare($updateSql);
             $updateStmt->bind_param("si", $newPassword, $userId);
@@ -52,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
             $conn->close();
 
-            // Redirect back to the account page
+
             header("Location: account.php");
             exit();
         }
