@@ -1,4 +1,13 @@
 <!-- I know the name is a bit confusing but this is the product page that is displayed for when a user is logged in -->
+
+<?php
+session_start();
+if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +45,7 @@
     </div>
 
     <div id="header-search-div">
-        <form id="search-form" action="">
+        <form id="search-form" action="search-login.php">
             <input type="search" id="search-bar" name="search-bar" placeholder="Search for items...">
             <input type="submit" value="Search" id="search-button">
         </form>
@@ -63,6 +72,19 @@
 
             <div id="item-shelf">
                 <?php
+                    $servername = "localhost";
+                    $username = "38885190";
+                    $dbPass = "38885190";
+                    $database = "db_38885190";
+                    
+                    $conn = new mysqli($servername, $username, $dbPass, $database);
+                    
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    
+                    $sql ="SELECT productId, MAX(groceryItemName) AS groceryItemName, MAX(groceryItemImage) AS groceryItemImage FROM groceryItems GROUP BY productId";
+
                 $servername = "localhost";
                 $username = "root";
                 $dbPass = "";

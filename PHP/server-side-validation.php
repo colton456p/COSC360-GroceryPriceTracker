@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $database = "db_38885190";
 
     $conn = new mysqli($servername, $username, $dbPass, $database);
-    $sql = "SELECT userId FROM user WHERE email = '$email' AND pass = '$password'";
+    $sql = "SELECT userId, adminPriv FROM user WHERE email = '$email' AND pass = '$password'";
     if ($conn->connect_error) {
         header("Location: ../signup.php?signup=failed");
         exit();
@@ -17,23 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $result = $conn->query($sql);
     
     if ($result->num_rows < 1) {
-        $sql = "SELECT adminId FROM adminTable WHERE email = '$email' AND pass = '$password'";
-        $result = $conn->query($sql);
-        $conn->close();
-        if ($result->num_rows < 1) {
-            header("Location: ../login.php?login=failed");
-            exit();
-        }else{
-            $row = $result->fetch_assoc();
-            session_start();
-            $_SESSION["adminId"] = $row["adminId"];
-            header("Location: ../admin.php");
-            exit();
-        }
-        
+        header("Location: ../login.php?login=failed");
+        exit();
     }else{
         $row = $result->fetch_assoc();
         session_start();
+        $adminPriv = $row["adminPriv"];
+        if ($adminPriv == 1) {
+            $_SESSION["adminPriv"] = $adminPriv;
+        }
         $_SESSION["userId"] = $row["userId"];
         header("Location: ../dashboard.php");
         exit();

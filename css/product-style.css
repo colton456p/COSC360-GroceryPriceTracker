@@ -211,7 +211,6 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 
 }
 #item-shelf{
-    border-bottom: black 1pt solid;
     max-width: 80em;
     display: flex;
     flex-wrap: wrap;

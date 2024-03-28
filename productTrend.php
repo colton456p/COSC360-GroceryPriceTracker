@@ -1,3 +1,14 @@
+
+<?php
+session_start();
+
+if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
+    header("Location: login.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -97,7 +108,7 @@ $imageSrc = $_GET['imageSrc'];
     </div>
 
     <div id="header-search-div">
-        <form id="search-form" action="">
+        <form id="search-form" action="search-login.php">
             <input type="search" id="search-bar" name="search-bar" placeholder="Search for items...">
             <input type="submit" value="Search" id="search-button">
         </form>

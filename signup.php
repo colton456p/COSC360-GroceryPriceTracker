@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if(isset($_SESSION['userId']) || isset($_SESSION['adminPriv'])) {
+    header("Location: dashboard.php");
+    exit;
+}
+
+$_SESSION = array();
+
+session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -63,7 +75,7 @@
         </div>
         
         <div id="header-search-div">
-            <form id="search-form" action="">
+            <form id="search-form" action="search.php">
                 <input type="search" id="search-bar" name="search-bar" placeholder="Search for items...">
                 <input type="submit" value="Search" id="search-button">
             </form>
