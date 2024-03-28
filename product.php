@@ -1,13 +1,5 @@
 <!-- I know the name is a bit confusing but this is the product page that is displayed for when a user is NOT logged in -->
-<?php
-session_start();
 
-if(isset($_SESSION['userId']) || isset($_SESSION['adminPriv'])){
-    header("Location: productLogin.php");
-    exit;
-}
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">

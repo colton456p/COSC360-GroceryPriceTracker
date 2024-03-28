@@ -1,11 +1,6 @@
 <?php
 
-session_start();
 
-if(isset($_SESSION['userId'])) {
-    header("Location: dashboard.php");
-    exit;
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $firstName = $_POST['first-name'];

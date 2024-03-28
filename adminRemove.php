@@ -1,10 +1,4 @@
 <?php
-session_start();
-
-if(!isset($_SESSION['adminPriv'])){
-    header("Location: login.php");
-    exit;
-}
 
 
 session_start();

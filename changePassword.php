@@ -7,7 +7,7 @@ $dbPass = "38885190";
 $database = "db_38885190";
 
 
-if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
+if (!isset($_SESSION['userId'])) {
     header("Location: login.php");
     exit();
 }

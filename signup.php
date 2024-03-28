@@ -1,15 +1,4 @@
-<?php
-session_start();
 
-if(isset($_SESSION['userId']) || isset($_SESSION['adminPriv'])) {
-    header("Location: dashboard.php");
-    exit;
-}
-
-$_SESSION = array();
-
-session_destroy();
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
