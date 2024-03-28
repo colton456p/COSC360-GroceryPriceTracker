@@ -1,4 +1,13 @@
 <!-- I know the name is a bit confusing but this is the product page that is displayed for when a user is logged in -->
+
+<?php
+session_start();
+if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
