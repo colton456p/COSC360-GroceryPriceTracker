@@ -21,6 +21,7 @@ $imageSrc = $_GET['imageSrc'];
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="css/comments.css" />
     <link rel="stylesheet" href="css/productTrend-style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
@@ -31,12 +32,11 @@ $imageSrc = $_GET['imageSrc'];
         }
         $(document).ready(function() {
             console.log("Document ready, loading comments...");
-            loadMoreComments(); // Load initial comments
+            loadMoreComments();
 
-            // Load comments every 30 seconds
             setInterval(function() {
                 loadMoreComments();
-            }, 1000); // 30 seconds interval
+            }, 1000);
         });
 
         function loadMoreComments() {
@@ -50,11 +50,11 @@ $imageSrc = $_GET['imageSrc'];
                 dataType: "html",
                 success: function(response) {
                     console.log("Received response:", response);
-                    $('#displayComments').html(response); // Replace existing comments with new ones
+                    $('#displayComments').html(response); 
                 },
                 error: function(xhr, status, error) {
                     console.error("Failed to load comments:", error);
-                    $("#displayComments").html("<p>Error loading comments.</p>"); // Display an error message
+                    $("#displayComments").html("<p>Error loading comments.</p>");
                 }
             });
         }
@@ -63,25 +63,21 @@ $imageSrc = $_GET['imageSrc'];
 
         $(document).ready(function() {
             $('#commentForm').on("submit", function(event) {
-                event.preventDefault(); // Prevent normal form submission
+                event.preventDefault(); 
                 $.ajax({
                     type: "POST",
                     url: "PHP/addComment.php",
                     data: $(this).serialize(),
-                    // dataType: "json", // Temporarily remove this
                 }).done(function(response) {
                     if (response.success) {
-                        // Clear the textarea after successful submission
                         $('#commentText').val('');
 
-                        // Dynamically create the comment HTML structure and prepend it to the displayComments div
                         var newCommentHtml = "<div class='comment'>" +
                             "<p><strong>User: </strong>" + response.firstName + "</p>" +
                             "<p>" + response.commentText + "</p>" +
                             "</div>";
                         $('#displayComments').prepend(newCommentHtml);
                     } else {
-                        // Handle failure
                         alert("Failed to submit comment: " + response.message);
                     }
                 }).fail(function(jqXHR, textStatus, errorThrown) {
@@ -174,7 +170,6 @@ $imageSrc = $_GET['imageSrc'];
             <div id="commentBox">
                 <h2>Leave a Comment</h2>
                 <form id="commentForm" action="PHP/addComment.php" method="POST">
-                    <!-- Hidden input for itemId, assuming you'll dynamically set its value -->
                     <input type="hidden" name="itemId" value="<?php echo $itemId; ?>">
                     <textarea name="commentText" id="commentText" rows="4" placeholder="Write your comment here..." required></textarea>
                     <input type="submit" value="Submit Comment" id="submitComment">

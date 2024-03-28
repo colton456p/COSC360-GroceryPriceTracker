@@ -14,7 +14,6 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                    // Handle the response from productTrend.php
                     console.log(xhr.responseText);
                 }
             };

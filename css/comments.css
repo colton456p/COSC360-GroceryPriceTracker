@@ -1,0 +1,60 @@
+#commentBox{
+    margin-left:3em;
+}
+#commentForm{
+    width:40em;
+    height: 13em;
+    display: inline-block;
+}
+#commentText{
+    width: 50em;
+    height: 5em;
+    border-radius: 2em;
+    margin-top:1em;
+    margin-bottom:1em;
+    border:green 0.1em solid;
+    padding-left: 1em;
+    
+}
+#submitComment{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 10em;
+    height: 5em;
+    border-radius: 2em;
+    margin-top:1em;
+    margin-bottom:1em;
+    border:aliceblue 0.1em solid;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    border:none;
+    
+}
+#submitComment:hover{
+    box-shadow: green 0em 0.0em 0.7em;
+    
+}
+
+.comment{
+    padding:1em;
+    border-radius: 2em;
+    box-shadow: 0em 0.3em 0.7em #979997;
+    width: 90%;
+    background-color: rgba(0, 128, 0, 0.141);
+    margin-top:1em;
+    margin-bottom:1em;
+    display:flex;
+}
+.comment{
+    width:90%;
+    float:left;
+}    #commentsSection{
+    margin-right:3em;
+    margin-left: 3em;
+    width: 90%;
+    height: 30em;
+    margin-bottom: 1em;
+    padding-left:1em;
+    overflow-y: scroll;
+    border-bottom: black 0.1em solid;
+}
