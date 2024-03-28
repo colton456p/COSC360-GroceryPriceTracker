@@ -82,19 +82,6 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    
-                    $sql ="SELECT productId, MAX(groceryItemName) AS groceryItemName, MAX(groceryItemImage) AS groceryItemImage FROM groceryItems GROUP BY productId";
-
-                $servername = "localhost";
-                $username = "root";
-                $dbPass = "";
-                $database = "db_38885190";
-
-                $conn = new mysqli($servername, $username, $dbPass, $database);
-
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
 
                 $sql = "SELECT DISTINCT groceryItemId, groceryItemName, groceryItemImage FROM groceryItems";
 
