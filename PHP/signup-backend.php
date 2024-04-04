@@ -1,30 +1,17 @@
 <?php
-
-session_start();
-
-if(isset($_SESSION['userId'])) {
-    header("Location: dashboard.php");
-    exit;
-}
+include "db_connect.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $firstName = $_POST['first-name'];
     $lastName = $_POST['last-name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-
-    $servername = "localhost";
-    $username = "38885190";
-    $dbPass = "38885190";
-    $database = "db_38885190";
-
-    $conn = new mysqli($servername, $username, $dbPass, $database);
-    if ($conn->connect_error) {
-        header("Location: ../signup.php?signup=failed");
-        exit();
-    }
-
-    $sql = "INSERT INTO user (firstName, lastName, email, pass) VALUES ('$firstName', '$lastName', '$email', '$password')";
+    $hashed_password = md5($password);
+    $
+    $conn = db_connect();
+    
+    // $sql = "INSERT INTO user (firstName, lastName, email, pass, userImage) VALUES ('$firstName', '$lastName', '$email', '$hashed_password' , '$userImage')";
+    $sql = "INSERT INTO user (firstName, lastName, email, pass) VALUES ('$firstName', '$lastName', '$email', '$hashed_password')";
     if($conn->query($sql)===FALSE){
             header("Location: ../signup.php?emailFail=failed");
             exit();
@@ -32,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $sql = "SELECT userId FROM user WHERE email = '$email'";
     $result = $conn->query($sql);
-    $conn->close();
+    db_disconnect($conn);
 
     if ($result->num_rows < 1) {
         header("Location: ../signup.php?emailFail=failed");

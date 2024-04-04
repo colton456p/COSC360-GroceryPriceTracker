@@ -1,14 +1,6 @@
 <?php
-session_start();
+include "PHP/db_connect.php";
 
-if(isset($_SESSION['userId']) || isset($_SESSION['adminPriv'])) {
-    header("Location: dashboard.php");
-    exit;
-}
-
-$_SESSION = array();
-
-session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +80,7 @@ session_destroy();
                 </div>
     
                 <div class="nav-element">
-                    <a type="button" id="product-nav-link" href="priceTrends.php">PRODUCTS</a>
+                    <a type="button" id="product-nav-link" href="product.php">PRODUCTS</a>
                 </div>
                 <div class="nav-element">
                     <a type="button"id="login-nav-link" href="login.php">LOGIN</a>
@@ -144,6 +136,11 @@ session_destroy();
                 </div>
                 <input type="password" id="password2" name="password2">
                 
+                <div class="signup-text">
+                    <label for="userImage">Choose Profile Picture</label>
+                </div>
+                <input type="file" name="userImage" id="userImage" class="custom-file-upload">
+            
                 <div id="button-center">
                     <button type="submit">Create Account</button>
                 </div>

@@ -1,5 +1,9 @@
 <?php
+include "PHP/db_connect.php";
 session_start();
+if (isset($_POST['search-bar'])){
+    $searchKeyword = $_POST['search-bar'];
+}
 
 if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
     header("Location: login.php");
@@ -12,9 +16,50 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
     <head>
         <link rel="stylesheet" href="css/product-style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            function popUpItem(){
-                
+            function popUpItem(productId, itemName, imageSrc){
+                var form = document.createElement('form');
+                form.setAttribute('method', 'POST');
+                form.setAttribute('action', 'productTrend.php');
+
+                var productIdInput = document.createElement('input');
+                productIdInput.setAttribute('type', 'hidden');
+                productIdInput.setAttribute('name', 'productId');
+                productIdInput.setAttribute('value', productId);
+
+                var imageInput = document.createElement('input');
+                imageInput.setAttribute('type', 'hidden');
+                imageInput.setAttribute('name', 'imageSrc');
+                imageInput.setAttribute('value', imageSrc);
+
+                var itemInput = document.createElement('input');
+                itemInput.setAttribute('type', 'hidden');
+                itemInput.setAttribute('name', 'itemName');
+                itemInput.setAttribute('value', itemName);
+
+                form.appendChild(productIdInput);
+                form.appendChild(imageInput);
+                form.appendChild(itemInput);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+
+            function fav(productId) {
+                $.ajax({
+                    url: 'PHP/add_favourites.php',
+                    method: 'POST',
+                    data: {productId: productId},
+                    success: function(response) {
+                        console.log('PHP script executed successfully');
+                        console.log('Response:', response);
+                        // window.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error executing PHP script:', error);
+                    }
+                });
             }
                 
         </script>
@@ -52,22 +97,9 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
             <div id="item-group">
                 <div id="item-shelf">
                     <?php
-                        session_start();
-                        $userId = $_SESSION["userId"];
-                        $servername = "localhost";
-                        $username = "38885190";
-                        $dbPass = "38885190";
-                        $database = "db_38885190";
-
-                        $conn = new mysqli($servername, $username, $dbPass, $database);
-
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-
-                        if (isset($_POST['search-bar'])) {
-                            $searchKeyword = $_POST['search-bar'];
-                            $stmt = $conn->prepare("SELECT * FROM groceryItems WHERE groceryItemName LIKE ?");
+                        
+                            $conn = db_connect();
+                            $stmt = $conn->prepare("SELECT productId, MAX(groceryItemName) AS itemName, groceryItemImage FROM groceryItems WHERE groceryItemName LIKE ? GROUP BY productId");
                             $stmt->bind_param("s", $searchKeywordParam);
 
                             $searchKeywordParam = "%$searchKeyword%";
@@ -79,7 +111,7 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
 
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
-                                    $twoDArray[] = [$row["productId"], $row["groceryItemName"], $row["currentPrice"], $row["groceryItemImage"], $row["priceDate"], $row["storeID"]];
+                                    $twoDArray[] = [$row["productId"], $row["itemName"], $row["groceryItemImage"]];
                                 }
 
                                 usort($twoDArray, function($a, $b) {
@@ -89,21 +121,24 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
                                 $stmt->close();
                                 foreach ($twoDArray as $product) {
                                     $i += 1;
-                                    $sql = "SELECT groceryStoreName FROM groceryStore WHERE groceryStoreID ='$product[5]'";
-                                    $storeResult = $conn->query($sql);
-                                    $temp = $storeResult->fetch_assoc();
-                                    $store = $temp["groceryStoreName"];
-                                    $storeResult->close();
+                                    $productId = $product[0];
+                                    $groceryItemName = $product[1];
+                                    $groceryItemImage = $product[2];
+                                    $sql2 = "SELECT G.groceryStoreName FROM groceryItems AS GI JOIN groceryStore AS G ON GI.storeId = G.groceryStoreId WHERE GI.productId = '$productId' AND GI.currentPrice = (SELECT MIN(currentPrice) FROM groceryItems WHERE productId = '$productId')";
+                                    $results2 = $conn->query($sql2);
+                                    $row2 = $results2->fetch_assoc();
+                                    $cheapestStore = $row2["groceryStoreName"];
+
                                     echo "<div class=\"item\">
-                                        <div class=\"favourite-icon-unfill\">
+                                        <div class=\"favourite-icon-unfill\" onClick=\"return fav('" . $productId . "')\">
                                             <i class=\"bi-heart\"></i>
                                         </div>
-                                        <div class =\"item-center-image\">
-                                            <img id=\"img".$i."\" class=\"item-image\" src=\"".$product[3]."\">
+                                        <div class =\"item-center-image\" onClick=\"popUpItem('" . $productId . "', '" . $groceryItemName . "', '" . $groceryItemImage . "')\">
+                                            <img id=\"img" . $i . "\" class=\"item-image\" src=\"" . $groceryItemImage . "\">
                                         </div>
-                                        <div class=\"title-click\">
-                                            <h3 id=\"item".$i."\"class=\"item-name\"> ".$product[1]."</h3>
-                                            <h5 class=\"item-price\"><b class=\"greentext\">Price at ".$store.": </b>$".$product[2]."</h5>
+                                        <div class=\"title-click\" onClick=\"popUpItem('$productId', '$groceryItemName', '$groceryItemImage')\">
+                                            <h3 id=\"item".$i."\" class=\"item-name\">$groceryItemName</h3>
+                                            <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at:</b> $cheapestStore</h5>
                                         </div>
                                     </div>";
                                 }
@@ -111,10 +146,8 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
                                 echo "No products found.";
                             }
 
-                            
-                        }
 
-                        $conn->close();
+                        db_disconnect($conn);
                     ?>
                 </div>
             </div>

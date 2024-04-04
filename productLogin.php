@@ -1,6 +1,7 @@
 <!-- I know the name is a bit confusing but this is the product page that is displayed for when a user is logged in -->
 
 <?php
+include "PHP/db_connect.php";
 session_start();
 if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
     header("Location: login.php");
@@ -14,23 +15,53 @@ if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
 <head>
     <link rel="stylesheet" href="css/product-style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>All products (logged in user)</title>
 
     <script>
-        function popUpItem(itemId, itemName, imageSrc) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'productTrend.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    console.log(xhr.responseText);
-                }
-            };
-            var params = 'itemId=' + encodeURIComponent(itemId) +
-                '&itemName=' + encodeURIComponent(itemName) +
-                '&imageSrc=' + encodeURIComponent(imageSrc);
-            xhr.send(params);
-        }
+        function popUpItem(productId, itemName, imageSrc){
+                var form = document.createElement('form');
+                form.setAttribute('method', 'POST');
+                form.setAttribute('action', 'productTrend.php');
+
+                var productIdInput = document.createElement('input');
+                productIdInput.setAttribute('type', 'hidden');
+                productIdInput.setAttribute('name', 'productId');
+                productIdInput.setAttribute('value', productId);
+
+                var imageInput = document.createElement('input');
+                imageInput.setAttribute('type', 'hidden');
+                imageInput.setAttribute('name', 'imageSrc');
+                imageInput.setAttribute('value', imageSrc);
+
+                var itemInput = document.createElement('input');
+                itemInput.setAttribute('type', 'hidden');
+                itemInput.setAttribute('name', 'itemName');
+                itemInput.setAttribute('value', itemName);
+
+                form.appendChild(productIdInput);
+                form.appendChild(imageInput);
+                form.appendChild(itemInput);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+
+            function fav(productId) {
+                $.ajax({
+                    url: 'PHP/add_favourites.php',
+                    method: 'POST',
+                    data: {productId: productId},
+                    success: function(response) {
+                        console.log('PHP script executed successfully');
+                        console.log('Response:', response);
+                        window.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error executing PHP script:', error);
+                    }
+                });
+            }
     </script>
 
 
@@ -45,7 +76,7 @@ if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
     </div>
 
     <div id="header-search-div">
-        <form id="search-form" action="search-login.php">
+        <form id="search-form" action="search-login.php" method="post">
             <input type="search" id="search-bar" name="search-bar" placeholder="Search for items...">
             <input type="submit" value="Search" id="search-button">
         </form>
@@ -72,16 +103,7 @@ if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
 
             <div id="item-shelf">
                 <?php
-                $servername = "localhost";
-                $username = "38885190";
-                $dbPass = "38885190";
-                $database = "db_38885190";
-
-                $conn = new mysqli($servername, $username, $dbPass, $database);
-
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+                $conn = db_connect();
 
                 $sql = "SELECT productId, MAX(groceryItemName) AS groceryItemName, MAX(groceryItemImage) AS groceryItemImage FROM groceryItems GROUP BY productId";
 
@@ -91,19 +113,22 @@ if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
                     $i = 0;
                     while ($row = $results->fetch_assoc()) {
                         $i++;
-                        $groceryItemId = $row["groceryItemId"];
+                        $productId = $row["productId"];
                         $groceryItemName = $row["groceryItemName"];
                         $groceryItemImage = $row["groceryItemImage"];
-                        $cheapestStore = "Walmart";
+                        $sql2 = "SELECT G.groceryStoreName FROM groceryItems AS GI JOIN groceryStore AS G ON GI.storeId = G.groceryStoreId WHERE GI.productId = '$productId' AND GI.currentPrice = (SELECT MIN(currentPrice) FROM groceryItems WHERE productId = '$productId')";
+                        $results2 = $conn->query($sql2);
+                        $row2 = $results2->fetch_assoc();
+                        $cheapestStore = $row2["groceryStoreName"];
                         echo "<div class=\"item\">
-                                <div class=\"favourite-icon-unfill\">
+                                <div class=\"favourite-icon-unfill\" onClick=\"return fav('" . $productId . "')\">
                                     <i class=\"bi-heart\"></i>
                                 </div>
-                                <div class=\"item-center-image\" onClick=\"popUpItem('$groceryItemId', '$groceryItemName', '$groceryItemImage')\">
-                                    <img id=\"img$i\" class=\"item-image\" src=\"$groceryItemImage\">
+                                <div class =\"item-center-image\" onClick=\"popUpItem('" . $productId . "', '" . $groceryItemName . "', '" . $groceryItemImage . "')\">
+                                    <img id=\"img" . $i . "\" class=\"item-image\" src=\"" . $groceryItemImage . "\">
                                 </div>
-                                <div class=\"title-click\" onClick=\"popUpItem('$groceryItemId', '$groceryItemName', '$groceryItemImage')\">
-                                    <h3 id=\"item$i\" class=\"item-name\">$groceryItemName</h3>
+                                <div class=\"title-click\" onClick=\"popUpItem('$productId', '$groceryItemName', '$groceryItemImage')\">
+                                    <h3 id=\"item".$i."\" class=\"item-name\">$groceryItemName</h3>
                                     <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at:</b> $cheapestStore</h5>
                                 </div>
                             </div>";
@@ -111,7 +136,7 @@ if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
                 } else {
                     echo "No products found";
                 }
-                $conn->close();
+                db_disconnect($conn);
                 ?>
             </div>
 

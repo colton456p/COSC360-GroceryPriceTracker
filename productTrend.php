@@ -1,7 +1,13 @@
 
 <?php
+header('Content-Type: text/html; charset=utf-8');
 session_start();
+$productId = $_POST['productId'];
+$itemName = $_POST['itemName'];
+$imageSrc = $_POST['imageSrc'];
+$userId = $_SESSION['userId'];
 
+include "PHP/db_connect.php";
 if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
     header("Location: login.php");
     exit;
@@ -11,91 +17,115 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
 
 <!DOCTYPE html>
 <html lang="en">
-<?php
-session_start();
-
-// Include connection.php or ensure that the PDO connection is established here
-include 'PHP/connection.php'; // Adjust the path if necessary
-include('PHP/displayComments.php');
-
-
-
-// Retrieve the data sent via GET
-$itemId = $_GET['itemId'];
-$itemName = $_GET['itemName'];
-$imageSrc = $_GET['imageSrc'];
-
-// Proceed with processing the data
-// Your code logic goes here
-?>
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="css/comments.css" />
     <link rel="stylesheet" href="css/productTrend-style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <title>Product Trend</title>
     <script>
         function backButton() {
             window.history.back();
         }
+        
         $(document).ready(function() {
-            console.log("Document ready, loading comments...");
-            loadMoreComments();
-
-            setInterval(function() {
-                loadMoreComments();
-            }, 1000);
+            function updateComments() {
+                $.ajax({
+                    url: 'PHP/submitComment.php',
+                    type: 'POST',
+                    data: $('#commentForm').serialize(),
+                    dataType: 'json',
+                    success: function(data) {
+                        var commentsHtml = '';
+                        if (data.length < 1) {
+                            commentsHtml = '<h3>No comments yet. Be the first to comment!</h3>';
+                        }
+                        for (var i = 0; i < data.length; i++) {
+                            var cDate = data[i].cDate
+                            cDate = cDate.slice(0, 10);
+                            commentsHtml += '<div class="singleComment">';
+                            commentsHtml += '<div class="leftComment">';
+                            commentsHtml += '<h3>' + data[i].fName + '</h3>';
+                            commentsHtml += '<p id="commentValue">' + data[i].cText + '</p>';
+                            commentsHtml += '<p id="commentDate">Date: ' + cDate + '</p>';
+                            commentsHtml += '</div>';
+                            commentsHtml += '<div class="rightComment">';
+                            commentsHtml += '<span class="tooltip-text">Report a Comment? &#8594;</span>';
+                            commentsHtml += '<i class="bi bi-flag-fill"></i>';
+                            commentsHtml += '</div>';
+                            commentsHtml += '</div>';
+                        }
+                        $('#productComments').html(commentsHtml);
+                        
+                        $('#commentInput').val('');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+        
+            $('#commentForm').on("submit", function(event) {
+                event.preventDefault(); 
+                updateComments();
+            });
         });
 
-        function loadMoreComments() {
-            console.log("Loading more comments...");
+
+        $(document).ready(function() {
+            function updateComments(productId) {
+                $.ajax({
+                    url: 'PHP/getComments.php',
+                    type: 'POST',
+                    data: { productId: productId },
+                    dataType: 'json',
+                    success: function(data) {
+                        var commentsHtml = '';
+                        if (data.length < 1) {
+                            commentsHtml = '<h3>No comments yet. Be the first to comment!</h3>';
+                        }
+                        for (var i = 0; i < data.length; i++) {
+                            commentsHtml += '<div class="singleComment">';
+                            commentsHtml += '<div class="leftComment">';
+                            commentsHtml += '<h3>' + data[i].fName + '</h3>';
+                            commentsHtml += '<p id="commentValue">' + data[i].cText + '</p>';
+                            commentsHtml += '<p id="commentDate">Date: ' + data[i].cDate.slice(0, 10) + '</p>';
+                            commentsHtml += '</div>';
+                            commentsHtml += '<div class="rightComment">';
+                            commentsHtml += '<span class="tooltip-text">Report a Comment? &#8594;</span>';
+                            commentsHtml += '<i class="bi bi-flag-fill"></i>';
+                            commentsHtml += '</div>';
+                            commentsHtml += '</div>';
+                        }
+                        $('#productComments').html(commentsHtml);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+            
+            var productId = '<?php echo $productId; ?>';
+            updateComments(productId);
+            setInterval(function() {
+                updateComments(productId);
+            }, 2000);
+        });
+
+        function flag(commentId) {
             $.ajax({
-                url: "PHP/displayComments.php",
-                type: "GET",
-                data: {
-                    itemId: <?php echo $_GET['itemId']; ?>
-                },
-                dataType: "html",
+                url: 'PHP/flagComment.php',
+                type: 'POST',
+                data: { commentId: commentId },
                 success: function(response) {
-                    console.log("Received response:", response);
-                    $('#displayComments').html(response); 
+                    console.log('PHP script executed successfully');
+                    console.log('Response:', response);
                 },
                 error: function(xhr, status, error) {
-                    console.error("Failed to load comments:", error);
-                    $("#displayComments").html("<p>Error loading comments.</p>");
+                    console.error('Error executing PHP script:', error);
                 }
             });
         }
-
-
-
-        $(document).ready(function() {
-            $('#commentForm').on("submit", function(event) {
-                event.preventDefault(); 
-                $.ajax({
-                    type: "POST",
-                    url: "PHP/addComment.php",
-                    data: $(this).serialize(),
-                }).done(function(response) {
-                    if (response.success) {
-                        $('#commentText').val('');
-
-                        var newCommentHtml = "<div class='comment'>" +
-                            "<p><strong>User: </strong>" + response.firstName + "</p>" +
-                            "<p>" + response.commentText + "</p>" +
-                            "</div>";
-                        $('#displayComments').prepend(newCommentHtml);
-                    } else {
-                        alert("Failed to submit comment: " + response.message);
-                    }
-                }).fail(function(jqXHR, textStatus, errorThrown) {
-                    console.log("AJAX call failed:", textStatus, errorThrown);
-                });
-            });
-        });
     </script>
 </head>
 <header>
@@ -135,39 +165,97 @@ $imageSrc = $_GET['imageSrc'];
             <i class="bi bi-arrow-left-circle-fill"> Back</i>
         </div>
     </div>
-    <input type="hidden" id="productName" value="<?php echo isset($itemName) ? htmlspecialchars($itemName) : ''; ?>">
+    <?php
+        echo "<h1 id=\"productName\">".$itemName."</h1>";
+    ?>
     <div id="centerContent">
         <div id="left">
             <?php
-            echo "<img id=\"productImage\" src= $imageSrc alt=\"product image\">";
+            echo "<img id=\"productImage\" src=\"".$imageSrc."\" alt=\"product image\">";
+            $conn = db_connect();
             ?>
         </div>
         <div id="right">
             <div id="image_bubbles">
                 <div class="storePrice">
+                    <?php
+                    $sql ="SELECT currentPrice FROM groceryItems WHERE productId ='$productId' AND storeID = 15";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows < 1) {
+                        $price = 'N/A';
+                    }else{
+                        $temp = $result->fetch_assoc();
+                        $price = '$'.$temp['currentPrice'];
+                        $result->close();
+                    }
+                    ?>
                     <img class="logobubble" src="img/saveon-logo.png" alt="SaveOn Logo">
                     <h1 class="price">Save On Foods </h1>
-                    <h1 class="greentext">$10.00</h1>
+                    <h1 class="greentext"><?php echo $price;?></h1>
                 </div>
                 <div class="storePrice">
+                    <?php
+                    $sql ="SELECT currentPrice FROM groceryItems WHERE productId ='$productId' AND storeID = 12";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows < 1) {
+                        $price = 'N/A';
+                    }else{
+                        $temp = $result->fetch_assoc();
+                        $price = '$'.$temp['currentPrice'];
+                        $result->close();
+                    }
+                    ?>
                     <img class="logobubble" src="img/walmart-logo.jpg" alt="Walmart Logo">
                     <h1 class="price">Walmart </h1>
-                    <h1 class="greentext">$10.00</h1>
+                    <h1 class="greentext"><?php echo $price;?></h1>
                 </div>
                 <div class="storePrice">
+                    <?php
+                    $sql ="SELECT currentPrice FROM groceryItems WHERE productId ='$productId' AND storeID = 14";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows < 1) {
+                        $price = 'N/A';
+                    }else{
+                        $temp = $result->fetch_assoc();
+                        $price = '$'.$temp['currentPrice'];
+                        $result->close();
+                    }
+                    ?>
                     <img class="logobubble" src="img/safewaylogo.png" alt="Safeway Logo">
                     <h1 class="price">Safeway</h1>
-                    <h1 class="greentext">$10.00</h1>
+                    <h1 class="greentext"><?php echo $price;?></h1>
                 </div>
                 <div class="storePrice">
+                    <?php
+                    $sql ="SELECT currentPrice FROM groceryItems WHERE productId ='$productId' AND storeID = 16";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows < 1) {
+                        $priceMaxi = 'N/A';
+                    }else{
+                        $temp = $result->fetch_assoc();
+                        $priceMaxi = '$'.$temp['currentPrice'];
+                        $result->close();
+                    }
+                    ?>
                     <img class="logobubble" src="img/maxi-logo.png" alt="Maxi Logo">
                     <h1 class="price">Maxi </h1>
-                    <h1 class="greentext">$10.00</h1>
+                    <h1 class="greentext"><?php echo $priceMaxi;?></h1>
                 </div>
                 <div class="storePrice">
+                    <?php
+                    $sql ="SELECT currentPrice FROM groceryItems WHERE productId ='$productId' AND storeID = 13";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows < 1) {
+                        $price = 'N/A';
+                    }else{
+                        $temp = $result->fetch_assoc();
+                        $price = '$'.$temp['currentPrice'];
+                        $result->close();
+                    }
+                    ?>
                     <img class="logobubble" src="img/pclogo.png" alt="Presidents Choice Logo">
                     <h1 class="price">Superstore </h1>
-                    <h1 class="greentext">$10.00</h1>
+                    <h1 class="greentext"><?php echo $price;?></h1>
                 </div>
             </div>
         </div>
@@ -177,17 +265,49 @@ $imageSrc = $_GET['imageSrc'];
         <div id="trendGraph">
             <img src="img/fakeDemoGraph.jpg" alt="trend graph">
         </div>
-        <div id="commentsSection">
-            <div id="commentBox">
-                <h2>Leave a Comment</h2>
-                <form id="commentForm" action="PHP/addComment.php" method="POST">
-                    <input type="hidden" name="itemId" value="<?php echo $itemId; ?>">
-                    <textarea name="commentText" id="commentText" rows="4" placeholder="Write your comment here..." required></textarea>
-                    <input type="submit" value="Submit Comment" id="submitComment">
-                </form>
-            </div>
-            <div id="displayComments">
-            </div>
+    </div>
+    <h1 id="commentTitle">COMMENTS</h1>
+    <div id="comments">
+        <div id="productComments">
+            <?php
+                $productId = $_POST['productId'];
+                $conn = db_connect();
+                $sql = "SELECT U.firstName AS fName, C.commentText AS cText, C.commentDate AS cDate, commentId FROM comments AS C JOIN user AS U ON U.userId = C.userId WHERE productId = '$productId' ORDER BY C.commentDate DESC";
+                $result = $conn->query($sql);
+                if ($result->num_rows < 1) {
+                    echo "<h3>No comments yet. Be the first to comment!</h3>";
+                }else{
+                    while($temp = $result->fetch_assoc()){
+                    $name = $temp["fName"];
+                    $commentText = $temp["cText"];
+                    $commentId = $temp["commentId"];
+                    $cDate = $temp["cDate"];
+                    $cDate = substr($cDate, 0, 10); 
+                            echo "<div class=\"singleComment\">
+                                    <div class=\"leftComment\">
+                                        <h3>".$name."</h3>
+                                        <p id=\"commentValue\">".$commentText."</p>
+                                        <p id=\"commentDate\">Date: ".$cDate."</p>
+                                    </div>
+                                    <div class=\"rightComment\">
+                                        <span class=\"tooltip-text\">Report a Comment? &#8594;</span>
+                                        <i class=\"bi bi-flag-fill\" onClick=\" return flag('" . $commentId . "')\"></i>
+                                    </div>
+                                </div>";
+                    }
+                }
+                db_disconnect($conn);
+            ?>
+                
+        </div>
+        <div id="addComment">
+            <h2>Add a Comment</h2>
+            <form id="commentForm" method="post" action="PHP/submitComment.php">
+                <input type="text" id="commentInput" name="commentInput" placeholder="Add a comment...">
+                <input type="hidden" id="userId" name="userId" value="<?php echo $userId;?>">
+                <input type="hidden" id="productId" name="productId" value="<?php echo $productId;?>">
+                <input type="submit" value="Post Comment" id="commentButton">
+            </form>
         </div>
     </div>
 </body>

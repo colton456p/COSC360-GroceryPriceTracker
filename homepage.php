@@ -87,7 +87,7 @@
             <h3 id="footer_title">About Us</h3>
             <p>
                 This site was created for the course COSC 360 (Introduction to Web. 
-                Development). It uses APIs from several popular Canadian grocery 
+                Development). It uses real pricing data from several popular Canadian grocery 
                 stores to help you easily find the cheapest grocery prices. With everything
                 being so expensive nowadays we believe this website will help save 
                 time and money especially for students.
