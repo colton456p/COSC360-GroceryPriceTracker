@@ -141,3 +141,22 @@ p {
 .green-text{
     color:green;
 }
+#profile-pic{
+    border-radius:50%;
+    height: 6em;
+}
+#profile-img-box{
+    justify-content: center;
+    margin-top:1em;
+}
+#profile-bubble{
+    display: flex;
+    align-items: center;
+    overflow:hidden;
+    justify-content: center;
+    height: 6em;
+    width:6em;
+    border-radius: 50%;
+    border:black 0.1em solid;
+    float:right;
+}

@@ -1,15 +1,12 @@
 <?php
+include "db_connect.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $hashed_password = md5($password);
 
-    $servername = "localhost";
-    $username = "38885190";
-    $dbPass = "38885190";
-    $database = "db_38885190";
-    
-    $conn = new mysqli($servername, $username, $dbPass, $database);
-    $sql = "SELECT userId, adminPriv FROM user WHERE email = '$email' AND pass = '$password'";
+    $conn = db_connect();
+    $sql = "SELECT userId, adminPriv FROM user WHERE email = '$email' AND pass = '$hashed_password'";
     if ($conn->connect_error) {
         header("Location: ../signup.php?signup=failed");
         exit();
@@ -17,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $result = $conn->query($sql);
     
     if ($result->num_rows < 1) {
+        db_disconnect($conn);
         header("Location: ../login.php?login=failed");
         exit();
     }else{
@@ -27,9 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $_SESSION["adminPriv"] = $adminPriv;
         }
         $_SESSION["userId"] = $row["userId"];
+        db_disconnect($conn);
         header("Location: ../dashboard.php");
         exit();
     }
+    
 }
 
 ?>

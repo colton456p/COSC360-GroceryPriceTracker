@@ -1,4 +1,5 @@
 <?php
+include "PHP/db_connect.php";
 session_start();
 
 if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
@@ -54,23 +55,24 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
         session_start();   
         if (isset($_SESSION["userId"])) {
         $userId = $_SESSION["userId"];
-        $servername = "localhost";
-        $username = "38885190";
-        $dbPass = "38885190";
-        $database = "db_38885190";
-        $conn = new mysqli($servername, $username, $dbPass, $database);
+        $conn = db_connect();
         $sql = "SELECT firstName, lastName, email, adminPriv FROM user WHERE userId =".$userId;
         $result = $conn->query($sql);
         $user = $result->fetch_assoc();    
-        $result->close();
+        db_disconnect($conn);
     } else {
-        // Handle the case where userId is not set in the session
         echo "User ID not set!";
     }
         ?>
     
     <div id="container">
+        <div id="profile-img-box">
+            <div id="profile-bubble">
+                <img src="img/no-profile-pic.png" id="profile-pic">
+            </div>
+        </div>
         <h2>Your Account</h2>
+        
         <h3>User Profile</h3>
         <div class="indent">
             
@@ -83,15 +85,13 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
             
         </div>
         <h3>Actions</h3>
-        
         <a href="changePassword.php" class="btn">Change Password</a>
         <?php
-            // Check if the user is an admin
             if ($user["adminPriv"] == 1) {
                 echo '<a href="adminRemove.php" style="background-color:rgb(65, 105, 225);" class="btn">Remove Users</a>';
             }
             ?>
-        <a href="homepage.php" action="logOut()"style="background-color:rgb(220, 6, 6);"class="btn">Log out</a>
+        <a href="homepage.php" action="PHP/account.php" "style="background-color:red;" class="btn">Log out</a>
     </div>
 </body>
 </html>

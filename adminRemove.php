@@ -1,4 +1,5 @@
 <?php
+include "PHP/db_connect.php";
 session_start();
 
 if(!isset($_SESSION['adminPriv'])){
@@ -9,10 +10,6 @@ if(!isset($_SESSION['adminPriv'])){
 
 session_start();
 $userId = $_SESSION["userId"];
-$servername = "localhost";
-$username = "38885190";
-$dbPass = "38885190";
-$database = "db_38885190";
 
 function adminRemoveAction($userId, $conn) {
     $sql = "DELETE FROM user WHERE userId = ?";
@@ -24,28 +21,22 @@ function adminRemoveAction($userId, $conn) {
 
 if (isset($_POST['remove_user'])) {
     $userIdToRemove = $_POST['remove_user'];
-    $conn = new mysqli($servername, $username, $dbPass, $database);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    $conn = db_connect();
     adminRemoveAction($userIdToRemove, $conn);
-    $conn->close();
+    db_disconnect($conn);
 }
 
 if (isset($_POST['search'])) {
     $searchTerm = $_POST['search'];
-    $conn = new mysqli($servername, $username, $dbPass, $database);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    $conn = db_connect();
     $sql = "SELECT * FROM user WHERE adminPriv != 1 AND (firstName LIKE '%$searchTerm%' OR email LIKE '%$searchTerm%')";
     $result = $conn->query($sql);
-    $conn->close();
+    db_disconnect($conn);
 } else {
-    $conn = new mysqli($servername, $username, $dbPass, $database);
+    $conn = db_connect();
     $sql = "SELECT * FROM user WHERE adminPriv != 1";
     $result = $conn->query($sql);
-    $conn->close();
+    db_disconnect($conn);
 }
 ?>
 

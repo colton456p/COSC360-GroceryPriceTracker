@@ -241,9 +241,6 @@ h1,h2,p,body,footer,a,figcaption{font-family:'Gill Sans', 'Gill Sans MT', Calibr
 .favourite-icon-unfill i{
     color: black;
 }
-.favourite-icon-unfill i::after{
-    fill: red;
-}
 .favourite-icon-unfill i:hover{
     color: red;
 }

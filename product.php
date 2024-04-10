@@ -1,11 +1,7 @@
 <!-- I know the name is a bit confusing but this is the product page that is displayed for when a user is NOT logged in -->
 <?php
-session_start();
+include "PHP/db_connect.php";
 
-if(isset($_SESSION['userId']) || isset($_SESSION['adminPriv'])){
-    header("Location: productLogin.php");
-    exit;
-}
 
 ?>
 
@@ -24,7 +20,7 @@ if(isset($_SESSION['userId']) || isset($_SESSION['adminPriv'])){
     </div>
     
     <div id="header-search-div">
-        <form id="search-form" action="search.php">
+        <form id="search-form" action="search.php" method="post">
             <input type="search" id="search-bar" name="search-bar" placeholder="Search for items...">
             <input type="submit" value="Search" id="search-button">
         </form>
@@ -50,16 +46,7 @@ if(isset($_SESSION['userId']) || isset($_SESSION['adminPriv'])){
 
             <div id="item-shelf">
                 <?php
-                    $servername = "localhost";
-                    $username = "38885190";
-                    $dbPass = "38885190";
-                    $database = "db_38885190";
-                    
-                    $conn = new mysqli($servername, $username, $dbPass, $database);
-                    
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                    $conn = db_connect();
                     
                     $sql ="SELECT productId, MAX(groceryItemName) AS groceryItemName, MAX(groceryItemImage) AS groceryItemImage FROM groceryItems GROUP BY productId";
 
@@ -72,18 +59,21 @@ if(isset($_SESSION['userId']) || isset($_SESSION['adminPriv'])){
                         $productId = $row["productId"];
                         $groceryItemName = $row["groceryItemName"];
                         $groceryItemImage = $row["groceryItemImage"];
-                        $cheapestStore = "Walmart";
+                        $sql2 = "SELECT G.groceryStoreName FROM groceryItems AS GI JOIN groceryStore AS G ON GI.storeId = G.groceryStoreId WHERE GI.productId = '$productId' AND GI.currentPrice = (SELECT MIN(currentPrice) FROM groceryItems WHERE productId = '$productId')";
+                        $results2 = $conn->query($sql2);
+                        $row2 = $results2->fetch_assoc();
+                        $cheapestStore = $row2["groceryStoreName"];
                         echo "<div class=\"item\">
-                                <div class =\"item-center-image\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                <div class =\"item-center-image\" >
                                     <img id=\"img".$i."\" class=\"item-image\" src=\"".$groceryItemImage."\">
                                 </div>
-                                <div class=\"title-click\" onClick=\"popUpItem('".$productId."', '".$groceryItemName."', '".$groceryItemImage."')\">
+                                <div class=\"title-click\">
                                     <h3 id=\"item".$i."\"class=\"item-name\"> ".$groceryItemName."</h3>
                                     <h5 class=\"item-price\"><b class=\"greentext\">Lowest price at: </b>".$cheapestStore."</h5>
                                 </div>
                             </div>";
                     }
-                    $conn->close();
+                    db_disconnect($conn);
                 ?>
             </div>
         </div>

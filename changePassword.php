@@ -1,11 +1,7 @@
 <?php
+include "PHP/db_connect.php";
 session_start();
 $userId = $_SESSION["userId"];
-$servername = "localhost";
-$username = "38885190";
-$dbPass = "38885190";
-$database = "db_38885190";
-
 
 if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
     header("Location: login.php");
@@ -22,10 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $error = "All fields are required.";
     } else {
 
-        $conn = new mysqli($servername, $username, $dbPass, $database);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        $conn = db_connect();
 
         $userId = $_SESSION['userId'];
         $sql = "SELECT pass FROM user WHERE userId = ?";
@@ -36,18 +29,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $stmt->fetch();
         $stmt->close();
 
-
-        if ($oldPassword != $storedPassword) {
+        $hashed_old_password = md5($oldPassword);
+        if ($hashed_old_password != $storedPassword) {
             $error = "Incorrect old password.";
         } else {
 
             $updateSql = "UPDATE user SET pass = ? WHERE userId = ?";
             $updateStmt = $conn->prepare($updateSql);
-            $updateStmt->bind_param("si", $newPassword, $userId);
+            $hashed_password = password_hash($newPassword, PASSWORD_DEFAULT);
+            $updateStmt->bind_param("si", $hashed_password, $userId);
             $updateStmt->execute();
             $updateStmt->close();
 
-            $conn->close();
+            db_disconnect($conn);
 
 
             header("Location: account.php");

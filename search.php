@@ -3,11 +3,7 @@
     <head>
         <link rel="stylesheet" href="css/product-style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-        <script>
-            function popUpItem(){
-                
-            }
-                
+        <script>  
         </script>
     </head>
     <header>
@@ -43,18 +39,11 @@
             <div id="item-group">
                 <div id="item-shelf">
                     <?php
+                        include "PHP/db_connect.php";
                         session_start();
                         $userId = $_SESSION["userId"];
-                        $servername = "localhost";
-                        $username = "38885190";
-                        $dbPass = "38885190";
-                        $database = "db_38885190";
 
-                        $conn = new mysqli($servername, $username, $dbPass, $database);
-
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
+                        $conn = db_connect();
 
                         if (isset($_POST['search-bar'])) {
                             $searchKeyword = $_POST['search-bar'];
@@ -102,7 +91,7 @@
                             
                         }
 
-                        $conn->close();
+                        db_disconnect($conn);
                     ?>
                 </div>
             </div>
