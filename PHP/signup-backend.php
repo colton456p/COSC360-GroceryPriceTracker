@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = $_POST['email'];
     $password = $_POST['password'];
     $hashed_password = md5($password);
-    $
     $conn = db_connect();
     
     // $sql = "INSERT INTO user (firstName, lastName, email, pass, userImage) VALUES ('$firstName', '$lastName', '$email', '$hashed_password' , '$userImage')";
