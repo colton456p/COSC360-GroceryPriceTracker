@@ -16,7 +16,7 @@ if (!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])) {
     <link rel="stylesheet" href="css/product-style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>All products (logged in user)</title>
+    <title>GrocerySmart</title>
 
     <script>
         function popUpItem(productId, itemName, imageSrc){

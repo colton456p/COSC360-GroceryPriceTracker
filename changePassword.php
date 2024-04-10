@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Change Password</title>
+<title>GrocerySmart</title>
     <link rel="stylesheet" href="css/change-pass.css">
 </head>
 <header>

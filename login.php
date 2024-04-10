@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/login-style.css">
-    <title>Login</title>
+    <title>GrocerySmart - Login</title>
     <script>
         function validateInput(){
             document.getElementById("failedLogin").hidden = true;
