@@ -14,6 +14,7 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>GrocerySmart</title>
         <link rel="stylesheet" href="css/product-style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

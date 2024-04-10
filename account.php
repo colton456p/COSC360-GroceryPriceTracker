@@ -12,7 +12,7 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Account</title>
+<title>GrocerySmart - Account</title>
     <link rel="stylesheet" href="css/account.css">
     <script>
         function logOut(){

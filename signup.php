@@ -5,7 +5,7 @@ include "PHP/db_connect.php";
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Sign Up</title>
+        <title>GrocerySmart - Sign Up</title>
         <link rel="stylesheet" href="css/signup.css">
         <script>
             function validateInput(){

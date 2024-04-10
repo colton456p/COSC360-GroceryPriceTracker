@@ -22,7 +22,7 @@ if(!isset($_SESSION['userId']) && !isset($_SESSION['adminPriv'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/productTrend-style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-    <title>Product Trend</title>
+    <title>GrocerySmart</title>
     <script>
         function backButton() {
             window.history.back();

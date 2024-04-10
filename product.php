@@ -9,7 +9,7 @@ include "PHP/db_connect.php";
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/product-style.css">
-    <title>All products (logged out user)</title>
+    <title>GrocerySmart</title>
 </head>
 <header>
     <div id="site_logo">

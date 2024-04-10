@@ -43,7 +43,7 @@ if (isset($_POST['search'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Admin Remove</title>
+<title>GrocerySmart - Admin</title>
     <link rel="stylesheet" href="css/adminRemove.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
