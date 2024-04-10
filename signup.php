@@ -135,11 +135,6 @@ include "PHP/db_connect.php";
                     <p class="warning" id="pass2-warning" hidden>**Passwords do not match**</p>
                 </div>
                 <input type="password" id="password2" name="password2">
-                
-                <div class="signup-text">
-                    <label for="userImage">Choose Profile Picture</label>
-                </div>
-                <input type="file" name="userImage" id="userImage" class="custom-file-upload">
             
                 <div id="button-center">
                     <button type="submit">Create Account</button>
